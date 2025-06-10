@@ -1,2 +1,2 @@
-# my-recipes-frontend
+# My-Recipes-Frontend
 This is the frontend repository for `My Recipes` app.

@@ -19,14 +19,15 @@ const SignInForm = () => {
                     <h2 className="header-text">My Recipes</h2>
                     
                     <Form.Item
+                        className="margin-bottom-30px"
                         name='Email'
                         rules={[{ required: true, message: 'Please enter your email!'}]}
-                        className="margin-bottom-30px"
                     >
                         <Input className="padding-6px" type="text" name="loginEmailInput" key="loginEmailInput" placeholder="Email"/>
                     </Form.Item>
                     
                     <Form.Item
+                        className="margin-bottom-30px"
                         name='Password'
                         rules={[{ required: true, message: 'Please enter your password!'}]}
                     >
@@ -35,7 +36,7 @@ const SignInForm = () => {
                     
                     <Button ghost type="default" variant="filled" onClick={handleSubmit} name="loginSubmitButton" key="loginSubmitButton">Sign In</Button>                    
                     <h6>
-                        <Link to={'/sign-up'} className="link-text">Don't have an account?</Link>
+                        <Link key="DontHaveAccount" to={'/sign-up'} className="link-text">Don't have an account?</Link>
                     </h6> 
                 </Form>
             </div>            

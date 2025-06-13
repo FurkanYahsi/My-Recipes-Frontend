@@ -1,45 +1,41 @@
-import { Button, Form, Input } from "antd";
-import {Link} from "react-router-dom";
+import { Form, Input } from "antd";
 import useSignInForm from './SignInForm.logic';
+import '../../styles.css'
 import './SignInForm.css'
 
 const SignInForm = () => {
 
     const {form, handleSubmit, contextHolder} = useSignInForm();
     return (
-        <div className="full-background">
-            <div className="form-box">
+        <div className="form-container sign-in-container">
                 {contextHolder}
                 <Form
                     form={form}
                     name="basic"
                     key="loginForm"
                     onFinish = {handleSubmit}>
-                    
-                    <h2 className="header-text">My Recipes</h2>
-                    
+                    <h2 >Sign In</h2>
                     <Form.Item
-                        className="margin-bottom-30px"
                         name='Email'
                         rules={[{ required: true, message: 'Please enter your email!'}]}
                     >
-                        <Input className="padding-6px" type="text" name="loginEmailInput" key="loginEmailInput" placeholder="Email"/>
+                        <Input className="input" type="text" placeholder="Email"/>
                     </Form.Item>
                     
                     <Form.Item
-                        className="margin-bottom-30px"
                         name='Password'
                         rules={[{ required: true, message: 'Please enter your password!'}]}
                     >
-                        <Input.Password className="padding-6px" autoComplete="off" type="text" name="loginPasswordInput" key="loginPasswordInput" placeholder="Password"/>
+                        <Input.Password className="input" autoComplete="off" type="text" placeholder="Password"/>
                     </Form.Item>
                     
-                    <Button ghost type="default" variant="filled" onClick={handleSubmit} name="loginSubmitButton" key="loginSubmitButton">Sign In</Button>                    
-                    <h6>
-                        <Link key="DontHaveAccount" to={'/sign-up'} className="link-text">Don't have an account?</Link>
-                    </h6> 
+                    <div className="button-link">
+                        <a className="link" href={'/sign-up'} >Forgot your password?</a>
+                        <button onClick={handleSubmit} >Sign In</button>
+                    </div>                  
+                    
+                    
                 </Form>
-            </div>            
         </div>
     )
 }

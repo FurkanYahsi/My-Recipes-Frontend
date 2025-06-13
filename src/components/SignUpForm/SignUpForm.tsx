@@ -1,49 +1,41 @@
-import { Button, Form, Input } from "antd";
-import './SignUpForm.css'
-import {Link} from "react-router-dom";
+import { Form, Input } from "antd";
+import '../../styles.css'
 import useSignUpForm from "./SignUpForm.logic";
 
 const SignUpForm = () => {
   const {contextHolder,form,handleSubmit} = useSignUpForm()
 
   return (
-    <div className='full-background'>
-      <div className="form-box">
+    <div className="form-container sign-up-container">
+      
         {contextHolder}
-        <div className="card-body">
+        <div >
           <Form
             form={form}
-            name="basic"
-            key="signupForm"
-            labelCol={{ span: '24' }}
-            wrapperCol={{ span: '24px' }}
             onFinish = {handleSubmit}>
 
-                <h2 className="header-text">My Recipes</h2>
+                <h2 >Sign Up</h2>
 
               {/* Name Input */}
               <Form.Item
-                className="margin-bottom-30px"
                 name='Name'
                 hasFeedback
                 rules={[{ required: true, message: 'Please enter your name!'}]}
               >
-                <Input className="padding-6px" type="text" placeholder='Name' name="signupNameInput" key="signupNameInput"/>
+                <Input className="input" type="text" placeholder='Name'/>
               </Form.Item>
 
                {/* Surname Input */}
               <Form.Item
-                className="margin-bottom-30px"
                 name='Surname'
                 hasFeedback
                 rules={[{ required: true, message: 'Please enter your surname!'}]}
               >
-                <Input className="padding-6px" type="text" placeholder='Surname' name="signupSurnameInput" key="signupSurnameInput"/>
+                <Input className="input" type="text" placeholder='Surname'/>
               </Form.Item>
 
               {/* Email Input */}
               <Form.Item
-                className="margin-bottom-30px"
                 name="Email"
                 hasFeedback
                 rules={[
@@ -57,23 +49,21 @@ const SignUpForm = () => {
                   },
                 ]}
               >
-                <Input className="padding-6px" placeholder='Email' name="signupEmailInput" key="signupEmailInput"/>
+                <Input className="input" placeholder='Email'/>
               </Form.Item>
 
               {/* Password Input */}
               <Form.Item
-                className="margin-bottom-30px"
                 name='Password'
                 hasFeedback
                 rules={[{ required: true, message: 'Please enter your password!'}]}
               >
-                <Input.Password className="padding-6px" autoComplete="off" type="text" placeholder="Password" name="signupPasswordInput" key="signupPasswordInput"/>
+                <Input.Password className="input" autoComplete="off" type="text" placeholder="Password"/>
               </Form.Item>
 
               {/* Again Password Input */}
              <Form.Item
-                className="margin-bottom-30px"
-                name="PasswordConfirmation"
+                name='PasswordConfirmation'
                 dependencies={['Password']}
                 hasFeedback
                 rules={[
@@ -91,19 +81,14 @@ const SignUpForm = () => {
                   }),
                 ]}
               >
-                <Input.Password className="padding-6px" placeholder="Confirm Password" name="signupConfirmPasswordInput" key="signupConfirmPasswordInput"/>
+                <Input.Password className="input" autoComplete="off" type="text" placeholder="Confirm Password"/>
               </Form.Item>
 
               {/* Submit Button */}
-            <Button ghost type="default" variant="filled" onClick={handleSubmit} name="loginSubmitButton" key="loginSubmitButton">Sign Up</Button>                    
-
-            <h6>         
-                <Link key="haveAccount" to={'/sign-in'} className="link-text">Have an account?</Link>
-            </h6> 
+            <button onClick={handleSubmit}>Sign Up</button>                    
           </Form>
         </div>
-               
-      </div>   
+
     </div>
   )
 }

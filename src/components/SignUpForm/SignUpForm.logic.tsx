@@ -1,6 +1,6 @@
 import { Form } from "antd";
 import { useNavigate } from "react-router-dom";
-import { ToastMessage } from "../../utils/ToastMessage";
+import { ToastMessage } from "../../utils/ToastMessage/ToastMessage";
 
 const useSignUpForm = () => {
   const [form] = Form.useForm();

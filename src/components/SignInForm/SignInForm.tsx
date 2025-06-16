@@ -3,11 +3,20 @@ import useSignInForm from './SignInForm.logic';
 import '../../styles.css'
 import './SignInForm.css'
 
-const SignInForm = () => {
+interface SignInFormProps {
+  whichState: string;
+  clear?: boolean;
+}
+
+const SignInForm:React.FC<SignInFormProps> = ({whichState, clear}) => {
 
     const {form, handleSubmit, contextHolder} = useSignInForm();
+
+    if (!clear) {
+        form.resetFields();
+    }
     return (
-        <div className="form-container sign-in-container">
+        <div className={`form-container sign-in-container${whichState === "signUp" ? " move-left" : ""}`}>
                 {contextHolder}
                 <Form
                     form={form}

@@ -2,11 +2,20 @@ import { Form, Input } from "antd";
 import '../../styles.css'
 import useSignUpForm from "./SignUpForm.logic";
 
-const SignUpForm = () => {
+interface SignUpFormProps {
+  whichState: string;
+  clear?: boolean;
+}
+
+const SignUpForm: React.FC<SignUpFormProps> = ({whichState, clear}) => {
   const {contextHolder,form,handleSubmit} = useSignUpForm()
 
+  if (!clear) {
+    form.resetFields();
+  }
+
   return (
-    <div className="form-container sign-up-container">
+    <div className={`form-container sign-up-container${whichState === "signIn" ? " move-right" : ""}`}>
       
         {contextHolder}
         <div >

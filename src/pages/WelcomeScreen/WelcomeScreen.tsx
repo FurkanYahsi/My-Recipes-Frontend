@@ -5,14 +5,12 @@ import '../../styles.css'
 
 const WelcomeScreen = () => {
     const [whichState, setWhichState] = useState("signUp");
+    const [clear, setClear] = useState(true);
     const handleOnClick = (text:string) => {
         setWhichState(text);
+        setClear(false);
     }
-    let overlayer = "overlayer go-to-right";
-
-    useEffect(()=> {
-        overlayer = "overlayer " + (whichState === "signIn" ? "go-to-left" : "go-to-right");
-    },[whichState])
+    const overlayer = "overlayer " + (whichState === "signIn" ? "go-to-left" : "go-to-right");
 
     return(
         <>
@@ -20,23 +18,25 @@ const WelcomeScreen = () => {
                 <h1 style={{marginTop:'0px', marginBottom:'40px'}}>Welcome to My Recipes!</h1>
                 <div className="container">
                     <div>
-                        <SignInForm/>
-                        <SignUpForm/>
+                        <SignInForm clear={clear} whichState={whichState} />
+                        <SignUpForm clear={clear} whichState={whichState} />
                     </div>
-                    {whichState === "signUp" &&
-                    <div className={`overlayer go-to-right`}>
-                        <h1>Hello, Chef!</h1>
-                        <p>Do you have an account?</p>
-                        <button onClick={() => handleOnClick("signIn")}>Sign Up</button>
+                    <div className={overlayer}>
+                       
+                        {whichState === "signUp" ? (
+                            <>
+                                <h1>Hello, Chef!</h1>
+                                <p>Do you have an account?</p>
+                                <button onClick={() => handleOnClick("signIn")}>Sign Up</button>
+                            </>
+                        ) : (
+                            <>
+                                <h1>Welcome Back!</h1>
+                                <p>Don't have an account?</p>
+                                <button onClick={() => handleOnClick("signUp")}>Sign In</button>
+                            </>
+                        )}
                     </div>
-}                   
-                    {whichState === "signIn" &&
-                    <div className={`overlayer go-to-left`}>
-                        <h1>Welcome Back!</h1>
-                        <p>Don't have an account?</p>
-                        <button onClick={() => handleOnClick("signUp")}>Sign In</button>
-                    </div>
-}
                 </div>
             </div>
         </>

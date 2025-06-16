@@ -4,26 +4,39 @@ import SignInForm from '../../components/SignInForm/SignInForm';
 import '../../styles.css'
 
 const WelcomeScreen = () => {
-    const [whichState, setWhichState] = useState("signIn")
+    const [whichState, setWhichState] = useState("signUp");
     const handleOnClick = (text:string) => {
         setWhichState(text);
     }
-    // const container = "container " + (whichState === "signUp" ? "right-panel-active" : "");
+    let overlayer = "overlayer go-to-right";
+
+    useEffect(()=> {
+        overlayer = "overlayer " + (whichState === "signIn" ? "go-to-left" : "go-to-right");
+    },[whichState])
 
     return(
         <>
             <div>
                 <h1 style={{marginTop:'0px', marginBottom:'40px'}}>Welcome to My Recipes!</h1>
-                <div className='containerr'>
+                <div className="container">
                     <div>
                         <SignInForm/>
                         <SignUpForm/>
                     </div>
-                    <div className='overlayer overlay-right'>
+                    {whichState === "signUp" &&
+                    <div className={`overlayer go-to-right`}>
                         <h1>Hello, Chef!</h1>
                         <p>Do you have an account?</p>
-                        <button onClick={() => handleOnClick("signUp")}>Sign Up</button>
+                        <button onClick={() => handleOnClick("signIn")}>Sign Up</button>
                     </div>
+}                   
+                    {whichState === "signIn" &&
+                    <div className={`overlayer go-to-left`}>
+                        <h1>Welcome Back!</h1>
+                        <p>Don't have an account?</p>
+                        <button onClick={() => handleOnClick("signUp")}>Sign In</button>
+                    </div>
+}
                 </div>
             </div>
         </>

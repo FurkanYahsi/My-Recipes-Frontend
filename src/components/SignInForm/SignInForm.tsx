@@ -28,7 +28,7 @@ const SignInForm:React.FC<SignInFormProps> = ({whichState, clear}) => {
                         name='Email'
                         rules={[{ required: true, message: 'Please enter your email!'}]}
                     >
-                        <Input className="input" type="text" placeholder="Email"/>
+                        <Input className="input" autoComplete="on" type="text" placeholder="Email"/>
                     </Form.Item>
                     
                     <Form.Item
@@ -41,9 +41,7 @@ const SignInForm:React.FC<SignInFormProps> = ({whichState, clear}) => {
                     <div className="button-link">
                         <a className="link" href={'/sign-up'} >Forgot your password?</a>
                         <button onClick={handleSubmit} >Sign In</button>
-                    </div>                  
-                    
-                    
+                    </div>        
                 </Form>
         </div>
     )

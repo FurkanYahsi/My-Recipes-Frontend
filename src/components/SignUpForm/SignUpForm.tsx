@@ -20,10 +20,8 @@ const SignUpForm: React.FC<SignUpFormProps> = ({whichState, clear}) => {
         {contextHolder}
         <div >
           <Form
-            form={form}
-            onFinish = {handleSubmit}>
-
-                <h2 >Sign Up</h2>
+            form={form}>
+              <h2 >Sign Up</h2>
 
               {/* Name Input */}
               <Form.Item
@@ -31,7 +29,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({whichState, clear}) => {
                 hasFeedback
                 rules={[{ required: true, message: 'Please enter your name!'}]}
               >
-                <Input className="input" type="text" placeholder='Name'/>
+                <Input className="input" autoComplete="on" type="text" placeholder='Name'/>
               </Form.Item>
 
                {/* Surname Input */}
@@ -40,7 +38,15 @@ const SignUpForm: React.FC<SignUpFormProps> = ({whichState, clear}) => {
                 hasFeedback
                 rules={[{ required: true, message: 'Please enter your surname!'}]}
               >
-                <Input className="input" type="text" placeholder='Surname'/>
+                <Input className="input" autoComplete="on" type="text" placeholder='Surname'/>
+              </Form.Item>
+
+              <Form.Item
+                name='Username'
+                hasFeedback
+                rules={[{ required: true, message: 'Please enter an username!'}]}
+              >
+                <Input className="input" autoComplete="off" type="text" placeholder='Username'/>
               </Form.Item>
 
               {/* Email Input */}
@@ -58,7 +64,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({whichState, clear}) => {
                   },
                 ]}
               >
-                <Input className="input" placeholder='Email'/>
+                <Input className="input" autoComplete="on" placeholder='Email'/>
               </Form.Item>
 
               {/* Password Input */}

@@ -1,9 +1,7 @@
 import './App.css';
 import {Routes, Route } from 'react-router-dom';
 
-import SignInScreen from './pages/SignInScreen/SignInScreen';
-import SignUpScreen from './pages/SignUpScreen/SignUpScreen';
-import WelcomeScreen from './pages/WelcomeScreen/WelcomeScreen';
+import WelcomeScreen from './pages/Auth/WelcomeScreen/WelcomeScreen';
 
 
 function App() {
@@ -11,10 +9,7 @@ function App() {
     <div className='App'>
       <Routes>
         <Route path='/' element={<WelcomeScreen/>}/>
-        <Route path='/sign-in' element={<SignInScreen/>}/>
-        <Route path='/sign-up' element={<SignUpScreen/>}/>
       </Routes>
-      
     </div>
   );
 }

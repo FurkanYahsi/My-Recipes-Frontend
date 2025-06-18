@@ -22,7 +22,7 @@ const SignInForm:React.FC<SignInFormProps> = ({whichState, clear}) => {
                     form={form}
                     name="basic"
                     key="loginForm"
-                    onFinish = {handleSubmit}>
+                >
                     <h2 >Sign In</h2>
                     <Form.Item
                         name='EmailorUsername'
@@ -39,7 +39,7 @@ const SignInForm:React.FC<SignInFormProps> = ({whichState, clear}) => {
                     </Form.Item>
                     
                     <div className="button-link">
-                        <a className="link" href={'/sign-up'} >Forgot your password?</a>
+                        <a className="link" href={'/'} >Forgot your password?</a>
                         <button onClick={handleSubmit} >Sign In</button>
                     </div>        
                 </Form>

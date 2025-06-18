@@ -1,4 +1,5 @@
 import { notification } from "antd";
+import './ToastMessage.css';
 
 export const ToastMessage = () => {
 

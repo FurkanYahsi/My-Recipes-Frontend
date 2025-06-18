@@ -100,7 +100,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({whichState, clear}) => {
               </Form.Item>
 
               {/* Submit Button */}
-            <button onClick={handleSubmit}>Sign Up</button>                    
+            <button id="sign-up-button" onClick={handleSubmit}>Sign Up</button>                    
           </Form>
         </div>
 

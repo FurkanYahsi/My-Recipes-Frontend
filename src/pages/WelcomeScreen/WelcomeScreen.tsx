@@ -15,7 +15,6 @@ const WelcomeScreen = () => {
     return(
         <>
             <div>
-                <h1 style={{marginTop:'0px', marginBottom:'40px'}}>Welcome to My Recipes!</h1>
                 <div className="container">
                     <div>
                         <SignInForm clear={clear} whichState={whichState} />

@@ -16,7 +16,7 @@ const useSignUpForm = () => {
         throw new Error("Error-PasswordsAreNotSame");
       }
 
-      await axios.post("http://localhost:3000/api/auth/signup", values);
+      await axios.post("http://localhost:3000/api/auth/sign-up", values);
       navigate("/home");
 
     } catch (error: any) {
@@ -26,6 +26,8 @@ const useSignUpForm = () => {
             <div key={item.name[0]}>{item.errors[0]}</div>
           ))
         );
+      } else if (error.response && error.response.data) {
+        showNotification(error.response.data);
       }
     }
   };

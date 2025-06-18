@@ -25,10 +25,10 @@ const SignInForm:React.FC<SignInFormProps> = ({whichState, clear}) => {
                     onFinish = {handleSubmit}>
                     <h2 >Sign In</h2>
                     <Form.Item
-                        name='Email'
-                        rules={[{ required: true, message: 'Please enter your email!'}]}
+                        name='EmailorUsername'
+                        rules={[{ required: true, message: 'Please enter your email or username!'}]}
                     >
-                        <Input className="input" autoComplete="on" type="text" placeholder="Email"/>
+                        <Input className="input" autoComplete="on" type="text" placeholder="Email or Username"/>
                     </Form.Item>
                     
                     <Form.Item

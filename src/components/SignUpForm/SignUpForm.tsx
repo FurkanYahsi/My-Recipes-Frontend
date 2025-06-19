@@ -56,11 +56,11 @@ const SignUpForm: React.FC<SignUpFormProps> = ({whichState, clear}) => {
                 rules={[
                   {
                     type: 'email',
-                    message: 'The input is not a valid E-mail!',
+                    message: 'The input is not a valid email!',
                   },
                   {
                     required: true,
-                    message: 'Please enter your E-mail!',
+                    message: 'Please enter your email!',
                   },
                 ]}
               >

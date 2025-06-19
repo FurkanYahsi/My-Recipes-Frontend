@@ -1,7 +1,7 @@
 import { Form } from "antd";
 import { useNavigate } from "react-router-dom";
 import { ToastMessage } from "../../utils/ToastMessage/ToastMessage";
-import axios from "axios";
+import AxiosInstance from "../../api/AxiosInstance";
 
 const useSignInForm = () => {
   const [form] = Form.useForm();
@@ -11,7 +11,7 @@ const useSignInForm = () => {
   const handleSubmit = async () => {
     try {
       const values = await form.validateFields();
-      await axios.post("http://localhost:3000/api/auth/sign-in", values);
+      await AxiosInstance.post("/auth/sign-in", values);
       navigate("/home");
     } catch (error : any) {
       if (error.errorFields) {

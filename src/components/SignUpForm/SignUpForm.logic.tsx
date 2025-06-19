@@ -1,7 +1,7 @@
 import { Form } from "antd";
 import { useNavigate } from "react-router-dom";
 import { ToastMessage } from "../../utils/ToastMessage/ToastMessage";
-import axios from "axios";
+import AxiosInstance from "../../api/AxiosInstance";
 
 const useSignUpForm = () => {
   const [form] = Form.useForm();
@@ -16,7 +16,7 @@ const useSignUpForm = () => {
         throw new Error("Error-PasswordsAreNotSame");
       }
 
-      await axios.post("http://localhost:3000/api/auth/sign-up", values);
+      await AxiosInstance.post("/auth/sign-up", values);
       navigate("/home");
 
     } catch (error: any) {

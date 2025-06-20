@@ -1,0 +1,171 @@
+.upper-menu-bar-1 {
+  position: fixed;  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  height: 80px;
+  top: 0;
+  left: 0;
+  /* background-color: #a10000; */
+  border: 1px solid #520000;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  box-sizing: border-box;
+    
+}   
+
+/*Font*/
+
+.quicksand {
+  font-family: "Quicksand", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/*Profile Icon*/
+
+.profile-icon {
+  width: 40px;
+  height: 40px; 
+  min-width: 40px;
+  min-height: 40px;
+  border-radius: 50%;
+  border: 1px solid red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+/*Upper Menu Left div*/
+
+.upper-menu-bar-1.left-side {
+  display: flex;
+  border: none; /*---------------------------------------------------------------------*/
+  align-items: center;
+  width: 230px;;
+  color: black;
+}
+
+/*Upper Menu Right div*/
+
+.upper-menu-bar-1.right-side {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1.8rem;
+}
+
+/* Dropdown Menu */
+
+.dropdown-menu-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;;
+  width: 150px;
+  background-color: white;
+  border: #520000 1px solid;
+  border-radius: 5px;
+  padding: 0.5rem;
+  z-index: 1000;
+}
+
+.dropdown-menu.animate {
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px);}
+  to   { opacity: 1; transform: translateY(0);}
+}
+
+.profile-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  height: 100vh;
+  width: 170px;
+  background-color: rgb(255, 255, 255);
+  border: #520000 1px solid;
+  padding-top: 1rem;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.profile-menu.animate-in {
+  animation: slipToLeft 0.5s ease;
+}
+
+.profile-menu.animate-out {
+  animation: slipToRight 0.5s ease;
+}
+
+@keyframes slipToLeft {
+  from { transform: translateX(100%);}
+  to   { transform: translateX(0);}
+}
+
+@keyframes slipToRight {
+  from { transform: translateX(0);}
+  to   { transform: translateX(100%);}
+}
+/* Search Bar */
+
+.search-bar-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 250px;
+    min-width: 160px;
+}
+
+.search-bar {
+    width: 100%;
+    height: 40px;
+    border-radius: 20px;
+    border: 1px solid red;
+    padding-left: 1rem;
+    box-sizing: border-box;
+}
+
+.search-bar:focus {
+    outline: none;
+} 
+
+.search-icon {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  background-color: red;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.search-icon:hover {
+  background-color: darkred;
+}
+
+.title-on-mouse {
+  color: red;
+  cursor: pointer;
+}
+
+.text-on-mouse:hover {
+  color: red;
+  cursor: pointer;
+}

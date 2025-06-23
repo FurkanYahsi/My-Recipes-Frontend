@@ -73,6 +73,8 @@ const UpperMenuBar: React.FC = () => {
         {shouldRenderProfile &&
           <div className={`profile-menu${isProfileVisible ? ' animate-in' : ' animate-out'}`}>
             <div>My Profile</div>
+            <div>Saved Recipes</div>
+            <div>Likes</div>
             <div>Settings</div>
             <div>Logout</div>
           </div>

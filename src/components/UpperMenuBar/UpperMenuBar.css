@@ -4,15 +4,15 @@
   justify-content: space-between;
   align-items: center;
   width: 100vw;
-  height: 80px;
+  height: 100px;
   top: 0;
   left: 0;
-  /* background-color: #a10000; */
-  border: 1px solid #520000;
+  background-color: white;
+  border: none;/*1px solid #520000; */
   padding-left: 2rem;
   padding-right: 2rem;
   box-sizing: border-box;
-    
+  z-index: 1000;
 }   
 
 /*Font*/
@@ -47,7 +47,8 @@
   display: flex;
   border: none; /*---------------------------------------------------------------------*/
   align-items: center;
-  width: 230px;;
+  width: 230px;
+  z-index: 1001;
   color: black;
 }
 

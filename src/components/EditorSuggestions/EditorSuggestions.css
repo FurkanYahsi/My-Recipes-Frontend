@@ -1,0 +1,37 @@
+.editor-container {
+    position: relative;
+    margin-top: 100px;
+    width: 100vw;
+    height: calc(100vh - 100px);
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    z-index: 1;
+}
+
+.editor-container .sidebar-menu {
+    width: 90px;
+    height: 100%;
+    color: red;
+    font-size: 25px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 25px;
+}
+
+.editor-container .image-container {
+    flex: 1;
+    overflow: hidden;
+    border-radius: 20px 0 0 20px;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.menu-item {
+    cursor: pointer;
+}

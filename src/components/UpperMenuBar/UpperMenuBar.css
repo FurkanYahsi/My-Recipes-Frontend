@@ -17,12 +17,27 @@
 
 /*Font*/
 
-.quicksand {
-  font-family: "Quicksand", sans-serif;
+.tauri-font {
+  font-family: "Tauri", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-weight: bold;
+}
+
+/*Logo*/
+
+.logo {
+  width: 85px;
+  height: 50px;
+  min-width: 50px;
+  min-height: 50px;
+  border-radius: 50%;
+  background-color: red; /* Placeholder color */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
 
 /*Profile Icon*/
@@ -47,9 +62,10 @@
   display: flex;
   border: none; /*---------------------------------------------------------------------*/
   align-items: center;
-  width: 230px;
+  width: 280px;
   z-index: 1001;
   color: black;
+  cursor: pointer;
 }
 
 /*Upper Menu Right div*/
@@ -59,6 +75,21 @@
     justify-content: flex-end;
     align-items: center;
     gap: 1.8rem;
+}
+
+/*Headers*/
+
+.header-text {
+  height: 60px;
+  display: flex;
+  align-items: center;   
+}
+
+/*Headers with down side arrow*/
+.header-text-with-arrow {
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 /* Dropdown Menu */
@@ -71,12 +102,15 @@
 
 .dropdown-menu {
   position: absolute;
-  top: 100%;;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  top: 100%;
   width: 150px;
   background-color: white;
-  border: #520000 1px solid;
   border-radius: 5px;
   padding: 0.5rem;
+  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2), 0 2px 10px rgba(0, 0, 0, 0.2);
   z-index: 1000;
 }
 
@@ -163,10 +197,12 @@
 
 .title-on-mouse {
   color: red;
+  transition: color 0.2s;
   cursor: pointer;
 }
 
 .text-on-mouse:hover {
   color: red;
+  transition: color 0.2s;
   cursor: pointer;
 }

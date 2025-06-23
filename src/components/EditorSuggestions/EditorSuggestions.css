@@ -1,6 +1,6 @@
 .editor-container {
     position: relative;
-    margin-top: 100px;
+    margin-top: 100px; /*Top:50px olunca da çalışıyor?*/
     width: 100vw;
     height: calc(100vh - 100px);
     background-color: rgb(255, 255, 255);
@@ -20,7 +20,7 @@
     gap: 25px;
 }
 
-.editor-container .image-container {
+.editor-container .content-container {
     flex: 1;
     overflow: hidden;
     border-radius: 20px 0 0 20px;

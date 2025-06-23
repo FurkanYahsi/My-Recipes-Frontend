@@ -40,7 +40,7 @@ const SignInForm:React.FC<SignInFormProps> = ({whichState, clear}) => {
                     
                     <div className="button-link">
                         <a className="link" href={'/'} >Forgot your password?</a>
-                        <button onClick={handleSubmit} >Sign In</button>
+                        <button onClick={handleSubmit}>Sign In</button>
                     </div>        
                 </Form>
         </div>

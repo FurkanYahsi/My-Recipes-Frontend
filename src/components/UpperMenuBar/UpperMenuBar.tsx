@@ -1,12 +1,11 @@
-
 import React, {useState} from 'react'
 import './UpperMenuBar.css'
-import { GiHotMeal } from "react-icons/gi";
 import { FaSearch } from "react-icons/fa";
 import { IconBaseProps } from 'react-icons';
+import { RiArrowDownSLine } from "react-icons/ri";
 
-const IconMeal = GiHotMeal as React.FC<IconBaseProps>;
 const IconSearch = FaSearch as React.FC<IconBaseProps>;
+const IconArrowDown = RiArrowDownSLine as React.FC<IconBaseProps>;
 
 const UpperMenuBar: React.FC = () => {
 
@@ -29,30 +28,42 @@ const UpperMenuBar: React.FC = () => {
   return (
     <div className='upper-menu-bar-1'>
       <div className='upper-menu-bar-1 left-side'>
-        <IconMeal size={36}/>
-        <div className='quicksand'>My Recipes</div>
+        <div className='logo'><img src='/res/my-recipes-logo.jpg' alt='My Recipes Logo' /></div>
+        <div className='tauri-font'>My Recipes</div>
       </div>
       <div className='upper-menu-bar-1 right-side'>
-        <div  onMouseEnter={()=>setIsTrendsVisible(!isTrendsVisible)}
-              onMouseLeave={()=>setIsTrendsVisible(!isTrendsVisible)} 
-              className='dropdown-menu-wrapper'
-          >
-          {isTrendsVisible ? <div className='title-on-mouse'>Trends ˅</div> : <div>Trends ˅</div>}
+        <div
+          onMouseEnter={() => setIsTrendsVisible(true)}
+          onMouseLeave={() => setIsTrendsVisible(false)}
+          className='dropdown-menu-wrapper'
+        >
+          <div className='header-text-with-arrow'>
+            <span className={isTrendsVisible ? "title-on-mouse header-text" : "header-text"}>
+              Trends
+            </span>
+            <IconArrowDown />
+          </div>
           {isTrendsVisible &&
-            <div className={`dropdown-menu${isTrendsVisible ? ' animate' : ''}`}>
+            <div className={`dropdown-menu animate`}>
               <div className='text-on-mouse'>Trending Recipe 1</div>
               <div className='text-on-mouse'>Trending Recipe 2</div>
               <div className='text-on-mouse'>Trending Recipe 3</div>
             </div>
           }
         </div>
-        <div onMouseEnter={()=>setIsBlogsVisible(!isBlogsVisible)}
-              onMouseLeave={()=>setIsBlogsVisible(!isBlogsVisible)}
-              className='dropdown-menu-wrapper'
+        <div
+          onMouseEnter={() => setIsBlogsVisible(true)}
+          onMouseLeave={() => setIsBlogsVisible(false)}
+          className='dropdown-menu-wrapper'
         >
-          {isBlogsVisible ? <div className='title-on-mouse'>Blogs ˅</div> : <div>Blogs ˅</div>}
+          <div className='header-text-with-arrow'>
+            <span className={isBlogsVisible ? "title-on-mouse header-text" : "header-text"}>
+              Blogs
+            </span>
+            <IconArrowDown />
+          </div>
           {isBlogsVisible && 
-            <div className={`dropdown-menu${isBlogsVisible ? ' animate' : ''}`}>
+            <div className={`dropdown-menu animate`}>
               <div className='text-on-mouse'>Blog Post 1</div>
               <div className='text-on-mouse'>Blog Post 2</div>
               <div className='text-on-mouse'>Blog Post 3</div>

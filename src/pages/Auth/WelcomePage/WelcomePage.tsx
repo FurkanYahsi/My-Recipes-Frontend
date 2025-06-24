@@ -3,7 +3,7 @@ import SignUpForm from '../../../components/SignUpForm/SignUpForm';
 import SignInForm from '../../../components/SignInForm/SignInForm';
 import '../../../styles.css'
 
-const WelcomeScreen = () => {
+const WelcomePage = () => {
     const [whichState, setWhichState] = useState("signUp");
     const [clear, setClear] = useState(true);
     const handleOnClick = (text:string) => {
@@ -42,4 +42,4 @@ const WelcomeScreen = () => {
     );
 }
 
-export default WelcomeScreen
+export default WelcomePage

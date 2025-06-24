@@ -1,16 +1,16 @@
 import './App.css';
 import {Routes, Route } from 'react-router-dom';
 
-import WelcomeScreen from './pages/Auth/WelcomeScreen/WelcomeScreen';
-import HomeScreen from './pages/app/HomeScreen/HomeScreen';
+import WelcomePage from './pages/Auth/WelcomePage/WelcomePage';
+import HomePage from './pages/app/HomePage/HomePage';
 
 
 function App() {
   return (
     <div className='App'>
       <Routes>
-        <Route path='/' element={<WelcomeScreen/>}/>
-        <Route path='/home' element={<HomeScreen/>}/>
+        <Route path='/' element={<WelcomePage/>}/>
+        <Route path='/home' element={<HomePage/>}/>
       </Routes>
     </div>
   );

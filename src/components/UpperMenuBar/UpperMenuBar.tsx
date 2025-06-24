@@ -1,29 +1,41 @@
 import React, {useState} from 'react'
 import './UpperMenuBar.css'
 import { FaSearch } from "react-icons/fa";
+import { FaRegBell } from "react-icons/fa";
+import { MdAccountCircle } from "react-icons/md";
 import { IconBaseProps } from 'react-icons';
 import { RiArrowDownSLine } from "react-icons/ri";
+import { IoLogOutOutline } from "react-icons/io5";
+import { IoSettingsOutline } from "react-icons/io5";
+import { BiLike } from "react-icons/bi";
+import { FaRegCalendarAlt } from "react-icons/fa";
+import { FaRegBookmark } from "react-icons/fa";
+import { GiRiceCooker } from "react-icons/gi";
 
 const IconSearch = FaSearch as React.FC<IconBaseProps>;
+const IconBell = FaRegBell as React.FC<IconBaseProps>;
 const IconArrowDown = RiArrowDownSLine as React.FC<IconBaseProps>;
+const IconLogout = IoLogOutOutline as React.FC<IconBaseProps>;
+const IconSettings = IoSettingsOutline as React.FC<IconBaseProps>;
+const IconLike = BiLike as React.FC<IconBaseProps>;
+const IconCalendar = FaRegCalendarAlt as React.FC<IconBaseProps>;
+const IconBookmark = FaRegBookmark as React.FC<IconBaseProps>;
+const IconProfile = MdAccountCircle as React.FC<IconBaseProps>;
+const IconCooker = GiRiceCooker as React.FC<IconBaseProps>;
+
 
 const UpperMenuBar: React.FC = () => {
 
   const [isTrendsVisible, setIsTrendsVisible] = useState(false);
   const [isBlogsVisible, setIsBlogsVisible] = useState(false);
   const [isProfileVisible, setIsProfileVisible] = useState(false);
-  const [shouldRenderProfile, setShouldRenderProfile] = useState(false);
+  const [isClickedToProfile, setIsClickedToProfile] = useState(false);
+  const [isMouseOnSendRecipe, setIsMouseOnSendRecipe] = useState(false);
 
-  const handleProfileClick = () => {
-    if (!isProfileVisible) {
-      setShouldRenderProfile(true); 
-      setIsProfileVisible(true);
-    } else {
-      setIsProfileVisible(false);   
-      setTimeout(() => setShouldRenderProfile(false), 500); // Animation is 0,5s
-    }
+  const handleProfileClick = () => {    
+    setIsClickedToProfile(true);
+    setIsProfileVisible(!isProfileVisible);
   }
-
 
   return (
     <div className='upper-menu-bar-1'>
@@ -45,9 +57,9 @@ const UpperMenuBar: React.FC = () => {
           </div>
           {isTrendsVisible &&
             <div className={`dropdown-menu animate`}>
-              <div className='text-on-mouse'>Trending Recipe 1</div>
-              <div className='text-on-mouse'>Trending Recipe 2</div>
-              <div className='text-on-mouse'>Trending Recipe 3</div>
+              <div className='text'>Trending Recipe 1</div>
+              <div className='text'>Trending Recipe 2</div>
+              <div className='text'>Trending Recipe 3</div>
             </div>
           }
         </div>
@@ -64,13 +76,13 @@ const UpperMenuBar: React.FC = () => {
           </div>
           {isBlogsVisible && 
             <div className={`dropdown-menu animate`}>
-              <div className='text-on-mouse'>Blog Post 1</div>
-              <div className='text-on-mouse'>Blog Post 2</div>
-              <div className='text-on-mouse'>Blog Post 3</div>
+              <div className='text'>Blog Post 1</div>
+              <div className='text'>Blog Post 2</div>
+              <div className='text'>Blog Post 3</div>
             </div>
           }
         </div>
-        <div className='text-on-mouse'>Contact Us</div>
+        <div className='text'>Contact Us</div>
         <div className='search-bar-wrapper'>
           <input
             type="text"
@@ -79,22 +91,29 @@ const UpperMenuBar: React.FC = () => {
           />
           <div className='search-icon'><IconSearch/></div>
         </div>
+
+        <div 
+          onMouseEnter={()=> setIsMouseOnSendRecipe(true)}
+          onMouseLeave={()=> setIsMouseOnSendRecipe(false)}
+          className='share-recipe'>{isMouseOnSendRecipe ? <IconCooker className='cooker-icon'/> : "Send Recipe"}</div>
+
+        <div className='bell-icon'><IconBell/></div>
         
-        <div className='profile-icon' onClick={handleProfileClick}/>
-        {shouldRenderProfile &&
-          <div className={`profile-menu${isProfileVisible ? ' animate-in' : ' animate-out'}`}>
-            <div>My Profile</div>
-            <div>Saved Recipes</div>
-            <div>Likes</div>
-            <div>Settings</div>
-            <div>Logout</div>
+        <div className='profile-icon' onClick={handleProfileClick}/>        
+        {isClickedToProfile && (
+          <div
+            className={`profile-menu${isProfileVisible ? ' animate-in' : ' animate-out'}`}           
+          >
+            <div className='text'><IconProfile/>My Profile</div>
+            <div className='text'><IconBookmark/>Saved Recipes</div>
+            <div className='text'><IconLike/>Likes</div>
+            <div className='text'><IconCalendar/>Plannings</div>
+            <div className='text'><IconSettings/>Settings</div>
+            <div className='text'><IconLogout/>Logout</div>
           </div>
-        }
-        
+        )}
       </div>
     </div>
   );
 };
-
-
 export default UpperMenuBar

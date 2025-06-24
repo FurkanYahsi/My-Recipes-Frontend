@@ -1,14 +1,13 @@
-import React from 'react'
 import UpperMenuBar from '../../../components/UpperMenuBar/UpperMenuBar'
 import EditorSuggestions from '../../../components/EditorSuggestions/EditorSuggestions'
 
-const HomeScreen = () => {
+const HomePage = () => {
   return (
     <div>
-        <UpperMenuBar/>
-        <EditorSuggestions/>
+      <UpperMenuBar/>
+      <EditorSuggestions/>
     </div>
   )
 }
 
-export default HomeScreen
+export default HomePage

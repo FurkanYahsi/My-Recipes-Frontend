@@ -25,7 +25,6 @@ const EditorSuggestions = () => {
       <div className='content-container'>
         <Contents />
         <img src='/res/black-background.jpg'/>
-        
       </div>
     </div>
   )

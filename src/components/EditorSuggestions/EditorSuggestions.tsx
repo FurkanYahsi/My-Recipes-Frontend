@@ -1,6 +1,8 @@
 import React from 'react'
 import './EditorSuggestions.css'
 import Contents from '../Contents/Contents'
+import PhotoContainer from '../PhotoContainer/PhotoContainer';
+
 import { HiMiniArrowUp } from "react-icons/hi2";
 import { HiMiniArrowDown } from "react-icons/hi2";
 import { IconBaseProps } from 'react-icons';
@@ -24,7 +26,11 @@ const EditorSuggestions = () => {
       </div>
       <div className='content-container'>
         <Contents />
+        <div className="dashed-line"></div>
+        <PhotoContainer />
+
         <img src='/res/black-background.jpg'/>
+
       </div>
     </div>
   )

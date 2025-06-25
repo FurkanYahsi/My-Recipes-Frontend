@@ -21,7 +21,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({whichState, clear}) => {
         <div >
           <Form
             form={form}>
-              <h2 >Sign Up</h2>
+              <h2>Sign Up</h2>
 
               {/* Name Input */}
               <Form.Item

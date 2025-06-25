@@ -1,6 +1,8 @@
 .container {
     position: relative;
     background-color: whitesmoke;
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
     width : 800px;
     height: 520px;
     z-index: 100;

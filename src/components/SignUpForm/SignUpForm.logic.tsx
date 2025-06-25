@@ -2,6 +2,7 @@ import { Form } from "antd";
 import { useNavigate } from "react-router-dom";
 import { ToastMessage } from "../../utils/ToastMessage/ToastMessage";
 import AxiosInstance from "../../api/AxiosInstance";
+import { hashPassword } from "../../utils/CryptoJS/CryptoJS";
 
 const useSignUpForm = () => {
   const [form] = Form.useForm();
@@ -12,9 +13,15 @@ const useSignUpForm = () => {
     try {
       const values = await form.validateFields();
 
+
       if (!arePasswordsSame(values)) {
         throw new Error("Error-PasswordsAreNotSame");
       }
+      const hashedPassword = hashPassword(values.Password);
+
+      values.Password = hashedPassword;
+      delete values.PasswordConfirmation; //Unnecessary for the backend
+      console.log("Sign Up Values: ", values);
 
       await AxiosInstance.post("/auth/sign-up", values);
       navigate("/home");

@@ -5,7 +5,9 @@
     align-items: center;
 }
 
-a {
+a,h2 {
+  font-family: "Nunito", sans-serif;
+  font-optical-sizing: auto;
   color: inherit; 
   text-decoration: none;
 }

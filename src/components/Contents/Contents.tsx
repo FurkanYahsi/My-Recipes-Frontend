@@ -1,5 +1,5 @@
-import React from 'react'
 import './Contents.css'
+import ButtonPrimary from '../ButtonPrimary/ButtonPrimary'
 
 const Contents = () => {
     
@@ -9,7 +9,7 @@ const Contents = () => {
       <div className='title'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
       <div className='comment'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut commodi deserunt ipsum, quidem totam repellat. Dolore, nobis vel esse dolorem, veniam aliquam natus dicta maiores necessitatibus, voluptatum et sequi porro?</div>
       <div className='buttons'>
-        <button id='primary-1'>View Recipe</button>
+        <ButtonPrimary name='View Recipe'/>
         <button id='primary-2'>Button 2</button>
       </div>
       <div className='owner-profile'>

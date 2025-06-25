@@ -24,6 +24,8 @@
     flex: 1;
     overflow: hidden;
     border-radius: 20px 0 0 20px;
+    display: flex;
+    align-items: center;
 }
 
 img {
@@ -34,4 +36,14 @@ img {
 
 .menu-item {
     cursor: pointer;
+}
+
+.dashed-line {
+  position: absolute;
+  left: 766px; 
+  top: 80%;   
+  width: 280px;
+  height: 0;
+  border-top: 1px dashed #fff;
+  z-index: 4000;
 }

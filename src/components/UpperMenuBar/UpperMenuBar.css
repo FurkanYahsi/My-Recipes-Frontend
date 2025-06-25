@@ -72,7 +72,7 @@
   display: flex;
   border: none; /*---------------------------------------------------------------------*/
   align-items: center;
-  width: 280px;
+  width: 290px;
   z-index: 1001;
   color: black;
   cursor: pointer;

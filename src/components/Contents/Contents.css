@@ -65,12 +65,20 @@
   top: 0; /* Hover olunca arka plan içeri kayar */
 }
 
+#primary-2:active {
+    transform: scale(0.97);
+}
+
 #primary-2 {
     position: relative;
-    width: 170px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
     height: 60px;
     border-radius: 10px;
     color: red;
+    font-size: large;
     font-weight: bold;
     cursor: pointer;
     border: red 1px solid;

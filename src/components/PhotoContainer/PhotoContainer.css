@@ -1,8 +1,8 @@
 .photo-container {
     position: absolute;
-    left: 1200px;
-    width: 550px;
-    height: 550px;
+    left: 1150px;
+    width: 650px;
+    height: 650px;
     background-color: rgb(59, 59, 59, 0.8);
     display: flex;
     flex-direction: column;
@@ -11,8 +11,8 @@
 }
 
 .photo {
-    width: 450px;
-    height: 450px;
+    width: 530px;
+    height: 530px;
     object-fit: cover;
     background-color: thistle;
 }

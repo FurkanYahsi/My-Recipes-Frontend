@@ -1,8 +1,9 @@
 import { Form } from "antd";
 import { useNavigate } from "react-router-dom";
 import { ToastMessage } from "../../utils/ToastMessage/ToastMessage";
-import AxiosInstance from "../../api/AxiosInstance";
 import { hashPassword } from "../../utils/CryptoJS/CryptoJS";
+import { makeRequest } from "../../services/ApiServices/ApiService";
+import { RequestMethod } from "../../enums/RequestMethod";
 
 const useSignUpForm = () => {
   const [form] = Form.useForm();
@@ -21,9 +22,8 @@ const useSignUpForm = () => {
 
       values.Password = hashedPassword;
       delete values.PasswordConfirmation; //Unnecessary for the backend
-      console.log("Sign Up Values: ", values);
 
-      await AxiosInstance.post("/auth/sign-up", values);
+      await makeRequest(RequestMethod.POST, "/auth/sign-up", {data: values});
       navigate("/home");
 
     } catch (error: any) {

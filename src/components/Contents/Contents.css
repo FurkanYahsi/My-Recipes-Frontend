@@ -41,6 +41,7 @@
 }
 
 .buttons {
+    user-select: none;
     display: flex;
     gap: 25px;
 }

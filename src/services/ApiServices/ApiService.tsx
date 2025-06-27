@@ -1,4 +1,5 @@
-import AxiosInstance from "../../api/AxiosInstance";
+// import AxiosInstance from "../../api/AxiosInstance";
+import axiosInstance from "../../axios/axiosInstance";
 import { RequestMethod } from "../../enums/RequestMethod";
 
 interface MakeRequestOptions {
@@ -21,7 +22,7 @@ export async function makeRequest(
   options: MakeRequestOptions = {}
 ): Promise<IRequestResponse> {
   try {
-    const response = await AxiosInstance.request({
+    const response = await axiosInstance.request({
       method,
       url: endpoint,
       headers: options.headers,

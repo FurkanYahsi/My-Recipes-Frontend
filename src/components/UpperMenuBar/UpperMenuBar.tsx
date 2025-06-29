@@ -44,8 +44,8 @@ const UpperMenuBar: React.FC = () => {
   const navigate = useNavigate();
   const handleLogout =  async () => {
     try {
-      const response = await makeRequest(RequestMethod.POST, "/auth/logout");
-      // logout().then((response:any) => {console.log(response)}).catch((error) => {});
+      // const response = await makeRequest(RequestMethod.POST, "/auth/logout");
+      logout().then((response:any) => {console.log(response)}).catch((error) => {});
       navigate("/login");
     } catch (error) {
       console.error("Logout failed:", error);

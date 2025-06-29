@@ -20,7 +20,7 @@ const ProtectedRoute = () => {
 
   if (isAuthenticated === null) return null; // veya loading gösterebilirsin
 
-  return isAuthenticated ? <Outlet /> : <Navigate to="/" replace />;
+  return isAuthenticated ? <Outlet /> : <Navigate to="/login" replace />;
 };
 
 export default ProtectedRoute;

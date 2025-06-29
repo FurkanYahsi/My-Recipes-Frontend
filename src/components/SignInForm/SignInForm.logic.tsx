@@ -1,8 +1,8 @@
 import { Form } from "antd";
 import { useNavigate } from "react-router-dom";
 import { ToastMessage } from "../../utils/ToastMessage/ToastMessage";
-// import AxiosInstance from "../../api/AxiosInstance";
-import axiosInstance from "../../axios/axiosInstance";
+import {makeRequest} from "../../services/ApiServices/ApiService";
+import { RequestMethod } from "../../enums/RequestMethod";
 import { hashPassword } from "../../utils/CryptoJS/CryptoJS";
 
 const useSignInForm = () => {
@@ -17,7 +17,7 @@ const useSignInForm = () => {
       const hashedPassword = hashPassword(values.Password);
       values.Password = hashedPassword;
 
-      await axiosInstance.post("/auth/sign-in", values);
+      await makeRequest(RequestMethod.POST, "/auth/sign-in", {data: values});
       navigate("/home");
     } catch (error : any) {
       if (error.errorFields) {

@@ -12,9 +12,6 @@ interface MakeRequestOptions {
 }
 
 let BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:3001/';
-if (!BASE_URL) {
-  document.getElementById('access_token')?.remove();
-}
 
 interface IRequestResponse {
     data: any,
@@ -48,14 +45,9 @@ async function makeRequest(
     } catch (error: any) {
 
         if (axios.isAxiosError(error) && error.response?.status === 401) {
-            // 401 Unauthorized hatası
-            throw new Error('Yetkisiz erişim. Lütfen giriş yapın.');
+            throw new Error('Auth failed.');
         }
 
-        if (error.response && error.response.status === 401) { // AUTH FAILED!
-            console.log("AUTH FAILED!")
-           document.getElementById("access_token")?.remove();
-        }
         let tmpData: any = error?.response?.data?.data !== null ? error?.response?.data?.data : null;
         let res: IRequestResponse = {
             data: tmpData,

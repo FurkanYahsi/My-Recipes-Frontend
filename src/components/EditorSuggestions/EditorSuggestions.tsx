@@ -29,8 +29,8 @@ const EditorSuggestions = () => {
         <div className="dashed-line-1"></div>
         <div className="dashed-line-2"></div>
         <div className="yellow-circle"></div>
-        <PhotoContainer />
 
+        <PhotoContainer />
         <img src='/res/black-background.jpg'/>
 
       </div>

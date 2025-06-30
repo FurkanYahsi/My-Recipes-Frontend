@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useState } from 'react'
 import './UpperMenuBar.css'
 import { FaSearch } from "react-icons/fa";
 import { FaRegBell } from "react-icons/fa";
@@ -11,8 +11,6 @@ import { BiLike } from "react-icons/bi";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import { FaRegBookmark } from "react-icons/fa";
 import { GiRiceCooker } from "react-icons/gi";
-import { makeRequest } from "../../services/ApiServices/ApiService";
-import { RequestMethod } from "../../enums/RequestMethod";
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../../services/AuthServices/AuthService.export';
 
@@ -53,11 +51,6 @@ const UpperMenuBar: React.FC = () => {
     }
     
   }
-
-  // Null basıyor konsola?
-  // useEffect(() => {
-  //      console.log(document.getElementById("access_token") ) 
-  // } )
 
   return (
     <div className='upper-menu-bar-1'>

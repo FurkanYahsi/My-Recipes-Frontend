@@ -13,32 +13,28 @@ const WelcomePage = () => {
     const overlayer = "overlayer " + (whichState === "signIn" ? "go-to-left" : "go-to-right");
 
     return(
-        <>
+        <div className="container">
             <div>
-                <div className="container">
-                    <div>
-                        <SignInForm clear={clear} whichState={whichState} />
-                        <SignUpForm clear={clear} whichState={whichState} />
-                    </div>
-                    <div className={overlayer}>
-                       
-                        {whichState === "signUp" ? (
-                            <>
-                                <h1>Hello, Chef!</h1>
-                                <p>Do you have an account?</p>
-                                <button onClick={() => handleOnClick("signIn")}>Sign Up</button>
-                            </>
-                        ) : (
-                            <>
-                                <h1>Welcome Back!</h1>
-                                <p>Don't have an account?</p>
-                                <button onClick={() => handleOnClick("signUp")}>Sign In</button>
-                            </>
-                        )}
-                    </div>
-                </div>
+                <SignInForm clear={clear} whichState={whichState} />
+                <SignUpForm clear={clear} whichState={whichState} />
             </div>
-        </>
+            <div className={overlayer}>
+               
+                {whichState === "signUp" ? (
+                    <>
+                        <h1>Hello, Chef!</h1>
+                        <p>Do you have an account?</p>
+                        <button onClick={() => handleOnClick("signIn")}>Sign Up</button>
+                    </>
+                ) : (
+                    <>
+                        <h1>Welcome Back!</h1>
+                        <p>Don't have an account?</p>
+                        <button onClick={() => handleOnClick("signUp")}>Sign In</button>
+                    </>
+                )}
+            </div>
+        </div>
     );
 }
 

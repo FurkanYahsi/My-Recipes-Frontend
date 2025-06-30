@@ -8,7 +8,7 @@ interface MakeRequestOptions {
     data?: any;
     params?: any;
     returnAllResponse?: boolean;
-    cancelToken?: CancelTokenSource; // Add this line
+    cancelToken?: CancelTokenSource;
 }
 
 let BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:3001/';

@@ -20,11 +20,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background: #ff416c;
-    background: -webkit-linear-gradient(to right, #ff4b2b, #ff416c);
-    background: linear-gradient(to right, #ff4b2b, #ff416c);
-    background-repeat: no-repeat;
-    background-size: cover;
+    background: rgb(255, 2, 2);
     top: 0;
     right: 0;
     width: 50%;
@@ -40,9 +36,6 @@
 .overlayer.go-to-right {
     transform: translateX(0%);
 }
-
-
-
 /*Sign In & Sign Up forms*/
 
 .form-container {

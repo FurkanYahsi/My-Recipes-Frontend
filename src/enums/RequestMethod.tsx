@@ -1,6 +1,6 @@
 export enum RequestMethod {
   GET = "GET",
-  POST = "post",
+  POST = "POST",
   PUT = "PUT",
   DELETE = "DELETE"
 }

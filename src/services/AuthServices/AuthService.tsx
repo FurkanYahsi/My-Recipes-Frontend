@@ -3,7 +3,8 @@ import { makeRequest } from "../../services/ApiServices/ApiService";
 
 const endpoints: any = {
     logout: '/auth/logout',
-    signIn: '/auth/signin'
+    signIn: '/auth/sign-in',
+    signUp: '/auth/sign-up'
 }
 
 class AuthService {
@@ -17,15 +18,25 @@ class AuthService {
             }); 
     }
 
-    // async signIn(): Promise<{ data: any, success: boolean }> {        
-    //     return makeRequest(RequestMethod.POST, endpoints.signIn)
-    //         .then(result => {
-    //             return result;
-    //         })
-    //         .catch(error => {
-    //             return error;
-    //         }); 
-    // }
+    async signIn(values:any): Promise<{ data: any, success: boolean }> {        
+        return makeRequest(RequestMethod.POST, endpoints.signIn, {data:values})
+            .then(result => {
+                return result;
+            })
+            .catch(error => {
+                return error;
+            }); 
+    }
+
+    async signUp(values:any): Promise<{ data:any, success:boolean}> {
+        return makeRequest(RequestMethod.POST, endpoints.signUp, {data:values})
+            .then(result => {
+                return result;
+            })
+            .catch(error => {
+                return error;
+            });
+    }
 }
 
 export default new AuthService();

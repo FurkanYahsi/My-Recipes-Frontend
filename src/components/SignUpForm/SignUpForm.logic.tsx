@@ -2,8 +2,7 @@ import { Form } from "antd";
 import { useNavigate } from "react-router-dom";
 import { ToastMessage } from "../../utils/ToastMessage/ToastMessage";
 import { hashPassword } from "../../utils/CryptoJS/CryptoJS";
-import { makeRequest } from "../../services/ApiServices/ApiService";
-import { RequestMethod } from "../../enums/RequestMethod";
+import { signUp } from "../../services/AuthServices/AuthService.export";
 
 const useSignUpForm = () => {
   const [form] = Form.useForm();
@@ -14,7 +13,6 @@ const useSignUpForm = () => {
     try {
       const values = await form.validateFields();
 
-
       if (!arePasswordsSame(values)) {
         throw new Error("Error-PasswordsAreNotSame");
       }
@@ -23,8 +21,7 @@ const useSignUpForm = () => {
       values.Password = hashedPassword;
       delete values.PasswordConfirmation; //Unnecessary for the backend
 
-      await makeRequest(RequestMethod.POST, "/auth/sign-up", {data: values});
-      navigate("/home");
+      signUp(values).then((response) => {console.log(response); navigate("/home");})      
 
     } catch (error: any) {
       if (error.errorFields) {

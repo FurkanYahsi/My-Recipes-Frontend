@@ -16,7 +16,13 @@ const useSignInForm = () => {
       const hashedPassword = hashPassword(values.Password);
       values.Password = hashedPassword;
 
-      signIn(values).then((response:any) => {console.log(response); navigate("/home");});
+      signIn(values).then((response:any) => {
+        if (response && response.success) {
+          navigate("/home");
+        } else {
+          showNotification(response?.errorMessage || "Sign in failed!");
+        }
+      });
       
     } catch (error : any) {
       if (error.errorFields) {

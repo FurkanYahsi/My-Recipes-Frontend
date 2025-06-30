@@ -21,7 +21,13 @@ const useSignUpForm = () => {
       values.Password = hashedPassword;
       delete values.PasswordConfirmation; //Unnecessary for the backend
 
-      signUp(values).then((response) => {console.log(response); navigate("/home");})      
+        signUp(values).then((response:any) => {
+          if (response && response.success) {
+            navigate("/home");
+          } else {
+            showNotification(response?.errorMessage || "Sign up failed!");
+          }
+        });     
 
     } catch (error: any) {
       if (error.errorFields) {

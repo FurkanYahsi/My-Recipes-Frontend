@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-    baseURL: "http://localhost:3000/",
+    baseURL: "http://localhost:3001/",
     withCredentials: true
 });
 
@@ -22,11 +22,11 @@ axiosInstance.interceptors.response.use(
         const originalRequest = error.config;
         if (error.response && (error.response.status === 401 || error.response.status === 403 )&& !originalRequest._retry) {
             originalRequest._retry = true;    
-                clearLocalStorageTokens();
+                clearCookieTokens();
                 window.location.href = "/login";
             }
         else if (error?.code === "ERR_NETWORK") {
-            clearLocalStorageTokens();
+            clearCookieTokens();
             console.log(`Network error, server is not responding. Redirecting to login screen...`);
             window.location.href = "/login";
         }
@@ -34,7 +34,7 @@ axiosInstance.interceptors.response.use(
         return Promise.reject(error);
     }
 );
-function clearLocalStorageTokens() {
+function clearCookieTokens() {
     // BURAYI COOKİDEKİ VERİYİ SİLMEK İÇİN KULLANMAN LAZIM
     document.getElementById("access_token")?.remove();
 }

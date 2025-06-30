@@ -3,6 +3,7 @@ import { makeRequest } from "../../services/ApiServices/ApiService";
 
 const endpoints: any = {
     logout: '/auth/logout',
+    signIn: '/auth/signin'
 }
 
 class AuthService {
@@ -15,6 +16,16 @@ class AuthService {
                 return error;
             }); 
     }
+
+    // async signIn(): Promise<{ data: any, success: boolean }> {        
+    //     return makeRequest(RequestMethod.POST, endpoints.signIn)
+    //         .then(result => {
+    //             return result;
+    //         })
+    //         .catch(error => {
+    //             return error;
+    //         }); 
+    // }
 }
 
 export default new AuthService();

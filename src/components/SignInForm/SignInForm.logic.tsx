@@ -4,6 +4,8 @@ import { ToastMessage } from "../../utils/ToastMessage/ToastMessage";
 import {makeRequest} from "../../services/ApiServices/ApiService";
 import { RequestMethod } from "../../enums/RequestMethod";
 import { hashPassword } from "../../utils/CryptoJS/CryptoJS";
+// import { signIn } from '../../services/AuthServices/AuthService.export';
+
 
 const useSignInForm = () => {
   const [form] = Form.useForm();
@@ -17,6 +19,7 @@ const useSignInForm = () => {
       const hashedPassword = hashPassword(values.Password);
       values.Password = hashedPassword;
 
+      // signIn().then((response:any) => {console.log(response)}).catch((error) => {});
       await makeRequest(RequestMethod.POST, "/auth/sign-in", {data: values});
       navigate("/home");
     } catch (error : any) {

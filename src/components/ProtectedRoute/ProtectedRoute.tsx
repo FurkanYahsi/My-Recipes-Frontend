@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Navigate, Outlet } from "react-router-dom";
-import axios from "axios";
+import axiosInstance from "../../axios/axiosInstance";
 
 const ProtectedRoute = () => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
@@ -8,7 +8,7 @@ const ProtectedRoute = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        await axios.get("/auth/check-auth", { withCredentials: true });
+        await axiosInstance.get("/auth/check-auth"); 
         setIsAuthenticated(true);
       } catch {
         setIsAuthenticated(false);
@@ -18,7 +18,7 @@ const ProtectedRoute = () => {
     checkAuth();
   }, []);
 
-  if (isAuthenticated === null) return null; // veya loading gösterebilirsin
+  if (isAuthenticated === null) return null; 
 
   return isAuthenticated ? <Outlet /> : <Navigate to="/login" replace />;
 };

@@ -1,5 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState } from 'react'
+import useUpperMenuBar from './UpperMenuBar.logic';
 import './UpperMenuBar.css'
+
+// Icon imports
 import { FaSearch } from "react-icons/fa";
 import { FaRegBell } from "react-icons/fa";
 import { MdAccountCircle } from "react-icons/md";
@@ -11,9 +14,8 @@ import { BiLike } from "react-icons/bi";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import { FaRegBookmark } from "react-icons/fa";
 import { GiRiceCooker } from "react-icons/gi";
-import { useNavigate } from 'react-router-dom';
-import { logout } from '../../services/AuthServices/AuthService.export';
 
+// Icons
 const IconSearch = FaSearch as React.FC<IconBaseProps>;
 const IconBell = FaRegBell as React.FC<IconBaseProps>;
 const IconArrowDown = RiArrowDownSLine as React.FC<IconBaseProps>;
@@ -28,44 +30,12 @@ const IconCooker = GiRiceCooker as React.FC<IconBaseProps>;
 
 const UpperMenuBar: React.FC = () => {
 
+  const { isProfileVisible, isClickedToProfile, profileMenuRef, handleProfileClick, handleLogout} = useUpperMenuBar();
+
   const [isTrendsVisible, setIsTrendsVisible] = useState(false);
   const [isBlogsVisible, setIsBlogsVisible] = useState(false);
-  const [isProfileVisible, setIsProfileVisible] = useState(false);
-  const [isClickedToProfile, setIsClickedToProfile] = useState(false);
-  const profileMenuRef = useRef<HTMLDivElement>(null);
   const [isMouseOnSendRecipe, setIsMouseOnSendRecipe] = useState(false);
-
-  const handleProfileClick = () => {    
-    setIsClickedToProfile(true);
-    setIsProfileVisible(!isProfileVisible);
-  }
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (profileMenuRef.current && !profileMenuRef.current.contains(event.target as Node)) {
-        setIsProfileVisible(false);
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-
-    return() => {
-      document.removeEventListener('mousedown', handleClickOutside); // Component unmount
-    }
-  }, [])
-
-
-  const navigate = useNavigate();
-  const handleLogout =  async () => {
-    try {
-      logout().then((response:any) => {console.log(response)}).catch((error) => {console.error(error)});
-      navigate("/login");
-    } catch (error) {
-      console.error("Logout failed:", error);
-      return;
-    }
-    
-  }
-
+  
   return (
     <div className='upper-menu-bar-1'>
       <div className='upper-menu-bar-1 left-side'>

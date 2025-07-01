@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import './UpperMenuBar.css'
 import { FaSearch } from "react-icons/fa";
 import { FaRegBell } from "react-icons/fa";
@@ -32,6 +32,7 @@ const UpperMenuBar: React.FC = () => {
   const [isBlogsVisible, setIsBlogsVisible] = useState(false);
   const [isProfileVisible, setIsProfileVisible] = useState(false);
   const [isClickedToProfile, setIsClickedToProfile] = useState(false);
+  const profileMenuRef = useRef<HTMLDivElement>(null);
   const [isMouseOnSendRecipe, setIsMouseOnSendRecipe] = useState(false);
 
   const handleProfileClick = () => {    
@@ -39,11 +40,24 @@ const UpperMenuBar: React.FC = () => {
     setIsProfileVisible(!isProfileVisible);
   }
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (profileMenuRef.current && !profileMenuRef.current.contains(event.target as Node)) {
+        setIsProfileVisible(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return() => {
+      document.removeEventListener('mousedown', handleClickOutside); // Component unmount
+    }
+  }, [])
+
+
   const navigate = useNavigate();
   const handleLogout =  async () => {
     try {
-      // const response = await makeRequest(RequestMethod.POST, "/auth/logout");
-      logout().then((response:any) => {console.log(response)}).catch((error) => {});
+      logout().then((response:any) => {console.log(response)}).catch((error) => {console.error(error)});
       navigate("/login");
     } catch (error) {
       console.error("Logout failed:", error);
@@ -110,13 +124,16 @@ const UpperMenuBar: React.FC = () => {
         <div 
           onMouseEnter={()=> setIsMouseOnSendRecipe(true)}
           onMouseLeave={()=> setIsMouseOnSendRecipe(false)}
-          className='share-recipe'>{isMouseOnSendRecipe ? <IconCooker className='cooker-icon'/> : "Send Recipe"}</div>
+          className='share-recipe'>
+            {isMouseOnSendRecipe ? <IconCooker className='cooker-icon'/> : "Send Recipe"}
+        </div>
 
         <div className='bell-icon'><IconBell/></div>
         
-        <div className='profile-icon' onClick={handleProfileClick}><IconProfile className='icon'/></div>       
+        <div className='profile-icon' onClick={handleProfileClick}><IconProfile className='icon'/></div>
         {isClickedToProfile && (
           <div
+            ref={profileMenuRef}
             className={`profile-menu${isProfileVisible ? ' animate-in' : ' animate-out'}`}           
           >
             <div className='text'><IconProfile/>My Profile</div>

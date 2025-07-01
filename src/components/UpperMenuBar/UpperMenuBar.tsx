@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import useUpperMenuBar from './UpperMenuBar.logic';
 import './UpperMenuBar.css'
 
-// Icon imports
+// React Icon imports
+import { IconBaseProps } from 'react-icons';
 import { FaSearch } from "react-icons/fa";
 import { FaRegBell } from "react-icons/fa";
 import { MdAccountCircle } from "react-icons/md";
-import { IconBaseProps } from 'react-icons';
 import { RiArrowDownSLine } from "react-icons/ri";
 import { IoLogOutOutline } from "react-icons/io5";
 import { IoSettingsOutline } from "react-icons/io5";
@@ -35,7 +35,7 @@ const UpperMenuBar: React.FC = () => {
   const [isTrendsVisible, setIsTrendsVisible] = useState(false);
   const [isBlogsVisible, setIsBlogsVisible] = useState(false);
   const [isMouseOnSendRecipe, setIsMouseOnSendRecipe] = useState(false);
-  
+
   return (
     <div className='upper-menu-bar-1'>
       <div className='upper-menu-bar-1 left-side'>

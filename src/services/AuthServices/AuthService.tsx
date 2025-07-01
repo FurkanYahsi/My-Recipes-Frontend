@@ -21,7 +21,6 @@ class AuthService {
     async signIn(values:any): Promise<{ data: any, success: boolean }> {        
         return makeRequest(RequestMethod.POST, endpoints.signIn, {data:values})
             .then(result => {
-                console.log(result)
                 return result;
             })
             .catch(error => {

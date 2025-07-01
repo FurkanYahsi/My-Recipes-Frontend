@@ -3,13 +3,15 @@ import './EditorSuggestions.css'
 import Contents from '../Contents/Contents'
 import PhotoContainer from '../PhotoContainer/PhotoContainer';
 
+// React Icon imports
+import { IconBaseProps } from 'react-icons';
 import { HiMiniArrowUp } from "react-icons/hi2";
 import { HiMiniArrowDown } from "react-icons/hi2";
-import { IconBaseProps } from 'react-icons';
 
 
 const EditorSuggestions = () => {
 
+  // Icons
   const IconArrowUp = HiMiniArrowUp  as React.FC<IconBaseProps>;
   const IconArrowDown = HiMiniArrowDown  as React.FC<IconBaseProps>;
 

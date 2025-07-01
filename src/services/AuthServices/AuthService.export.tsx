@@ -9,7 +9,7 @@ export const logout = () : Promise<any[] | null> => {
             })
             .catch((err) => {
                 console.error(err);
-                resolve(null);
+                // resolve(null);
                 reject(err);
             })
     })
@@ -20,11 +20,12 @@ export const signIn = (values:any) : Promise<any[] | null> => {
         AuthService.signIn(values)
             .then((response) => {
                 const apiData: any = response;
+                // console.log(apiData)
                 resolve(apiData);
             })
             .catch((err) => {
                 console.error(err);
-                resolve(null);
+                // resolve(null);
                 reject(err);
             })
     })
@@ -39,7 +40,7 @@ export const signUp = (values:any) : Promise<any[] | null> => {
         })
         .catch((error) => {
             console.error(error);
-            resolve(null);
+            // resolve(null);
             reject(error);
         })
     })

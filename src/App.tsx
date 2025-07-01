@@ -5,7 +5,7 @@ import { Navigate } from 'react-router-dom';
 import WelcomePage from './pages/Auth/WelcomePage/WelcomePage';
 import HomePage from './pages/app/HomePage/HomePage';
 
-import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
+import ProtectedRoute from './utils/ProtectedRoute/ProtectedRoute';
 
 function App() {
   return (

@@ -1,5 +1,5 @@
 import {RequestMethod} from "../../enums/RequestMethod";
-import { makeRequest } from "../../services/ApiServices/ApiService";
+import { makeRequest } from "../../axios/ApiService";
 
 const endpoints: any = {
     logout: '/auth/logout',
@@ -21,6 +21,7 @@ class AuthService {
     async signIn(values:any): Promise<{ data: any, success: boolean }> {        
         return makeRequest(RequestMethod.POST, endpoints.signIn, {data:values})
             .then(result => {
+                console.log(result)
                 return result;
             })
             .catch(error => {

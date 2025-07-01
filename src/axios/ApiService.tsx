@@ -1,5 +1,5 @@
-import axiosInstance from "../../axios/axiosInstance";
-import { RequestMethod } from "../../enums/RequestMethod";
+import axiosInstance from "../axios/axiosInstance";
+import { RequestMethod } from "../enums/RequestMethod";
 
 interface MakeRequestOptions {
   headers?: Record<string, string>;
@@ -30,7 +30,7 @@ export async function makeRequest(
     });
 
     return {
-      data: /*options.returnAllResponse ? response :*/ response.data,
+      data: /*options.returnAllResponse ? response :*/ response,
       success: true,
       error: false,
       errorMessage: null,

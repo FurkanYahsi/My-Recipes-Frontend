@@ -20,6 +20,7 @@ const Contents = () => {
       <div className='comment'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut commodi deserunt ipsum, quidem totam repellat. Dolore, nobis vel esse dolorem, veniam aliquam natus dicta maiores necessitatibus, voluptatum et sequi porro?</div>
       <div className='buttons'>
         <ButtonPrimary name='View Recipe'/>
+        {/* <button onClick={() => setIsLiked(!isLiked)}>{isLiked ? <HeartIcon/> : <HeartIconFilled/>}</button> */}
         {isLiked ? <button onClick={()=>setIsLiked(false)} id='primary-2'><HeartIconFilled/></button> : <button onClick={()=>setIsLiked(true)} id='primary-2'><HeartIcon/></button>}        
       </div>
       <div className='owner-profile'>

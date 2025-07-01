@@ -22,7 +22,7 @@ const useSignInForm = () => {
         } else {
           showNotification(response?.errorMessage || "Sign in failed!");
         }
-      });
+      }).catch((error) => {console.log(error.response?.data)});
       
     } catch (error : any) {
       if (error.errorFields) {

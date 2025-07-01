@@ -3,11 +3,16 @@ import { useNavigate } from "react-router-dom";
 import { ToastMessage } from "../../utils/ToastMessage/ToastMessage";
 import { hashPassword } from "../../utils/CryptoJS/CryptoJS";
 import { signUp } from "../../services/AuthServices/AuthService.export";
+import { useEffect } from "react";
 
-const useSignUpForm = () => {
+const useSignUpForm = (clear:boolean) => {
   const [form] = Form.useForm();
   const { contextHolder, showNotification } = ToastMessage();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    form.resetFields();
+  }, [clear]);
 
   const handleSubmit = async () => {
     try {

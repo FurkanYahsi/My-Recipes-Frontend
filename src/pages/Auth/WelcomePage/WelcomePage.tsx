@@ -8,7 +8,7 @@ const WelcomePage = () => {
     const [clear, setClear] = useState(true);
     const handleOnClick = (text:string) => {
         setWhichState(text);
-        setClear(false);
+        setClear(!clear);
     }
     const overlayer = "overlayer " + (whichState === "signIn" ? "go-to-left" : "go-to-right");
 

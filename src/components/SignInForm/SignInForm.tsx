@@ -10,11 +10,8 @@ interface SignInFormProps {
 
 const SignInForm:React.FC<SignInFormProps> = ({whichState, clear}) => {
 
-    const {form, handleSubmit, contextHolder} = useSignInForm();
+    const {form, handleSubmit, contextHolder} = useSignInForm(clear ?? false);
 
-    if (!clear) {
-        form.resetFields();
-    }
     return (
         <div className={`form-container sign-in-container${whichState === "signUp" ? " move-left" : ""}`}>
                 {contextHolder}

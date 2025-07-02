@@ -14,6 +14,7 @@ import { BiLike } from "react-icons/bi";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import { FaRegBookmark } from "react-icons/fa";
 import { GiRiceCooker } from "react-icons/gi";
+import { HiOutlineMenu } from "react-icons/hi";
 
 // Icons
 const IconSearch = FaSearch as React.FC<IconBaseProps>;
@@ -26,6 +27,7 @@ const IconCalendar = FaRegCalendarAlt as React.FC<IconBaseProps>;
 const IconBookmark = FaRegBookmark as React.FC<IconBaseProps>;
 const IconProfile = MdAccountCircle as React.FC<IconBaseProps>;
 const IconCooker = GiRiceCooker as React.FC<IconBaseProps>;
+const IconMenu = HiOutlineMenu as React.FC<IconBaseProps>;
 
 
 const UpperMenuBar: React.FC = () => {
@@ -113,6 +115,7 @@ const UpperMenuBar: React.FC = () => {
             </div>
           )}
         </div>
+        <div className='menu-icon'><IconMenu /></div>        
       </div>
     </div>
   );

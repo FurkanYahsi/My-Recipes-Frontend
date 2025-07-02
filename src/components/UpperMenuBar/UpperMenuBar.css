@@ -96,23 +96,10 @@
   gap: 1.8rem;
   font-family: "Nunito", sans-serif;
   font-optical-sizing: auto;
-  transition: padding-top 0.4s ease;
 }
 
 @media (max-width: 1300px) {
-  .upper-menu-bar-1.right-side .search-bar-wrapper, .bell-icon  {
-    display: none;
-  }
-}
-
-@media (width < 1000px) {
-  .upper-menu-bar-1.right-side  {
-    padding-top: 40px;
- }
-}
-
-@media (max-width: 900px) {
-  .upper-menu-bar-1.right-side  {
+  .upper-menu-bar-1.right-side .search-bar-wrapper, .bell-icon, .profile-icon  {
     display: none;
   }
 }
@@ -292,4 +279,42 @@
   color: red;
   transition: color 0.2s;
   cursor: pointer;
+}
+
+.menu-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  min-width: 50px;
+  border-radius: 5px;
+  font-size: xx-large;
+  background-color: red;
+  color: white;
+  display: none;
+  animation: menuAnimation 0.4s ease
+}
+
+@keyframes menuAnimation {
+  from { opacity: 0; transform: translateY(30px);}
+  to   { opacity: 1; transform: translateY(0);}
+}
+
+
+.upper-menu-bar-1 .text,
+.upper-menu-bar-1 .dropdown-menu-wrapper,
+.upper-menu-bar-1 .share-recipe {
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+@media (max-width: 900px) {
+  .upper-menu-bar-1 .text,
+  .upper-menu-bar-1 .dropdown-menu-wrapper,
+  .upper-menu-bar-1 .share-recipe {
+    opacity: 0;
+    transform: translateY(-30px);
+    pointer-events: none;
+  }
+  .menu-icon {
+    display: flex;
+  }
 }

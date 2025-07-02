@@ -9,23 +9,24 @@
 }
 
 .editor-container .sidebar-menu {
-    width: 90px;
-    height: 100%;
-    color: red;
-    font-size: 25px;
-    font-weight: bold;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 25px;
+  width: 90px;
+  height: 100%;
+  color: red;
+  font-size: 25px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
 }
 
 .editor-container .content-container {
-    flex: 1;
-    overflow: hidden;
-    border-radius: 20px 0 0 20px;
-    display: flex;
-    align-items: center;
+  flex: 1;
+  overflow: hidden;
+  border-radius: 20px 0 0 20px;
+  display: flex;
+  align-items: center;
 }
 
 img {
@@ -36,7 +37,7 @@ img {
 }
 
 .menu-item {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .dashed-line-1 {

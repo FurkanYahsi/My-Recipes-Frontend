@@ -14,10 +14,9 @@ const WelcomePage = () => {
 
     return(
         <div className="container">
-            <div>
-                <SignInForm clear={clear} whichState={whichState} />
-                <SignUpForm clear={clear} whichState={whichState} />
-            </div>
+           
+            <SignInForm clear={clear} whichState={whichState} />
+            
             <div className={overlayer}>
                
                 {whichState === "signUp" ? (
@@ -34,6 +33,9 @@ const WelcomePage = () => {
                     </>
                 )}
             </div>
+
+            <SignUpForm clear={clear} whichState={whichState} /> 
+
         </div>
     );
 }

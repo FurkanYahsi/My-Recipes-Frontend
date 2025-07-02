@@ -28,10 +28,11 @@ const EditorSuggestions = () => {
       </div>
       <div className='content-container'>
         <Contents />
-        <div className="dashed-line-1"></div>
-        <div className="dashed-line-2"></div>
-        <div className="yellow-circle"></div>
-
+        <div>
+          <div className="dashed-line-1"></div>
+          <div className="dashed-line-2"></div>
+          <div className="yellow-circle"></div>
+        </div>
         <PhotoContainer />
         <img src='/res/black-background.jpg'/>
 

@@ -100,11 +100,11 @@ const UpperMenuBar: React.FC = () => {
 
         <div className='bell-icon'><IconBell/></div>
         
-        <div className='profile-icon' onClick={handleProfileClick}><IconProfile className='icon'/></div>
+        <div ref={profileMenuRef} className='profile-icon' onClick={handleProfileClick}><IconProfile className='icon'/></div>
         {isClickedToProfile && (
           <div
             ref={profileMenuRef}
-            className={`profile-menu${isProfileVisible ? ' animate-in' : ' animate-out'}`}           
+            className={`profile-menu${isProfileVisible ? ' animate-in' : ' animate-out'}`}
           >
             <div className='text'><IconProfile/>My Profile</div>
             <div className='text'><IconBookmark/>Saved Recipes</div>

@@ -96,7 +96,26 @@
   gap: 1.8rem;
   font-family: "Nunito", sans-serif;
   font-optical-sizing: auto;
+  transition: gap 0.4s;
 }
+
+
+@media (max-width: 1500px) {
+  .upper-menu-bar-1.right-side {
+    gap: 1.4rem;
+  }
+}
+@media (max-width: 1200px) {
+  .upper-menu-bar-1.right-side {
+    gap: 1rem;
+  }
+}
+@media (max-width: 1000x) {
+  .upper-menu-bar-1.right-side {
+    gap: 0.8rem;
+  }
+}
+
 
 @media (max-width: 1300px) {
   .upper-menu-bar-1.right-side .search-bar-wrapper, .bell-icon, .profile-icon  {
@@ -299,7 +318,6 @@
   from { opacity: 0; transform: translateY(30px);}
   to   { opacity: 1; transform: translateY(0);}
 }
-
 
 .upper-menu-bar-1 .text,
 .upper-menu-bar-1 .dropdown-menu-wrapper,

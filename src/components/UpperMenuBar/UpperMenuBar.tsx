@@ -100,20 +100,19 @@ const UpperMenuBar: React.FC = () => {
 
         <div className='bell-icon'><IconBell/></div>
         
-        <div ref={profileMenuRef} className='profile-icon' onClick={handleProfileClick}><IconProfile className='icon'/></div>
-        {isClickedToProfile && (
-          <div
-            ref={profileMenuRef}
-            className={`profile-menu${isProfileVisible ? ' animate-in' : ' animate-out'}`}
-          >
-            <div className='text'><IconProfile/>My Profile</div>
-            <div className='text'><IconBookmark/>Saved Recipes</div>
-            <div className='text'><IconLike/>Likes</div>
-            <div className='text'><IconCalendar/>Plannings</div>
-            <div className='text'><IconSettings/>Settings</div>
-            <div className='text' onClick={handleLogout}><IconLogout/>Logout</div>
-          </div>
-        )}
+        <div ref={profileMenuRef}>
+          <div  className='profile-icon' onClick={handleProfileClick}><IconProfile className='icon'/></div>
+          {isClickedToProfile && (
+            <div className={`profile-menu${isProfileVisible ? ' animate-in' : ' animate-out'}`}>
+              <div className='text'><IconProfile/>My Profile</div>
+              <div className='text'><IconBookmark/>Saved Recipes</div>
+              <div className='text'><IconLike/>Likes</div>
+              <div className='text'><IconCalendar/>Plannings</div>
+              <div className='text'><IconSettings/>Settings</div>
+              <div className='text' onClick={handleLogout}><IconLogout/>Logout</div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

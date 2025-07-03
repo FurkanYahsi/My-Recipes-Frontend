@@ -9,12 +9,24 @@
   left: 0;
   background-color: white;
   border: none;/*1px solid #520000; */
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding: 0 2rem 0 2rem;
   box-sizing: border-box;
   z-index: 1000;
   user-select: none;
+  transition: padding 0.4s;
 }   
+
+/*-----Upper Menu Left div-----*/
+
+.upper-menu-bar-1.left-side {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 290px;
+  min-width: 280px;
+  color: black;
+  cursor: pointer;
+}
 
 /*Font*/
 
@@ -41,6 +53,19 @@
   cursor: pointer;
 }
 
+
+/*-----Upper Menu Right div-----*/
+
+.upper-menu-bar-1.right-side {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1.8rem;
+  font-family: "Nunito", sans-serif;
+  font-optical-sizing: auto;
+  transition: gap 0.4s;
+}
+
 /*Bell Icon*/
 
 .bell-icon {
@@ -54,19 +79,13 @@
 /*Profile Icon*/
 
 .profile-icon {
-  width: 40px;
-  height: 40px; 
   min-width: 40px;
   min-height: 40px;
   border-radius: 50%;
-  /* border: 1px solid red; */
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
   cursor: pointer;
-  line-height: 0;
-  font-size: 0;
 }
 
 .profile-icon .icon {
@@ -75,47 +94,32 @@
   color: gray;
 }
 
-/*Upper Menu Left div*/
-
-.upper-menu-bar-1.left-side {
-  display: flex;
-  border: none; /*---------------------------------------------------------------------*/
-  align-items: center;
-  width: 290px;
-  z-index: 1001;
-  color: black;
-  cursor: pointer;
-}
-
-/*Upper Menu Right div*/
-
-.upper-menu-bar-1.right-side {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 1.8rem;
-  font-family: "Nunito", sans-serif;
-  font-optical-sizing: auto;
-  transition: gap 0.4s;
-}
-
-
 @media (max-width: 1500px) {
   .upper-menu-bar-1.right-side {
     gap: 1.4rem;
   }
+  .upper-menu-bar-1 {
+    padding: 0 1rem 0 1rem;
+  }
 }
+
 @media (max-width: 1200px) {
   .upper-menu-bar-1.right-side {
     gap: 1rem;
   }
+  .upper-menu-bar-1 {
+    padding: 0 0.8rem 0 0.8rem;
+  }
 }
+
 @media (max-width: 1000x) {
   .upper-menu-bar-1.right-side {
     gap: 0.8rem;
   }
+  .upper-menu-bar-1 {
+    padding: 0 0.4rem 0 0.4rem;
+  }
 }
-
 
 @media (max-width: 1300px) {
   .search-bar-wrapper, .bell-icon, .profile-icon, .profile-menu {
@@ -141,17 +145,16 @@
 /* Dropdown Menu */
 
 .dropdown-menu-wrapper {
-  position: relative;
   display: flex;
   justify-content: center;
 }
 
 .dropdown-menu {
-  position: absolute;
+  position: fixed;
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
-  top: 100%;
+  top: 80px;
   width: 150px;
   background-color: whitesmoke;
   border-radius: 10px;

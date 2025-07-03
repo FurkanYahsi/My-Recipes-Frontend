@@ -1,6 +1,4 @@
 .editor-container {
-    position: relative;
-    margin-top: 100px; /*Top:50px olunca da çalışıyor?*/
     width: 100vw;
     height: calc(100vh - 100px);
     background-color: rgb(255, 255, 255);

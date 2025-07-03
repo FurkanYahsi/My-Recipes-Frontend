@@ -17,15 +17,40 @@
   align-items: center;
   justify-content: center;
   gap: 25px;
+  transition: gap 0.5s ease;
 }
+
+@media (max-width: 1450px) {
+  .editor-container .sidebar-menu{
+    gap: 15px;
+  }
+}
+
+
+@media (max-width: 1300px) {
+  .editor-container .sidebar-menu{
+    display: none;
+  }
+  .editor-container .content-container {
+    border-radius: 0 !important; 
+  }
+  .editor-container {
+    height: 70vh;
+  }
+}
+
 
 .editor-container .content-container {
   flex: 1;
-  overflow: hidden;
   border-radius: 20px 0 0 20px;
+  width: 100vw;
   display: flex;
   align-items: center;
+  background-image: url('../../../public/res/black-background.jpg');
+  background-size:cover;
+  background-repeat: no-repeat;
 }
+
 
 img {
   width: 100%;
@@ -36,37 +61,4 @@ img {
 
 .menu-item {
   cursor: pointer;
-}
-
-.dashed-line-1 {
-  position: absolute;
-  left: 766px; 
-  top: 80%;   
-  width: 294px;
-  height: 0;
-  border-top: 1px dashed #fff;
-  z-index: 4000;
-}
-
-.dashed-line-2 {
-  position: absolute;
-  left: 1060px; 
-  top: 80%; 
-  width: 250px;
-  height: 0;
-  border-top: 1px dashed #fff;
-  transform: rotate(330deg); 
-  transform-origin: left center;
-  z-index: 4000;
-}
-
-.yellow-circle {
-  position: absolute;
-  left: 1268px; 
-  top: calc(80% - 133px); 
-  width: 16px;
-  height: 16px;
-  background-color: rgb(255, 196, 0);
-  border-radius: 50%;
-  z-index: 4000;
 }

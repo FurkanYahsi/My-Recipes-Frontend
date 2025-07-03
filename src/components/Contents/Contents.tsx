@@ -18,7 +18,7 @@ const Contents = () => {
     <div className='contents'>
       <div className='type-of-recipe'>Type of recipe</div>
       <div className='title'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-      <div className='comment'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut commodi deserunt ipsum, quidem totam repellat. Dolore, nobis vel esse dolorem, veniam aliquam natus dicta maiores necessitatibus, voluptatum et sequi porro?</div>
+      <div className='comment'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut commodi deserunt ipsum, quidem totam repellat. Dolore, nobis vel esse dolorem.</div>
       <div className='buttons'>
         <ButtonPrimary name='View Recipe'/>
         <button onClick={() => setIsLiked(!isLiked)} id='primary-2'>{isLiked ? <HeartIconFilled/> : <HeartIcon/>}</button>
@@ -26,6 +26,11 @@ const Contents = () => {
       <div className='owner-profile'>
         <div className='recipe-title'>Recipe Title</div>
         <div className='user-profile'>User Profile</div>
+        <div className='dashed-lines'>
+          <div className="dashed-line-1"></div>
+          <div className="dashed-line-2"></div>
+          <div className="yellow-circle"></div>
+        </div>
       </div>
     </div>
   )

@@ -1,6 +1,6 @@
 .contents {
-    width: 650px;
-    left: 400px;
+    width: 550px;
+    left: 15%;
     height: 100%;
     position: fixed;
     z-index: 3000;
@@ -10,6 +10,22 @@
     justify-content: center;
     gap: 25px;
 }
+
+@media (max-width: 1300px) {
+    .contents {
+        left: 8%;
+    }
+    .owner-profile{
+        display: none !important;
+    }
+}
+
+@media (max-width: 1150px) {
+    .contents {
+        width: 500px;
+    }
+}
+
 
 .type-of-recipe {
     font-size: 20px;
@@ -118,4 +134,43 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.dashed-lines {
+    position: absolute;
+    margin-top: 90px;
+}
+
+
+.dashed-line-1 {
+  position: absolute;
+  left:366px;
+  top: 77%;   
+  width: 294px;
+  height: 0;
+  border-top: 1px dashed #fff;
+  z-index: 4000;
+}
+
+.dashed-line-2 {
+  position: absolute;
+  left: 660px; 
+  top: 77%; 
+  width: 250px;
+  height: 0;
+  border-top: 1px dashed #fff;
+  transform: rotate(330deg); 
+  transform-origin: left center;
+  z-index: 4000;
+}
+
+.yellow-circle {
+  position: absolute;
+  left: 868px; 
+  top: calc(77% - 133px);
+  width: 16px;
+  height: 16px;
+  background-color: rgb(255, 196, 0);
+  border-radius: 50%;
+  z-index: 4000;
 }

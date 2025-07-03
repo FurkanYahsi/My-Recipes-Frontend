@@ -4,7 +4,7 @@ const PhotoContainer = () => {
   return (
     <div className='photo-container'>
       <div className='photo'>
-        <img src='/res/pasta.jpg' />
+        <img src='/res/pasta-Photoroom.png' />
       </div>
     </div>
   )

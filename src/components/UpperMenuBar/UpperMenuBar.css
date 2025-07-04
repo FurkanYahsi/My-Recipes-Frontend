@@ -5,15 +5,13 @@
   align-items: center;
   width: 100%;
   height: 100px;
-  top: 0;
-  left: 0;
   background-color: white;
   border: none;/*1px solid #520000; */
   padding: 0 2rem 0 2rem;
   box-sizing: border-box;
-  z-index: 1000;
   user-select: none;
   transition: padding 0.4s;
+  z-index: 1000;
 }   
 
 /*-----Upper Menu Left div-----*/
@@ -57,6 +55,7 @@
 /*-----Upper Menu Right div-----*/
 
 .upper-menu-bar-1.right-side {
+  width: calc(100% - 290px);
   display: flex;
   justify-content: flex-end;
   align-items: center;

@@ -1,19 +1,33 @@
 .contents {
-    width: 550px;
+    width: 30%;
     left: 15%;
     height: calc(100vh - 50px);
-    position: fixed;
+    padding-left: 10rem;
     z-index: 3000;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    gap: 25px;
+    gap: 1.3rem;
+    transition: width 0.5s ease, height 0.5s ease, left 0.5s ease, top 0.5s ease;
+}
+
+@media (max-width: 1550px) {
+    .dashed-line-1 {
+        max-width: 250px;
+    } 
+    .dashed-line-2 {
+        left: 616px !important;
+    }
+    .yellow-circle {
+        left: 824px !important;
+    }
 }
 
 @media (max-width: 1300px) {
     .contents {
-        left: 8%;
+        left: 10%;
+        min-width: 500px;
     }
     .owner-profile{
         display: none !important;
@@ -23,6 +37,18 @@
 @media (max-width: 1150px) {
     .contents {
         width: 500px;
+    }
+}
+
+@media (max-width: 900px) {
+    .contents {
+        justify-content: flex-start;
+        width: 80vw;
+        min-width: 300px;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        padding-top: 3rem;
+        gap: 0.8rem;
     }
 }
 

@@ -1,0 +1,24 @@
+.menu {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(170, 235, 173, 0.3);
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    animation: slipToRight 0.4s ease-in-out forwards;
+}
+
+.close {
+    animation: slipToLeft 0.4s ease-in-out forwards;
+}
+
+@keyframes slipToRight {
+  from { transform: translateX(-100%);}
+  to   { transform: translateX(0);}
+}
+
+@keyframes slipToLeft {
+  from { transform: translateX(0%);}
+  to   { transform: translateX(-100%);}
+}

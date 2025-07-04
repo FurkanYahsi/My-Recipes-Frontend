@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import useUpperMenuBar from './UpperMenuBar.logic';
 import './UpperMenuBar.css'
 
+import DropDownMainMenu from '../DropDownMainMenu/DropDownMainMenu';
+
 // React Icon imports
 import { IconBaseProps } from 'react-icons';
 import { FaSearch } from "react-icons/fa";
@@ -32,7 +34,7 @@ const IconMenu = HiOutlineMenu as React.FC<IconBaseProps>;
 
 const UpperMenuBar: React.FC = () => {
 
-  const { isProfileVisible, isClickedToProfile, profileMenuRef, handleProfileClick, handleLogout} = useUpperMenuBar();
+  const { isProfileVisible, isClickedToProfile, profileMenuRef, isMenuVisible, mainMenuRef, handleProfileClick, handleMenuClick, handleLogout} = useUpperMenuBar();
 
   const [isTrendsVisible, setIsTrendsVisible] = useState(false);
   const [isBlogsVisible, setIsBlogsVisible] = useState(false);
@@ -115,8 +117,9 @@ const UpperMenuBar: React.FC = () => {
             </div>
           )}
         </div>
-        <div className='menu-icon'><IconMenu /></div>        
+        <div className='menu-icon' ref={mainMenuRef} onClick={handleMenuClick}><IconMenu /></div>
       </div>
+      {isMenuVisible && (<DropDownMainMenu isMenuVisible={isMenuVisible}/>)}
     </div>
   );
 };

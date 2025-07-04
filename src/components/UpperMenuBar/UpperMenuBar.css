@@ -7,7 +7,6 @@
   height: 100px;
   background-color: white;
   border: none;/*1px solid #520000; */
-  padding: 0 2rem 0 2rem;
   box-sizing: border-box;
   user-select: none;
   transition: padding 0.4s;
@@ -22,6 +21,7 @@
   justify-content: flex-start;
   width: 290px;
   min-width: 280px;
+  padding-left: 2rem;
   color: black;
   cursor: pointer;
 }
@@ -59,6 +59,7 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  padding-right: 2rem;
   gap: 1.8rem;
   font-family: "Nunito", sans-serif;
   font-optical-sizing: auto;
@@ -97,26 +98,31 @@
   .upper-menu-bar-1.right-side {
     gap: 1.4rem;
   }
-  .upper-menu-bar-1 {
-    padding: 0 1rem 0 1rem;
+  .upper-menu-bar-1.left-side {
+    padding-left: 1rem;
+  }
+  .upper-menu-bar-1.right-side {
+    padding-right: 1rem;
   }
 }
 
 @media (max-width: 1200px) {
   .upper-menu-bar-1.right-side {
     gap: 1rem;
+    padding-right: 0.8rem;
   }
-  .upper-menu-bar-1 {
-    padding: 0 0.8rem 0 0.8rem;
+  .upper-menu-bar-1.left-side {
+    padding-left: 0.8rem;
   }
 }
 
 @media (max-width: 1000x) {
   .upper-menu-bar-1.right-side {
     gap: 0.8rem;
+    padding-right: 0.4rem;
   }
-  .upper-menu-bar-1 {
-    padding: 0 0.4rem 0 0.4rem;
+  .upper-menu-bar-1.left-side {
+    padding-left: 0.4rem;
   }
 }
 
@@ -335,5 +341,6 @@
   }
   .menu-icon {
     display: flex;
+    cursor: pointer;
   }
 }

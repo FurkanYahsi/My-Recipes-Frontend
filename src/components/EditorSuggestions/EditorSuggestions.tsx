@@ -27,10 +27,8 @@ const EditorSuggestions = () => {
         <div className='menu-item'><IconArrowDown/></div>
       </div>
       <div className='content-container'>
-        <Contents />
-        
+        <Contents />        
         <PhotoContainer />
-
       </div>
     </div>
   )

@@ -10,7 +10,7 @@ const WelcomePage = () => {
         setWhichState(text);
         setClear(!clear);
     }
-    const overlayer = "overlayer " + (whichState === "signIn" ? "go-to-left" : "go-to-right");
+    const overlayer = "overlayer " + (whichState === "signIn" ? "go-to-left" : "");
 
     return(
         <div className="container">

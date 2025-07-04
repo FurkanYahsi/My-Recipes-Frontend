@@ -1,5 +1,5 @@
 .photo-container {
-    position: absolute;
+  position: relative;
     left: calc(15% + 770px);
     width: 650px;
     height: 650px;
@@ -91,17 +91,17 @@
 
 @media (width < 1300px) {
   .photo-container {
-    width: 500px;
+    width: 475px;
     height: 500px;
-    left: calc(100vw - 475px);
+    left: calc(100vw - 300px);
   }
   .photo {
-    width: calc(100vw - 620px);
-    height: calc(100vw - 620px);
+    width: calc(70vh);
+    height: calc(70vh);
   }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 900px) {
   .photo-container {
     width: 400px;
     height: 400px;

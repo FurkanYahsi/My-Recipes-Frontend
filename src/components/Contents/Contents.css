@@ -1,7 +1,7 @@
 .contents {
     width: 550px;
     left: 15%;
-    height: 100%;
+    height: calc(100vh - 50px);
     position: fixed;
     z-index: 3000;
     display: flex;

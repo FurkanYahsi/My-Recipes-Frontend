@@ -1,4 +1,5 @@
 .editor-container {
+    overflow: hidden;
     width: 100vw;
     height: calc(100vh - 100px);
     background-color: rgb(255, 255, 255);

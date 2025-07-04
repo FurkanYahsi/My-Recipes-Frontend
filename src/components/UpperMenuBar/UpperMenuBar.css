@@ -172,7 +172,7 @@
 }
 
 .profile-menu {
-  position: absolute;
+  position: fixed;
   /* top: 85%; */
   top: 80px;
   right: 1vw;

@@ -1,9 +1,7 @@
 .contents {
     width: 30%;
-    left: 15%;
     height: calc(100vh - 50px);
     padding-left: 10rem;
-    z-index: 3000;
     display: flex;
     flex-direction: column;
     align-items: flex-start;

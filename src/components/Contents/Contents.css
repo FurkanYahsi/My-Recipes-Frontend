@@ -83,6 +83,7 @@
 .buttons {
     user-select: none;
     display: flex;
+    z-index: 1;
     gap: 25px;
 }
 

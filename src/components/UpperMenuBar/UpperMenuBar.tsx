@@ -34,7 +34,7 @@ const IconMenu = HiOutlineMenu as React.FC<IconBaseProps>;
 
 const UpperMenuBar: React.FC = () => {
 
-  const { isProfileVisible, profileMenuRef, hasBeenClickedToProfile, isMenuVisible, mainMenuRef, menuContentRef, handleProfileClick, handleMenuClick, handleLogout} = useUpperMenuBar();
+  const { isProfileVisible, profileMenuRef, hasBeenClickedToProfile, isMenuVisible, mainMenuRef, menuContentRef, handleSendRecipeClick, handleProfileClick, handleMenuClick, handleLogout} = useUpperMenuBar();
 
   const [isTrendsVisible, setIsTrendsVisible] = useState(false);
   const [isBlogsVisible, setIsBlogsVisible] = useState(false);
@@ -98,7 +98,9 @@ const UpperMenuBar: React.FC = () => {
         <div 
           onMouseEnter={()=> setIsMouseOnSendRecipe(true)}
           onMouseLeave={()=> setIsMouseOnSendRecipe(false)}
-          className='share-recipe'>
+          className='share-recipe'
+          onClick={handleSendRecipeClick}
+          >
             {isMouseOnSendRecipe ? <IconCooker className='cooker-icon'/> : "Send Recipe"}
         </div>
 

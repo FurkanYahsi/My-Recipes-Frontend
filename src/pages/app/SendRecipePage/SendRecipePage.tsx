@@ -1,9 +1,9 @@
-import React from 'react'
+import CreateRecipeForm from "../../../components/CreateRecipeForm/CreateRecipeForm"
 
 const SendRecipePage = () => {
   return (
     <div>
-      
+      <CreateRecipeForm/>
     </div>
   )
 }

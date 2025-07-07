@@ -55,6 +55,10 @@ const useUpperMenuBar = () => {
         setIsProfileVisible(!isProfileVisible);
     }
 
+    const handleSendRecipeClick = () => {
+        navigate("/send-recipe");
+    }
+
   return {
     isProfileVisible,
     profileMenuRef,
@@ -63,6 +67,7 @@ const useUpperMenuBar = () => {
     handleMenuClick,
     mainMenuRef,
     menuContentRef,
+    handleSendRecipeClick,
     handleLogout,
     isMenuVisible
   }

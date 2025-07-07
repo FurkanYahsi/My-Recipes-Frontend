@@ -4,6 +4,7 @@ import { Navigate } from 'react-router-dom';
 
 import WelcomePage from './pages/Auth/WelcomePage/WelcomePage';
 import HomePage from './pages/app/HomePage/HomePage';
+import SendRecipePage from './pages/app/SendRecipePage/SendRecipePage';
 
 import AppLayout from './utils/AppLayout/AppLayout';
 import ProtectedRoute from './utils/ProtectedRoute/ProtectedRoute';
@@ -22,6 +23,7 @@ function App() {
         <Route element={<ProtectedRoute />}>
           <Route element={<AppLayout />}>
             <Route path="/home" element={<HomePage />} />
+            <Route path="/send-recipe" element={<SendRecipePage />} />
             <Route path='/*' element={<Navigate to="/home" replace />} />
           </Route>
         </Route>

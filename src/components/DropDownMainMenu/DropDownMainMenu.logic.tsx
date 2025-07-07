@@ -6,6 +6,10 @@ const useDropDownMainMenu = () => {
 
     const navigate = useNavigate();
 
+    const handleSendRecipe = () => {
+        navigate("/send-recipe");
+    }
+
     const handleLogout =  async () => {
         logout().then((response:any) => {
             if (response && response.success){
@@ -18,6 +22,7 @@ const useDropDownMainMenu = () => {
     }
 
   return {
+    handleSendRecipe,
     handleLogout
   }
 }

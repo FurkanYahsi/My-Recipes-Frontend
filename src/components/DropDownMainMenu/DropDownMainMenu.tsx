@@ -20,8 +20,7 @@ import { IoBookOutline } from "react-icons/io5";
 import { GoQuestion } from "react-icons/go";
 import { BsCalculator } from "react-icons/bs";
 import { IoMdInformationCircleOutline } from "react-icons/io";
-
-
+import { IoIosSend } from "react-icons/io";
 
 
 
@@ -41,6 +40,7 @@ const IconBlogs = IoBookOutline as React.FC<IconBaseProps>;
 const IconHelp = GoQuestion as React.FC<IconBaseProps>;
 const IconCalculator = BsCalculator as React.FC<IconBaseProps>;
 const IconInfo = IoMdInformationCircleOutline as React.FC<IconBaseProps>;
+const IconSend = IoIosSend as React.FC<IconBaseProps>;
 
 
 interface DropDownMainMenuProps {
@@ -49,7 +49,7 @@ interface DropDownMainMenuProps {
 }
 
 const DropDownMainMenu: React.FC<DropDownMainMenuProps> = ({ isMenuVisible, menuRef }) => {
-const { handleLogout } = useDropDownMainMenu();
+const { handleSendRecipe, handleLogout } = useDropDownMainMenu();
 
 
   const [hasBeenVisible, setHasBeenVisible] = useState(false);
@@ -72,6 +72,7 @@ const { handleLogout } = useDropDownMainMenu();
         <div className='options'><IconProfile/>My Profile</div>
         <div className='options'><IconBookmark/>Saved Recipes</div>
         <div className='options'><IconHeart/>Likes</div>
+        <div className='options' onClick={handleSendRecipe}><IconSend/>Send Recipe</div>
         <div className='options'><IconShoppingCart/>Shopping List</div>
         <div className='options'><IconCalendar/>Plannings</div>
         <div className='options'><IconTrends/>Trends</div>

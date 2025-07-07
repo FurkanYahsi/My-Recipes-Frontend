@@ -8,7 +8,9 @@ const useUpperMenuBar = () => {
     const [hasBeenClickedToProfile, setHasBeenClickedToProfile] = useState(false);
     const [isMenuVisible, setIsMenuVisible] = useState(false);
     const profileMenuRef = useRef<HTMLDivElement>(null);
+
     const mainMenuRef = useRef<HTMLDivElement>(null);
+    const menuContentRef = useRef<HTMLDivElement>(null);
 
     const navigate = useNavigate();
 
@@ -23,7 +25,8 @@ const useUpperMenuBar = () => {
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
-        if (mainMenuRef.current && !mainMenuRef.current.contains(event.target as Node)) {
+        if ((mainMenuRef.current && !mainMenuRef.current.contains(event.target as Node)) &&
+            (menuContentRef.current && !menuContentRef.current.contains(event.target as Node))) {
             setIsMenuVisible(false);
         }
         if (profileMenuRef.current && !profileMenuRef.current.contains(event.target as Node)) {
@@ -59,6 +62,7 @@ const useUpperMenuBar = () => {
     hasBeenClickedToProfile,
     handleMenuClick,
     mainMenuRef,
+    menuContentRef,
     handleLogout,
     isMenuVisible
   }

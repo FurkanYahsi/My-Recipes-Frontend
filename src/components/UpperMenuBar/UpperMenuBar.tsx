@@ -34,7 +34,7 @@ const IconMenu = HiOutlineMenu as React.FC<IconBaseProps>;
 
 const UpperMenuBar: React.FC = () => {
 
-  const { isProfileVisible, profileMenuRef, hasBeenClickedToProfile, isMenuVisible, mainMenuRef, handleProfileClick, handleMenuClick, handleLogout} = useUpperMenuBar();
+  const { isProfileVisible, profileMenuRef, hasBeenClickedToProfile, isMenuVisible, mainMenuRef, menuContentRef, handleProfileClick, handleMenuClick, handleLogout} = useUpperMenuBar();
 
   const [isTrendsVisible, setIsTrendsVisible] = useState(false);
   const [isBlogsVisible, setIsBlogsVisible] = useState(false);
@@ -119,7 +119,7 @@ const UpperMenuBar: React.FC = () => {
         </div>
         <div className='menu-icon' ref={mainMenuRef} onClick={handleMenuClick}><IconMenu /></div>
       </div>
-      <DropDownMainMenu isMenuVisible={isMenuVisible}/>
+      <DropDownMainMenu isMenuVisible={isMenuVisible} menuRef={menuContentRef}/>
     </div>
   );
 };

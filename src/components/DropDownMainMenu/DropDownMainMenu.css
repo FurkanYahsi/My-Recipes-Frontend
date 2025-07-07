@@ -1,8 +1,8 @@
-.menu {
+.menu-background {
     position: fixed;
     width: 100vw;
     height: 100vh;
-    background-color: rgb(170, 235, 173, 0.3);
+    background-color: rgba(0, 0, 0, 0.4);
     z-index: 1000;
     left: 0;
     top: 0;

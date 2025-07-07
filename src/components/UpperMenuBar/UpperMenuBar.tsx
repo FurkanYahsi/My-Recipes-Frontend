@@ -119,7 +119,7 @@ const UpperMenuBar: React.FC = () => {
         </div>
         <div className='menu-icon' ref={mainMenuRef} onClick={handleMenuClick}><IconMenu /></div>
       </div>
-      {isMenuVisible && (<DropDownMainMenu isMenuVisible={isMenuVisible}/>)}
+      <DropDownMainMenu isMenuVisible={isMenuVisible}/>
     </div>
   );
 };

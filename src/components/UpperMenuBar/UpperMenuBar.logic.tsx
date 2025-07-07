@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const useUpperMenuBar = () => {
 
     const [isProfileVisible, setIsProfileVisible] = useState(false);
-    const [isClickedToProfile, setIsClickedToProfile] = useState(false);
+    const [hasBeenClickedToProfile, setHasBeenClickedToProfile] = useState(false);
     const [isMenuVisible, setIsMenuVisible] = useState(false);
     const profileMenuRef = useRef<HTMLDivElement>(null);
     const mainMenuRef = useRef<HTMLDivElement>(null);
@@ -17,9 +17,17 @@ const useUpperMenuBar = () => {
     }
 
     useEffect(() => {
+        if (isProfileVisible)
+            setHasBeenClickedToProfile(true);
+    }, [isProfileVisible])
+
+    useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
         if (mainMenuRef.current && !mainMenuRef.current.contains(event.target as Node)) {
             setIsMenuVisible(false);
+        }
+        if (profileMenuRef.current && !profileMenuRef.current.contains(event.target as Node)) {
+            setIsProfileVisible(false);
         }
         };
         document.addEventListener('mousedown', handleClickOutside);
@@ -40,30 +48,15 @@ const useUpperMenuBar = () => {
         });   
     }
 
-    const handleProfileClick = () => {    
-        setIsClickedToProfile(true);
+    const handleProfileClick = () => {
         setIsProfileVisible(!isProfileVisible);
     }
 
-    useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-        if (profileMenuRef.current && !profileMenuRef.current.contains(event.target as Node)) {
-            setIsProfileVisible(false);
-        }
-        };
-        document.addEventListener('mousedown', handleClickOutside);
-
-        return() => {
-        document.removeEventListener('mousedown', handleClickOutside); // Component unmount
-        }
-    }, [])
-
-
   return {
     isProfileVisible,
-    isClickedToProfile,
     profileMenuRef,
     handleProfileClick,
+    hasBeenClickedToProfile,
     handleMenuClick,
     mainMenuRef,
     handleLogout,

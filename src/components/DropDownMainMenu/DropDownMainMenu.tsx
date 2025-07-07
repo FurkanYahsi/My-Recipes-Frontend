@@ -21,7 +21,20 @@ const DropDownMainMenu: React.FC<DropDownMainMenuProps> = ({ isMenuVisible }) =>
 
   return (
     <div className={`menu-background${isMenuVisible ? '' : ' close'}`}>
-      
+      <div className={`menu${isMenuVisible ? '' : ' close'}`}>      
+        My Recipes
+        <div>Recipes</div>
+        <div>Saved Recipes</div>
+        <div>Trends</div>
+        <div>Blogs</div>
+        <div>Shopping List</div>
+        <div>Plannings</div>
+        <div>Q&A</div>
+        <div>Calorie Calculator</div>
+        Other
+        <div>Contact</div>
+        <div>About</div>      
+      </div>
     </div>
   )
 }

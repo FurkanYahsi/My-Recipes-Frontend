@@ -9,6 +9,18 @@
     animation: slipToRight 0.4s ease-in-out forwards;
 }
 
+.menu {
+    position: fixed;
+    height: 100%;
+    width: 250px;
+    z-index: 9999;
+    background: #ffffff;
+    padding: 30px;
+    animation: slipToRight 0.4s ease-in-out forwards;
+    display: flex;
+    flex-direction: column;
+  }
+
 .close {
     animation: slipToLeft 0.4s ease-in-out forwards;
 }

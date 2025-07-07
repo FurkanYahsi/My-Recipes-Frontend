@@ -1,0 +1,51 @@
+.send-recipe-container {
+    margin-top: 2rem;
+    width: 70%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    background-color: rgb(255, 255, 255);
+    overflow: hidden;
+}
+
+.mini-container {
+    width: 100%;
+    height: auto;
+    gap: 10px;
+    padding: 40px;
+    box-sizing: border-box;
+    border-bottom: whitesmoke 1px solid;
+    
+}
+
+.send-recipe-container textarea {
+    width: 100%;
+    height: fit-content;
+    border: rgba(0, 0, 0, 0.7) 2px solid;
+    resize: none;
+    overflow: hidden;
+    outline: none;
+    font-family: sans-serif;
+    font-size: 0.9rem;
+    padding: 0.5rem;
+}
+
+.recipe-name {
+
+}
+
+.ingredients {
+}
+
+.instructions {
+   
+}
+
+.send-recipe-container .header {
+    color: #525252;
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem;
+}

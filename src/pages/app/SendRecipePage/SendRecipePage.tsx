@@ -1,8 +1,9 @@
 import CreateRecipeForm from "../../../components/CreateRecipeForm/CreateRecipeForm"
+import './SendRecipePage.css';
 
 const SendRecipePage = () => {
   return (
-    <div>
+    <div className="send-recipe-page">
       <CreateRecipeForm/>
     </div>
   )

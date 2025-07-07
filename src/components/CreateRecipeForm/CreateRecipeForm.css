@@ -1,14 +1,15 @@
 .send-recipe-container {
-    margin-top: 2rem;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
     width: 70%;
     height: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
     border-radius: 12px;
     background-color: rgb(255, 255, 255);
     overflow: hidden;
+    overflow-y: auto;
 }
 
 .mini-container {
@@ -17,7 +18,10 @@
     gap: 10px;
     padding: 40px;
     box-sizing: border-box;
-    border-bottom: whitesmoke 1px solid;
+    border-top: whitesmoke 1px solid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     
 }
 
@@ -33,19 +37,25 @@
     padding: 0.5rem;
 }
 
-.recipe-name {
-
-}
-
-.ingredients {
-}
-
-.instructions {
-   
-}
-
 .send-recipe-container .header {
     color: #525252;
     margin-bottom: 0.3rem;
     font-size: 0.9rem;
+    display: flex;
+    align-self: flex-start;
+}
+
+.button-share-recipe {
+    width: 20%;
+    align-self: center;
+    min-width: 110px;
+    max-width: 150px;
+    height: 2.5rem;
+    border-radius: 12px;
+    background-color: #ce0000;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 3rem;
 }

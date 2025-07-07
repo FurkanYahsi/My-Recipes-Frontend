@@ -1,7 +1,8 @@
 .send-recipe-page {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
+    overflow-y: auto;
     background-color: whitesmoke;
     width: 100%;
     height: calc(100vh - 100px);

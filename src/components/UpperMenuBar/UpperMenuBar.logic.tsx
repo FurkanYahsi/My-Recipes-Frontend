@@ -56,6 +56,10 @@ const useUpperMenuBar = () => {
     }
 
     const handleSendRecipeClick = () => {
+        // If the user is already on the send-recipe page, do not navigate again
+        if (window.location.pathname === "/send-recipe") {
+            return; 
+        }
         navigate("/send-recipe");
     }
 

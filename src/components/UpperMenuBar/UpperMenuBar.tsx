@@ -34,7 +34,17 @@ const IconMenu = HiOutlineMenu as React.FC<IconBaseProps>;
 
 const UpperMenuBar: React.FC = () => {
 
-  const { isProfileVisible, profileMenuRef, hasBeenClickedToProfile, isMenuVisible, mainMenuRef, menuContentRef, handleSendRecipeClick, handleProfileClick, handleMenuClick, handleLogout} = useUpperMenuBar();
+  const { isProfileVisible,
+          hasBeenClickedToProfile,
+          profileMenuRef,
+          mainMenuRef,
+          menuContentRef,          
+          isMenuVisible,         
+          handleTrendsClick,
+          handleSendRecipeClick,
+          handleProfileClick,
+          handleMenuClick,
+          handleLogout} = useUpperMenuBar();
 
   const [isTrendsVisible, setIsTrendsVisible] = useState(false);
   const [isBlogsVisible, setIsBlogsVisible] = useState(false);
@@ -53,7 +63,7 @@ const UpperMenuBar: React.FC = () => {
           className='dropdown-menu-wrapper'
         >
           <div className='header-text-with-arrow'>
-            <span className={isTrendsVisible ? "title-on-mouse header-text" : "header-text"}>
+            <span className={isTrendsVisible ? "title-on-mouse header-text" : "header-text"} onClick={handleTrendsClick}>
               Trends
             </span>
             <IconArrowDown />

@@ -4,19 +4,15 @@ import { useNavigate } from 'react-router-dom';
 
 const useUpperMenuBar = () => {
 
+    const navigate = useNavigate();
+
     const [isProfileVisible, setIsProfileVisible] = useState(false);
     const [hasBeenClickedToProfile, setHasBeenClickedToProfile] = useState(false);
     const [isMenuVisible, setIsMenuVisible] = useState(false);
-    const profileMenuRef = useRef<HTMLDivElement>(null);
 
+    const profileMenuRef = useRef<HTMLDivElement>(null);
     const mainMenuRef = useRef<HTMLDivElement>(null);
     const menuContentRef = useRef<HTMLDivElement>(null);
-
-    const navigate = useNavigate();
-
-    const handleMenuClick = () => {
-        setIsMenuVisible(!isMenuVisible);
-    }
 
     useEffect(() => {
         if (isProfileVisible)
@@ -25,21 +21,43 @@ const useUpperMenuBar = () => {
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
-        if ((mainMenuRef.current && !mainMenuRef.current.contains(event.target as Node)) &&
-            (menuContentRef.current && !menuContentRef.current.contains(event.target as Node))) {
-            setIsMenuVisible(false);
-        }
-        if (profileMenuRef.current && !profileMenuRef.current.contains(event.target as Node)) {
-            setIsProfileVisible(false);
-        }
+            if ((mainMenuRef.current && !mainMenuRef.current.contains(event.target as Node)) &&
+                (menuContentRef.current && !menuContentRef.current.contains(event.target as Node))) {
+                setIsMenuVisible(false);
+            }
+            if (profileMenuRef.current && !profileMenuRef.current.contains(event.target as Node)) {
+                setIsProfileVisible(false);
+            }
         };
         document.addEventListener('mousedown', handleClickOutside);
-
         return() => {
-        document.removeEventListener('mousedown', handleClickOutside); // Component unmount
+            document.removeEventListener('mousedown', handleClickOutside); // Component unmount
         }
     }, [])
 
+    const handleTrendsClick = () => {
+        // If the user is already on the trends page, do not navigate again
+        if (window.location.pathname === "/trends") {
+            return; 
+        }
+        navigate("/trends");
+    }
+
+    // Send Recipe Button
+    const handleSendRecipeClick = () => {
+        // If the user is already on the send-recipe page, do not navigate again
+        if (window.location.pathname === "/send-recipe") {
+            return; 
+        }
+        navigate("/send-recipe");
+    }
+
+    // Profile Menu Button
+    const handleProfileClick = () => {
+        setIsProfileVisible(!isProfileVisible);
+    }
+
+    // Logout Button
     const handleLogout =  async () => {
         logout().then((response:any) => {
             if (response && response.success){
@@ -51,31 +69,24 @@ const useUpperMenuBar = () => {
         });   
     }
 
-    const handleProfileClick = () => {
-        setIsProfileVisible(!isProfileVisible);
+    // Main Menu Button (When the screen is narrow)
+    const handleMenuClick = () => {
+        setIsMenuVisible(!isMenuVisible);
     }
 
-    const handleSendRecipeClick = () => {
-        // If the user is already on the send-recipe page, do not navigate again
-        if (window.location.pathname === "/send-recipe") {
-            return; 
-        }
-        navigate("/send-recipe");
-    }
-
-  return {
-    isProfileVisible,
-    profileMenuRef,
-    handleProfileClick,
-    hasBeenClickedToProfile,
-    handleMenuClick,
-    mainMenuRef,
-    menuContentRef,
-    handleSendRecipeClick,
-    handleLogout,
-    isMenuVisible
-  }
-  
+    return {
+        isProfileVisible,
+        hasBeenClickedToProfile,
+        profileMenuRef,
+        mainMenuRef,
+        menuContentRef,
+        isMenuVisible,        
+        handleTrendsClick,
+        handleSendRecipeClick,
+        handleProfileClick,        
+        handleMenuClick,       
+        handleLogout,        
+    }  
 }
 
 export default useUpperMenuBar

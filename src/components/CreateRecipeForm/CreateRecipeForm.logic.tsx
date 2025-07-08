@@ -34,7 +34,22 @@ const useCreateRecipeForm = () => {
     const handleShareRecipe = (e : FormEvent<HTMLFormElement>) => {
         e.preventDefault(); // Do not refresh the page
         if (!recipeNameRef.current?.value ||!ingredientsRef.current?.value || !instructionsRef.current?.value) {
-          showNotification("Please fill in all fields before sharing the recipe.");
+          showNotification("Please fill in all fields before sharing the recipe.", "error");
+          return;
+        }
+
+        if (recipeNameRef.current?.value.length < 3) {
+          showNotification("Recipe name must be at least 3 characters long.", "error");
+          return;
+        }
+
+         if (ingredientsRef.current?.value.length < 5) {
+          showNotification("Ingredients must be at least 5 characters long.", "error");
+          return;
+        }
+
+         if (instructionsRef.current?.value.length < 20) {
+          showNotification("Instructions must be at least 20 characters long.", "error");
           return;
         }
         
@@ -44,14 +59,13 @@ const useCreateRecipeForm = () => {
             recipe_instructions: instructionsRef.current?.value,
         }).then((response: any) => {
             if (response && response.success) {
-                showNotification("Recipe shared successfully!");
+                showNotification("Recipe shared successfully!", "success");
                 // Reset the form fields
                 if (recipeNameRef.current) recipeNameRef.current.value = '';
                 if (ingredientsRef.current) ingredientsRef.current.value = '';
                 if (instructionsRef.current) instructionsRef.current.value = '';
                 adjustAllTextareas(); // Adjust height again
             } else {
-               showNotification("Please fill in all fields before sharing the recipe.");
                 // console.error(response?.errorMessage || "Failed to create recipe!");
             }
         }).catch((error: any) => {

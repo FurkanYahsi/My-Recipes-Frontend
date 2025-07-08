@@ -22,8 +22,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({whichState, clear}) => {
 
               {/* Name Input */}
               <Form.Item
-                name='Name'
-                hasFeedback
+                name='Name'               
                 rules={[{ required: true, message: 'Please enter your name!'}]}
               >
                 <Input className="input" autoComplete="on" type="text" placeholder='Name'/>
@@ -32,7 +31,6 @@ const SignUpForm: React.FC<SignUpFormProps> = ({whichState, clear}) => {
                {/* Surname Input */}
               <Form.Item
                 name='Surname'
-                hasFeedback
                 rules={[{ required: true, message: 'Please enter your surname!'}]}
               >
                 <Input className="input" autoComplete="on" type="text" placeholder='Surname'/>
@@ -40,7 +38,6 @@ const SignUpForm: React.FC<SignUpFormProps> = ({whichState, clear}) => {
 
               <Form.Item
                 name='Username'
-                hasFeedback
                 rules={[{ required: true, message: 'Please enter an username!'}]}
               >
                 <Input className="input" autoComplete="off" type="text" placeholder='Username'/>
@@ -49,7 +46,6 @@ const SignUpForm: React.FC<SignUpFormProps> = ({whichState, clear}) => {
               {/* Email Input */}
               <Form.Item
                 name="Email"
-                hasFeedback
                 rules={[
                   {
                     type: 'email',
@@ -67,7 +63,6 @@ const SignUpForm: React.FC<SignUpFormProps> = ({whichState, clear}) => {
               {/* Password Input */}
               <Form.Item
                 name='Password'
-                hasFeedback
                 rules={[{ required: true, message: 'Please enter your password!'}]}
               >
                 <Input.Password className="input" autoComplete="off" type="text" placeholder="Password"/>
@@ -77,7 +72,6 @@ const SignUpForm: React.FC<SignUpFormProps> = ({whichState, clear}) => {
              <Form.Item
                 name='PasswordConfirmation'
                 dependencies={['Password']}
-                hasFeedback
                 rules={[
                   {
                     required: true,

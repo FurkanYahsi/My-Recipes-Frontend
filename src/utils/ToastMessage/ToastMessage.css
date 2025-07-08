@@ -1,5 +1,25 @@
 .toastMessageBackground {
     border-radius: 5px;
     width: 300px !important;
-    box-shadow:  0 0 8px rgba(0, 0, 0, 0.2), 0 0 16px rgba(0, 0, 0, 0.4);
+}
+
+.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.warning {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.toastMessageBackground ul {
+  padding-left: 0;
+  margin-left: 0;
+  list-style-position: inside;
 }

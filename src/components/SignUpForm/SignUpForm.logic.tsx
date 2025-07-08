@@ -30,7 +30,7 @@ const useSignUpForm = (clear:boolean) => {
           if (response && response.success) {
             navigate("/home");
           } else {
-            showNotification(response?.errorMessage || "Sign up failed!");
+            showNotification(response?.errorMessage || "Sign up failed!", "error");
           }
         });     
 
@@ -38,18 +38,19 @@ const useSignUpForm = (clear:boolean) => {
       if (error.errorFields) {
         showNotification(
           error.errorFields.map((item: any) => (
-            <div key={item.name[0]}>{item.errors[0]}</div>
-          ))
+            <ul><li key={item.name[0]}>{item.errors[0]}</li></ul>
+          )),
+          "error"
         );
       } else if (error.response && error.response.data) {
-        showNotification(error.response.data);
+        showNotification(error.response.data, "error");
       }
     }
   };
 
   const arePasswordsSame = (values: any): boolean => {
     if (values.Password !== values.PasswordConfirmation) {
-      showNotification("The passwords are not same!");
+      showNotification("The passwords are not same!", "error");
       return false;
     }
     return true;

@@ -25,7 +25,7 @@ const useSignInForm = (clear : boolean) => {
         if (response && response.success) {
           navigate("/home");
         } else {
-          showNotification(response?.errorMessage || "Sign in failed!");
+          showNotification(response?.errorMessage || "Sign in failed!", "error");
         }
       }).catch((error) => {console.log(error.response?.data)});
       
@@ -33,12 +33,13 @@ const useSignInForm = (clear : boolean) => {
       if (error.errorFields) {
         showNotification(
           error.errorFields.map((item: any) => (
-            <div key={item.name[0]}>{item.errors[0]}</div>
-          )) 
+            <ul><li key={item.name[0]}>{item.errors[0]}</li></ul>
+          )),
+          "error" 
         );
       }
       else if (error.response && error.response.data) {
-        showNotification(error.response.data);
+        showNotification(error.response.data, "error");
       }
     }
   }

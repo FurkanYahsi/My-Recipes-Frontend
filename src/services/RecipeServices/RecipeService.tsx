@@ -2,7 +2,7 @@ import { RequestMethod } from "../../enums/RequestMethod";
 import { makeRequest } from "../../axios/ApiService";
 
 const endpoints: any = {
-    createRecipe: '/create-recipe',
+    createRecipe: '/recipe/create',
 };
 
 class RecipeService {

@@ -28,7 +28,8 @@
 .send-recipe-container textarea {
     width: 100%;
     height: fit-content;
-    border: rgba(0, 0, 0, 0.7) 2px solid;
+    border: rgba(0, 0, 0, 0.6) 2px solid;
+    border-radius: 3px;
     resize: none;
     overflow: hidden;
     outline: none;
@@ -43,6 +44,12 @@
     font-size: 0.9rem;
     display: flex;
     align-self: flex-start;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
 
 .button-share-recipe {

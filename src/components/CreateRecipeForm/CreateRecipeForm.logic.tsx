@@ -1,7 +1,10 @@
-import React, { useEffect, useRef } from 'react'
+import React, { FormEvent, useEffect, useRef } from 'react'
 import { createRecipe } from '../../services/RecipeServices/RecipeService.export';
+import { ToastMessage } from '../../utils/ToastMessage/ToastMessage';
 
 const useCreateRecipeForm = () => {
+
+    const { contextHolder, showNotification } = ToastMessage();
 
     const recipeNameRef = useRef<HTMLTextAreaElement>(null);
     const ingredientsRef = useRef<HTMLTextAreaElement>(null);
@@ -28,20 +31,28 @@ const useCreateRecipeForm = () => {
       adjustHeight(e.currentTarget);
     };
   
-    const handleShareRecipe = () => {
+    const handleShareRecipe = (e : FormEvent<HTMLFormElement>) => {
+        e.preventDefault(); // Do not refresh the page
+        if (!recipeNameRef.current?.value ||!ingredientsRef.current?.value || !instructionsRef.current?.value) {
+          showNotification("Please fill in all fields before sharing the recipe.");
+          return;
+        }
+        
         createRecipe({
-            recipe_name: recipeNameRef.current?.value || '',
-            recipe_ingredients: ingredientsRef.current?.value || '',
-            recipe_instructions: instructionsRef.current?.value || '',
+            recipe_name: recipeNameRef.current?.value,
+            recipe_ingredients: ingredientsRef.current?.value,
+            recipe_instructions: instructionsRef.current?.value,
         }).then((response: any) => {
             if (response && response.success) {
+                showNotification("Recipe shared successfully!");
                 // Reset the form fields
                 if (recipeNameRef.current) recipeNameRef.current.value = '';
                 if (ingredientsRef.current) ingredientsRef.current.value = '';
                 if (instructionsRef.current) instructionsRef.current.value = '';
                 adjustAllTextareas(); // Adjust height again
             } else {
-                console.error(response?.errorMessage || "Failed to create recipe!");
+               showNotification("Please fill in all fields before sharing the recipe.");
+                // console.error(response?.errorMessage || "Failed to create recipe!");
             }
         }).catch((error: any) => {
             console.error("Error creating recipe:", error);
@@ -52,7 +63,8 @@ const useCreateRecipeForm = () => {
       recipeNameRef,
       ingredientsRef,
       instructionsRef,
-      handleInput
+      handleInput,
+      contextHolder
     }
 }
 

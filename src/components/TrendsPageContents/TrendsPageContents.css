@@ -1,0 +1,13 @@
+.trends-page-contents-container {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+    background-color: whitesmoke;
+}
+
+.content-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}

@@ -5,10 +5,14 @@ import { FaRegHeart } from "react-icons/fa6";
 import { FaHeart } from "react-icons/fa";
 import { IconBaseProps } from 'react-icons';
 import { FaRegBookmark } from "react-icons/fa";
+import { MdAccountCircle } from 'react-icons/md';
+
 
 const HeartIconFilled = FaHeart  as React.FC<IconBaseProps>;
 const HeartIcon = FaRegHeart as React.FC<IconBaseProps>;
 const IconBookmark = FaRegBookmark as React.FC<IconBaseProps>;
+const IconProfile = MdAccountCircle as React.FC<IconBaseProps>;
+
 
 interface Recipe {
   id: string;
@@ -40,9 +44,11 @@ const MiniRecipeBox = ({recipe, onLikeChange}: MiniRecipeBoxProps) => {
                   <div className='quick-infos'>8-10 kişilik, 1 saat Hazırlık, 30dk Pişirme</div>
               </div>
               <div className="recipe-popularity">
-                  <div className='owner'>{recipe.username}</div>
-                  <div className="like-button" onClick={handleLikeClick}> {isLiked ? <HeartIconFilled color="red" /> : <HeartIcon />}{recipe.like_count}</div>
-                  <div className="bookmark-button" onClick={handleBookmarkClick}><IconBookmark/>10</div>
+                  <div className='owner'><IconProfile className='icon-owner'/>{recipe.username}</div>
+                  <div className='buttons'>
+                    <div className="like-button" onClick={handleLikeClick}> {isLiked ? <HeartIconFilled color="red" /> : <HeartIcon />}{recipe.like_count}</div>
+                    <div className="bookmark-button" onClick={handleBookmarkClick}><IconBookmark/>10</div>
+                  </div>
               </div>
             </div>
         </div>

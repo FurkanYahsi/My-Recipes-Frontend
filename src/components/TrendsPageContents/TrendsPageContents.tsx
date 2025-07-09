@@ -1,16 +1,17 @@
 import useTrendsPageContents from "./TrendsPageContents.logic";
 import MiniRecipeBox from "../MiniRecipeBox/MiniRecipeBox";
+import './TrendsPageContents.css';
 
 const TrendsPageContents = () => {
 
   const { recipes, loading, handleLikeChange } = useTrendsPageContents();
 
   return (
-    <div className="trends-page">
+    <div className="trends-page-contents-container">
         {loading ? (
             <div>Loading...</div>
         ) : (
-            <div className="recipes-container">
+            <div className="content-container">
                 {recipes.map(recipe => (
                     <MiniRecipeBox 
                         key={recipe.id} 

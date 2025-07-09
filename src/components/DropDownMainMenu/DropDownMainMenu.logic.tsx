@@ -10,6 +10,10 @@ const useDropDownMainMenu = () => {
         navigate("/send-recipe");
     }
 
+    const handleTrends = () => {
+        navigate("/trends");
+    }
+
     const handleLogout =  async () => {
         logout().then((response:any) => {
             if (response && response.success){
@@ -23,6 +27,7 @@ const useDropDownMainMenu = () => {
 
   return {
     handleSendRecipe,
+    handleTrends,
     handleLogout
   }
 }

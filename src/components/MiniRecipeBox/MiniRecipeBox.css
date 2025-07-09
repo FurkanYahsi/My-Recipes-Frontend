@@ -45,6 +45,7 @@
 }
 
 .recipe-popularity {
+  user-select: none;
   height: calc(100% - 5rem);
   display: flex;
   align-items: center;

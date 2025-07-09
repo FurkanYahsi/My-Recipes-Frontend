@@ -65,8 +65,11 @@
   color: #555;
 }
 
-.buttons {
-  width: 6rem;
+.mini-recipe-box-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 5.5rem;
+  margin-right: 0.5rem;
 }
 
 .like-button, .bookmark-button {

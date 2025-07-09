@@ -45,7 +45,7 @@ const MiniRecipeBox = ({recipe, onLikeChange}: MiniRecipeBoxProps) => {
               </div>
               <div className="recipe-popularity">
                   <div className='owner'><IconProfile className='icon-owner'/>{recipe.username}</div>
-                  <div className='buttons'>
+                  <div className='mini-recipe-box-buttons'>
                     <div className="like-button" onClick={handleLikeClick}> {isLiked ? <HeartIconFilled color="red" /> : <HeartIcon />}{recipe.like_count}</div>
                     <div className="bookmark-button" onClick={handleBookmarkClick}><IconBookmark/>10</div>
                   </div>

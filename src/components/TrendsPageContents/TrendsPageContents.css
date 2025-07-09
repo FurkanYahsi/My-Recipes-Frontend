@@ -6,6 +6,7 @@
 }
 
 .content-container {
+    width: 60%;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;

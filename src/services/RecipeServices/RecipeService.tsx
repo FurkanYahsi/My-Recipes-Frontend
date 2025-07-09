@@ -3,7 +3,8 @@ import { makeRequest } from "../../axios/ApiService";
 
 const endpoints: any = {
     createRecipe: '/recipe/create',
-    likeOrUnlikeRecipe: (recipeId: string) => `/recipe/${recipeId}/like-or-unlike`
+    likeOrUnlikeRecipe: (recipeId: string) => `/recipe/${recipeId}/like-or-unlike`,
+    trends: '/recipe/trends'
 };
 
 class RecipeService {
@@ -18,6 +19,16 @@ class RecipeService {
     }
     async likeOrUnlikeRecipe(recipeId: string): Promise<{ data: any, success: boolean }> {
         return makeRequest(RequestMethod.POST, endpoints.likeOrUnlikeRecipe(recipeId))
+            .then(result => {
+                return result;
+            })
+            .catch(error => {
+                return error;
+            });
+    }
+
+    async getTrendRecipes(): Promise<{ data: any, success: boolean }> {
+        return makeRequest(RequestMethod.GET, endpoints.trends)
             .then(result => {
                 return result;
             })

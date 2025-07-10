@@ -6,7 +6,7 @@ const AppLayout = () => {
   return (
     <div className='app-layout'>
       <UpperMenuBar />
-      <main>
+      <main className='app-content'>
         <Outlet />
       </main>
     </div>

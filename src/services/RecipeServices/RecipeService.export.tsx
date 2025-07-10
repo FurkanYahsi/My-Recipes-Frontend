@@ -62,3 +62,21 @@ export const getTrendRecipes = (): Promise<{success: boolean, data: any[]}> => {
             });
     });
 }
+
+export const getRecipeById = (recipeId: string): Promise<{success: boolean, data: any}> => {
+
+    return new Promise((resolve, reject) => {
+        RecipeService.getRecipeById(recipeId)
+            .then((response) => {
+                const recipeData = response.data?.data || {};
+                resolve({
+                    success: true,
+                    data: recipeData
+                });
+            })
+            .catch((err) => {
+                console.error(err);
+                resolve({ success: false, data: {} });
+            });
+    });
+}

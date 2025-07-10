@@ -5,7 +5,8 @@ const endpoints: any = {
     createRecipe: '/recipe/create',
     likeOrUnlikeRecipe: (recipeId: string) => `/recipe/${recipeId}/like-or-unlike`,
     bookmarkOrRemoveBookmarkTheRecipe: (recipeId: string) => `/recipe/${recipeId}/bookmark-or-remove-bookmark`,
-    trends: '/recipe/trends'
+    getTrends: '/recipe/trends',
+    getRecipeById: (recipeId: string) => `/recipe/${recipeId}`,
 };
 
 class RecipeService {
@@ -37,7 +38,16 @@ class RecipeService {
             });
     }
     async getTrendRecipes(): Promise<{ data: any, success: boolean }> {
-        return makeRequest(RequestMethod.GET, endpoints.trends)
+        return makeRequest(RequestMethod.GET, endpoints.getTrends)
+            .then(result => {
+                return result;
+            })
+            .catch(error => {
+                return error;
+            });
+    }
+    async getRecipeById(recipeId: string): Promise<{ data: any, success: boolean }> {
+        return makeRequest(RequestMethod.GET, endpoints.getRecipeById(recipeId))
             .then(result => {
                 return result;
             })

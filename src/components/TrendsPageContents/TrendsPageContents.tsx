@@ -11,9 +11,9 @@ const TrendsPageContents = () => {
         {loading ? (
             <div>Loading...</div>
         ) : (
-            <div className="content-container">
+            <div className="trends-page-content-container">
                 {recipes.map(recipe => (
-                    <MiniRecipeBox 
+                    <MiniRecipeBox
                         key={recipe.id} 
                         recipe={recipe} 
                         onLikeChange={()=>recipe.like_count = handleLikeChange(recipe.like_count, recipe.is_liked)} 

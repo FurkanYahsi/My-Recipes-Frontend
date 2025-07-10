@@ -37,17 +37,17 @@ interface MiniRecipeBoxProps {
   
 const MiniRecipeBox = ({recipe, onLikeChange, onBookmarkChange}: MiniRecipeBoxProps) => {
 
-  const {handleLikeClick, handleBookmarkClick, isLiked, isBookmarked} = useMiniRecipeBox(recipe.id, recipe.is_liked, recipe.is_bookmarked, onLikeChange, onBookmarkChange);
+  const {handleViewRecipe, handleLikeClick, handleBookmarkClick, isLiked, isBookmarked} = useMiniRecipeBox(recipe.id, recipe.is_liked, recipe.is_bookmarked, onLikeChange, onBookmarkChange);
 
   return (
     <div>
         <div className="mini-recipe-box">
-            <div className="recipe-image">
+            <div className="recipe-image" onClick={handleViewRecipe}>
                 <img src="/res/pasta.jpg" alt={recipe.recipe_name} />
             </div>
             <div className="explanation">
               <div className="recipe-details">
-                  <h3>{recipe.recipe_name}</h3>
+                  <h3 onClick={handleViewRecipe}>{recipe.recipe_name}</h3>
                   <div className='quick-infos'>8-10 kişilik, 1 saat Hazırlık, 30dk Pişirme</div>
               </div>
               <div className="recipe-popularity">

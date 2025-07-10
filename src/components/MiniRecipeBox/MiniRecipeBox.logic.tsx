@@ -1,10 +1,16 @@
 import { useState } from "react";
 import { likeOrUnlikeRecipe, addBookmarkOrRemoveBookmarkTheRecipe } from "../../services/RecipeServices/RecipeService.export";
+import { useNavigate } from "react-router-dom";
 
 const useMiniRecipeBox = (recipeId:string, initialLiked:boolean, initialBookmarked: boolean, onLikeChange?: () => void, onBookmarkChange?:() => void) => {
 
+    const navigate = useNavigate();
     const [isLiked, setIsLiked] = useState(initialLiked);
     const [isBookmarked, setIsBookmarked] = useState(initialBookmarked);
+
+    const handleViewRecipe = () => {
+        navigate(`/recipe/${recipeId}`);
+    }
 
     const handleLikeClick = async () => {
         likeOrUnlikeRecipe(recipeId).then((response:any) => {
@@ -34,6 +40,7 @@ const useMiniRecipeBox = (recipeId:string, initialLiked:boolean, initialBookmark
     }
 
   return {
+    handleViewRecipe,
     handleLikeClick,
     handleBookmarkClick,
     onLikeChange,

@@ -30,7 +30,23 @@ export const likeOrUnlikeRecipe = (recipeId: string): Promise<any[] | null> => {
     });
 }
 
+export const addBookmarkOrRemoveBookmarkTheRecipe = (recipeId: string): Promise<any[] | null> => {
+
+    return new Promise((resolve, reject) => {
+        RecipeService.addBookmarkOrRemoveBookmarkTheRecipe(recipeId)
+            .then((response) => {
+                const apiData: any = response;
+                resolve(apiData);
+            })
+            .catch((err) => {
+                console.error(err);
+                reject(err);
+            });
+    });
+}
+
 export const getTrendRecipes = (): Promise<{success: boolean, data: any[]}> => {
+
     return new Promise((resolve, reject) => {
         RecipeService.getTrendRecipes()
             .then((response) => {

@@ -7,6 +7,8 @@ interface Recipe {
   user_name?: string;
   like_count: number;
   is_liked: boolean;
+  is_bookmarked: boolean;
+  bookmark_count: number;
 }
 
 const useTrendsPageContents = () => {
@@ -14,6 +16,7 @@ const useTrendsPageContents = () => {
     const [recipes, setRecipes] = useState<Recipe[]>([]);
     const [loading, setLoading] = useState(true);
     const [isLikeClicked, setIsLikeClicked] = useState(false);
+    const [isBookmarkClicked, setIsBookmarkClicked] = useState(false);
 
     const handleLikeChange = (recipeLikeCount: number, recipeIsLiked: boolean) => {
         setIsLikeClicked(!isLikeClicked);
@@ -23,6 +26,16 @@ const useTrendsPageContents = () => {
             isLikeClicked ? recipeLikeCount-- : recipeLikeCount++;
         }
         return recipeLikeCount;
+    }
+
+    const handleBookmarkChange = (recipeBookmarkCount: number, recipeIsBookmarked: boolean) => {
+        setIsBookmarkClicked(!isBookmarkClicked);
+        if (recipeIsBookmarked) {
+            isBookmarkClicked ? recipeBookmarkCount++ : recipeBookmarkCount--;
+        } else {
+            isBookmarkClicked ? recipeBookmarkCount-- : recipeBookmarkCount++;
+        }
+        return recipeBookmarkCount;
     }
 
     useEffect(() => { // Fetch trending recipes when the page refreshes
@@ -41,7 +54,8 @@ const useTrendsPageContents = () => {
     return {
         recipes,
         loading,
-        handleLikeChange
+        handleLikeChange,
+        handleBookmarkChange
     }
 }
 

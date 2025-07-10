@@ -28,7 +28,7 @@ class RecipeService {
             });
     }
     async addBookmarkOrRemoveBookmarkTheRecipe(recipeId: string): Promise<{data: any, success: boolean}> {
-        return makeRequest(RequestMethod.POST, endpoints.addBookmarkOrRemoveBookmarkTheRecipe(recipeId))
+        return makeRequest(RequestMethod.POST, endpoints.bookmarkOrRemoveBookmarkTheRecipe(recipeId))
             .then(result => {
                 return result;
             })

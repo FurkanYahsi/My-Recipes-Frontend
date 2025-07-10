@@ -4,7 +4,7 @@ import './TrendsPageContents.css';
 
 const TrendsPageContents = () => {
 
-  const { recipes, loading, handleLikeChange } = useTrendsPageContents();
+  const { recipes, loading, handleLikeChange, handleBookmarkChange } = useTrendsPageContents();
 
   return (
     <div className="trends-page-contents-container">
@@ -16,7 +16,8 @@ const TrendsPageContents = () => {
                     <MiniRecipeBox 
                         key={recipe.id} 
                         recipe={recipe} 
-                        onLikeChange={()=>recipe.like_count = handleLikeChange(recipe.like_count, recipe.is_liked) } 
+                        onLikeChange={()=>recipe.like_count = handleLikeChange(recipe.like_count, recipe.is_liked)} 
+                        onBookmarkChange={()=>recipe.bookmark_count = handleBookmarkChange(recipe.bookmark_count, recipe.is_bookmarked)}
                     />
                 ))}
             </div>

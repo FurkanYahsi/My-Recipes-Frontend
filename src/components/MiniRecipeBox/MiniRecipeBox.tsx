@@ -47,7 +47,7 @@ const MiniRecipeBox = ({recipe, onLikeChange, onBookmarkChange}: MiniRecipeBoxPr
             </div>
             <div className="explanation">
               <div className="recipe-details">
-                  <h3 onClick={handleViewRecipe}>{recipe.recipe_name}</h3>
+                  <div onClick={handleViewRecipe} className='recipe-details-header'>{recipe.recipe_name}</div>
                   <div className='quick-infos'>8-10 kişilik, 1 saat Hazırlık, 30dk Pişirme</div>
               </div>
               <div className="recipe-popularity">

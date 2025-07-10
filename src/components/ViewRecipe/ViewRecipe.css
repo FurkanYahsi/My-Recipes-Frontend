@@ -4,6 +4,7 @@
     align-items: center;
     background-color: whitesmoke;
     padding-top: 2rem;
+    overflow-wrap: break-word;
 }
 
 .view-recipe-content-container {
@@ -43,6 +44,7 @@
 
 .recipe-titlee {
     position: absolute;
+    width: calc(64rem - 8rem);
     bottom: 4rem;
     left: 4rem;
     color: white;

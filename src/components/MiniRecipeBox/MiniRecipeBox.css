@@ -7,6 +7,9 @@
   justify-content: flex-start;
   border: 1px solid #ccc;
   border-radius: 5px;
+  overflow-wrap: break-word;
+  overflow: hidden;
+ 
 }
 
 .mini-recipe-box:hover {
@@ -38,9 +41,14 @@
   border-bottom: rgb(167, 167, 167, 0.7) 1px solid;
 }
 
-.recipe-details h3 {
-  margin: 0;
+.recipe-details-header {
+  font-size: 1.1rem;
+  font-weight: bold;
   cursor: pointer;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .quick-infos {

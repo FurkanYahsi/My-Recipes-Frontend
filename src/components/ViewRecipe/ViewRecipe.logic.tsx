@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 interface Recipe {
   id: string;
   recipe_name: string;
+  recipe_story?: string;
   recipe_ingredients?: string;
   recipe_instructions?: string;
   user_name?: string;
@@ -21,6 +22,21 @@ const useViewRecipe = () => {
     const [recipe, setRecipe] = useState<Recipe>();
     const [isLikeClicked, setIsLikeClicked] = useState(false);
     const [isBookmarkClicked, setIsBookmarkClicked] = useState(false);
+
+    const ingredients = recipe?.recipe_ingredients?.split('\n').map(line => line.trim()).filter(line => line.length > 0) || [];
+    const [checked, setChecked] = useState<boolean[]>([]);
+
+    useEffect(() => {
+        setChecked(new Array(ingredients.length).fill(false))
+    }, [ingredients.length])
+
+  const toggleChecked = (index: number) => {
+    setChecked(prev => {
+      const copy = [...prev]
+      copy[index] = !copy[index]
+      return copy
+    })
+  }
 
     const handleLikeChange = (recipeLikeCount: number, recipeIsLiked: boolean) => {
         setIsLikeClicked(!isLikeClicked);
@@ -45,7 +61,7 @@ const useViewRecipe = () => {
     useEffect(() => {
         getRecipeById(recipeId).then((response:any) => {
             if (response && response.success) {
-                console.log("Recipe fetched successfully:", response);
+                // console.log("Recipe fetched successfully:", response);
                 setRecipe(response.data);
             } else {
                 console.error("Failed to fetch the recipe");
@@ -58,6 +74,9 @@ const useViewRecipe = () => {
 
   return {
     recipe,
+    ingredients,
+    checked,
+    toggleChecked,
     handleLikeChange,
     handleBookmarkChange
   }

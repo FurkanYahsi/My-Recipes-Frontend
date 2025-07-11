@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/My-Recipes-Frontend/static/css/main.6e2f1a09.css",
-    "main.js": "/My-Recipes-Frontend/static/js/main.cabef980.js",
+    "main.js": "/My-Recipes-Frontend/static/js/main.e192164a.js",
     "static/js/453.a403fd3e.chunk.js": "/My-Recipes-Frontend/static/js/453.a403fd3e.chunk.js",
     "static/media/black-background.jpg": "/My-Recipes-Frontend/static/media/black-background.a7eaea86aa3c78af315f.jpg",
     "index.html": "/My-Recipes-Frontend/index.html",
     "main.6e2f1a09.css.map": "/My-Recipes-Frontend/static/css/main.6e2f1a09.css.map",
-    "main.cabef980.js.map": "/My-Recipes-Frontend/static/js/main.cabef980.js.map",
+    "main.e192164a.js.map": "/My-Recipes-Frontend/static/js/main.e192164a.js.map",
     "453.a403fd3e.chunk.js.map": "/My-Recipes-Frontend/static/js/453.a403fd3e.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.6e2f1a09.css",
-    "static/js/main.cabef980.js"
+    "static/js/main.e192164a.js"
   ]
 }

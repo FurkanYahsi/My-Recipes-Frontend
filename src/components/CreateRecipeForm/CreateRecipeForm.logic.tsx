@@ -7,6 +7,7 @@ const useCreateRecipeForm = () => {
     const { contextHolder, showNotification } = ToastMessage();
 
     const recipeNameRef = useRef<HTMLTextAreaElement>(null);
+    const recipeStoryRef = useRef<HTMLTextAreaElement>(null);
     const ingredientsRef = useRef<HTMLTextAreaElement>(null);
     const instructionsRef = useRef<HTMLTextAreaElement>(null);
     
@@ -19,6 +20,7 @@ const useCreateRecipeForm = () => {
   
     const adjustAllTextareas = () => {
       adjustHeight(recipeNameRef.current);
+      adjustHeight(recipeStoryRef.current);
       adjustHeight(ingredientsRef.current);
       adjustHeight(instructionsRef.current);
     }
@@ -55,6 +57,7 @@ const useCreateRecipeForm = () => {
         
         createRecipe({
             recipe_name: recipeNameRef.current?.value,
+            recipe_story: recipeStoryRef.current?.value,
             recipe_ingredients: ingredientsRef.current?.value,
             recipe_instructions: instructionsRef.current?.value,
         }).then((response: any) => {
@@ -62,6 +65,7 @@ const useCreateRecipeForm = () => {
                 showNotification("Recipe shared successfully!", "success");
                 // Reset the form fields
                 if (recipeNameRef.current) recipeNameRef.current.value = '';
+                if (recipeStoryRef.current) recipeStoryRef.current.value = '';
                 if (ingredientsRef.current) ingredientsRef.current.value = '';
                 if (instructionsRef.current) instructionsRef.current.value = '';
                 adjustAllTextareas(); // Adjust height again
@@ -75,6 +79,7 @@ const useCreateRecipeForm = () => {
     return {
       handleShareRecipe,
       recipeNameRef,
+      recipeStoryRef,
       ingredientsRef,
       instructionsRef,
       handleInput,

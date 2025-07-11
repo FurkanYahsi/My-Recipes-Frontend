@@ -7,6 +7,7 @@ const endpoints: any = {
     bookmarkOrRemoveBookmarkTheRecipe: (recipeId: string) => `/recipe/${recipeId}/bookmark-or-remove-bookmark`,
     getTrends: '/recipe/trends',
     getRecipeById: (recipeId: string) => `/recipe/${recipeId}`,
+    createComment: (recipeId: string) => `/recipe/${recipeId}/comment/create`,
 };
 
 class RecipeService {
@@ -55,6 +56,24 @@ class RecipeService {
                 return error;
             });
     }
+    async createComment(recipeId: string, content: string, parentCommentId: string | null = null): Promise<{ data: any, success: boolean }> {
+    return makeRequest(
+        RequestMethod.POST, 
+        endpoints.createComment(recipeId), 
+        { 
+            data: { 
+                content,
+                parent_comment_id: parentCommentId 
+            } 
+        }
+    )
+    .then(result => {
+        return result;
+    })
+    .catch(error => {
+        return error;
+    });
+}
 }
 
 export default new RecipeService();

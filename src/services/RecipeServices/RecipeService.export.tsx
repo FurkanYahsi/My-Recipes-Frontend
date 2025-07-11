@@ -80,3 +80,24 @@ export const getRecipeById = (recipeId: string): Promise<{success: boolean, data
             });
     });
 }
+
+export const createComment = (
+    recipeId: string, 
+    content: string, 
+    parentCommentId: string | null = null
+): Promise<{success: boolean, data: any}> => {
+    return new Promise((resolve, reject) => {
+        RecipeService.createComment(recipeId, content, parentCommentId)
+            .then((response) => {
+                const commentData = response.data || {};
+                resolve({
+                    success: true,
+                    data: commentData
+                });
+            })
+            .catch((err) => {
+                console.error("Error creating comment:", err);
+                resolve({ success: false, data: {} });
+            });
+    });
+}

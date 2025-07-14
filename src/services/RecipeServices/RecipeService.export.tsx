@@ -101,3 +101,24 @@ export const createComment = (
             });
     });
 }
+
+export const getMainComments = (recipeId: string, page: number, limit?: number): Promise<{success: boolean, data: any}> => {
+    return new Promise((resolve, reject) => {
+        RecipeService.getMainComments(recipeId, page, limit)
+        .then((response) => {
+            const commentData = response.data?.data || [];
+            resolve({
+                success: true,
+                data: commentData
+            });
+            
+        })
+        .catch((err) => {
+                console.error(err);
+                resolve({
+                    success: false,
+                    data: {}
+                });
+        });
+    });
+}

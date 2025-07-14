@@ -8,6 +8,7 @@ const endpoints: any = {
     getTrends: '/recipe/trends',
     getRecipeById: (recipeId: string) => `/recipe/${recipeId}`,
     createComment: (recipeId: string) => `/recipe/${recipeId}/comment/create`,
+    getComments: (recipeId: string) => `/recipe/${recipeId}/comments`
 };
 
 class RecipeService {
@@ -73,7 +74,16 @@ class RecipeService {
     .catch(error => {
         return error;
     });
-}
+    }
+    async getMainComments(recipeId: string, page: number, limit?: number): Promise<{ data: any, success: boolean }> {
+        return makeRequest(RequestMethod.GET, endpoints.getComments(recipeId), {params: {page, limit}})
+            .then(result => {
+                return result;
+            })
+            .catch(error => {
+                return error;
+            });        
+    }
 }
 
 export default new RecipeService();

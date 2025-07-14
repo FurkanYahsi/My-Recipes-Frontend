@@ -61,7 +61,7 @@
     width: 60.6rem;
     height: 7rem;
     border: rgba(0, 0, 0, 0.6) 1px solid;
-    border-radius: 5px;
+    border-radius: 8px;
     resize: none;
     overflow: hidden;
     outline: none;
@@ -69,6 +69,7 @@
     font-size: 0.9rem;
     overflow-y: auto;
     scrollbar-width: thin;
+    scrollbar-color: gray transparent;
 }
 
 .button-container {

@@ -1,10 +1,18 @@
-import React, { useState } from 'react'
-import { createComment } from '../../services/RecipeServices/RecipeService.export';
+import React, { useEffect, useState } from 'react'
+import { createComment, getMainComments } from '../../services/RecipeServices/RecipeService.export';
 import { ToastMessage } from '../../utils/ToastMessage/ToastMessage';
+
+export interface Comment {
+    id: string;
+    content: string;
+}
 
 const useComments = (recipeId: string, parentCommentId: string | null = null) => {
     const { contextHolder, showNotification } = ToastMessage();
     const commentRef = React.useRef<HTMLTextAreaElement>(null);
+    const [comments, setComments] = useState<Comment[]>([]);
+    const [page, setPage] = useState(1);
+
     
     // const [replyingTo, setReplyingTo] = useState<string | null>(null);
 
@@ -33,6 +41,21 @@ const useComments = (recipeId: string, parentCommentId: string | null = null) =>
             });
     }
 
+    
+    useEffect(()=> {
+        getMainComments(recipeId, page, 8) // In one page, there can be at most 8 main comment.
+            .then(response => {
+                if (response.success) {
+                    setComments(response.data);
+                }
+            })
+            .catch(error=> {
+                console.error("Failed to load comments:", error);
+            })
+    }, [])
+        
+    
+
     // const handleReplyClick = (commentId: string) => {
     //     setReplyingTo(commentId);
     // }
@@ -41,6 +64,7 @@ const useComments = (recipeId: string, parentCommentId: string | null = null) =>
         handleCreateComment,
         commentRef,
         contextHolder,
+        comments
         // replyingTo,
         // handleReplyClick,
     }

@@ -7,12 +7,14 @@ interface CommentsProps {
 
 const Comments: React.FC<CommentsProps> = ({recipeId}) => {
 
-    const { handleCreateComment, commentRef, contextHolder } = useComments(recipeId);
+    const { handleCreateComment, commentRef, contextHolder, comments } = useComments(recipeId);
 
   return (
     <div className="comments-container">
         <div className="comments-header">Comments</div>
-        <div className='main-comment-container'>Çok iyi tarif!</div>
+        {comments.map(comment => (
+          <div key={comment.id} className='main-comment-container'>{comment.content}</div>
+        ))}
         <div className='comment-container'>
             <div className='comment-user'>User1</div>
             <div className='comment-text'>Bu tarifi denedim, harika oldu!</div>

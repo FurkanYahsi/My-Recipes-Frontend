@@ -1,6 +1,5 @@
-import { useState } from 'react';
-import './Comments.css';
 import useComments from './Comments.logic';
+import './Comments.css';
 
 interface CommentsProps {
   recipeId: string;
@@ -9,7 +8,6 @@ interface CommentsProps {
 const Comments: React.FC<CommentsProps> = ({recipeId}) => {
 
   const { handleCreateComment, commentRef, contextHolder, comments, handleViewReplies, replyingTo, handleReplyClick } = useComments(recipeId);
-
 
   return (
     <div className="comments-container">
@@ -30,15 +28,15 @@ const Comments: React.FC<CommentsProps> = ({recipeId}) => {
           </div>
         ))}
         <div className='comment-container'>
-            <div className='comment-user'>User1</div>
-            <div className='comment-text'>Bu tarifi denedim, harika oldu!</div>
+          <div className='comment-user'>User1</div>
+          <div className='comment-text'>Bu tarifi denedim, harika oldu!</div>
         </div>
         <>
-            <form onSubmit={handleCreateComment} className='add-comment-container'>
-                {contextHolder}
-                <textarea ref={commentRef} placeholder="Add a comment..." rows={3} />
-                <button type='submit' className="add-comment-button">Add Comment</button>
-            </form>
+          <form onSubmit={handleCreateComment} className='add-comment-container'>
+            {contextHolder}
+            <textarea ref={commentRef} placeholder="Add a comment..." rows={3} />
+            <button type='submit' className="add-comment-button">Add Comment</button>
+          </form>
         </>
     </div>
   )

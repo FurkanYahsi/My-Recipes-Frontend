@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { createComment, getMainComments, getReplies } from '../../services/RecipeServices/RecipeService.export';
+import { createComment, getMainComments, getReplies, likeOrUnlikeComment } from '../../services/RecipeServices/RecipeService.export';
 import { ToastMessage } from '../../utils/ToastMessage/ToastMessage';
 
 export interface Comment {
@@ -95,7 +95,14 @@ const useComments = (recipeId: string) => {
 
     const handleLikeClick = (commentId: string) => {
 
-        console.log(`Liked comment with ID: ${commentId}`);
+        likeOrUnlikeComment(commentId)
+            .then(response => {
+                if (response.success) {
+                    setComments(comments => 
+                        comments.map(comment => comment.id === commentId ? {...comment, is_liked: !comment.is_liked, like_count: Number(comment.like_count) + (!comment.is_liked ? 1 : -1)} : comment)
+                    );
+                }
+            })
     }
 
     return {

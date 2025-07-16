@@ -126,6 +126,10 @@
     }
 }   
 
+.filled-heart {
+    color: rgb(189, 6, 6);
+}
+
 .view-replies {
     color: gray;
     font-size: 0.8rem;

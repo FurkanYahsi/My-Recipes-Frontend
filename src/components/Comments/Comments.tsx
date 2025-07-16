@@ -38,7 +38,7 @@ const Comments: React.FC<CommentsProps> = ({recipeId}) => {
               <div className='comment-text'>{comment.content}</div>
               <div className='comment-actions'>
                 <div className='reply-comment' onClick={() => handleReplyClick(comment.id)}><IconComment/>Reply</div>
-                <div className='like-comment' onClick={() => handleLikeClick(comment.id)}>{comment.is_liked ? <HeartIconFilled/> : <HeartIcon/>}{comment.like_count}</div>
+                <div className='like-comment' onClick={() => handleLikeClick(comment.id)}>{comment.is_liked ? <HeartIconFilled className='filled-heart'/> : <HeartIcon/>}{comment.like_count}</div>
                 <div className='view-replies' onClick={() => handleViewReplies(comment.id)}>View replies<IconArrowDown/></div>
               </div>
             </div>

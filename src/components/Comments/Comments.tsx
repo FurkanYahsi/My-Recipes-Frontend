@@ -8,9 +8,8 @@ interface CommentsProps {
 
 const Comments: React.FC<CommentsProps> = ({recipeId}) => {
 
-  const { handleCreateComment, commentRef, contextHolder, comments, handleViewReplies, handleReplyComment, replyRef } = useComments(recipeId);
+  const { handleCreateComment, commentRef, contextHolder, comments, handleViewReplies, replyingTo, handleReplyClick } = useComments(recipeId);
 
-  const [activeReplyId, setActiveReplyId] = useState<string | null>(null);
 
   return (
     <div className="comments-container">
@@ -19,11 +18,11 @@ const Comments: React.FC<CommentsProps> = ({recipeId}) => {
           <div key={comment.id} className='main-comment-container'>
             <div className='comment-text'>{comment.content}</div>
             <div className='view-replies' onClick={handleViewReplies(comment.id)}>View replies</div>       
-            <div className='reply-comment' onClick={()=> { setActiveReplyId(comment.id)}}>Reply</div>
-            { activeReplyId === comment.id && (
+            <div className='reply-comment' onClick={()=> { handleReplyClick(comment.id)}}>Reply</div>
+            { replyingTo === comment.id && (
               <div className='reply-input'>
-                <form onSubmit={(e) => {handleReplyComment(e, comment.id); setActiveReplyId(null);}}>
-                  <textarea ref={replyRef} placeholder='Write a reply...' rows={2} />
+                <form onSubmit={(e) => {handleCreateComment(e, comment.id);}}>
+                  <textarea ref={commentRef} placeholder='Write a reply...' rows={2} />
                   <button type='submit'>Submit</button>
                 </form>
               </div>

@@ -7,15 +7,12 @@ export interface Comment {
     content: string;
 }
 
-const useComments = (recipeId: string /*, parentCommentId: string | null = null*/) => {
+const useComments = (recipeId: string) => {
     const { contextHolder, showNotification } = ToastMessage();
     const commentRef = React.useRef<HTMLTextAreaElement>(null);
-    const replyRef = React.useRef<HTMLTextAreaElement>(null);
     const [comments, setComments] = useState<Comment[]>([]);
-    const [page, setPage] = useState(1);
-
-    
-    // const [replyingTo, setReplyingTo] = useState<string | null>(null);
+    const [page, setPage] = useState(1);    
+    const [replyingTo, setReplyingTo] = useState<string | null>(null);
 
     const handleCreateComment = (e: React.FormEvent<HTMLFormElement>, parentCommentId?: string) => {
         e.preventDefault(); // Prevent page refresh
@@ -26,12 +23,12 @@ const useComments = (recipeId: string /*, parentCommentId: string | null = null*
             return;
         }
         
-        createComment(recipeId, commentRef.current?.value, /*replyingTo || */parentCommentId)
+        createComment(recipeId, commentRef.current?.value, replyingTo || parentCommentId)
             .then(response => {
                 if (response.success) {
                     showNotification("Comment added successfully!", "success");
                     if (commentRef.current) commentRef.current.value = '';
-                    // if (replyingTo) setReplyingTo(null);
+                    if (replyingTo) setReplyingTo(null);
                 } else {
                     showNotification("Failed to add comment. Please try again.", "error");
                 }
@@ -41,31 +38,6 @@ const useComments = (recipeId: string /*, parentCommentId: string | null = null*
                 showNotification("Failed to add comment. Please try again.", "error");
             });
     }
-
-    const handleReplyComment = (e: React.FormEvent<HTMLFormElement>, parentCommentId: string) => {
-        e.preventDefault(); 
-        if (!replyRef.current?.value.trim()) {
-            showNotification("Please enter a reply comment before submitting.", "error");
-            if (replyRef.current) replyRef.current.value = '';
-            return;
-        }
-        
-        createComment(recipeId, replyRef.current?.value, /*replyingTo || */parentCommentId)
-            .then(response => {
-                if (response.success) {
-                    showNotification("Comment added successfully!", "success");
-                    if (replyRef.current) replyRef.current.value = '';
-                    // if (replyingTo) setReplyingTo(null);
-                } else {
-                    showNotification("Failed to add comment. Please try again.", "error");
-                }
-            })
-            .catch(error => {
-                console.error("Error adding comment:", error);
-                showNotification("Failed to add comment. Please try again.", "error");
-            });
-    }
-
     
     useEffect(()=> {
         getMainComments(recipeId, page, 8) // In one page, there can be at most 8 main comment.
@@ -95,11 +67,9 @@ const useComments = (recipeId: string /*, parentCommentId: string | null = null*
             });
     }
 
-    
-
-    // const handleReplyClick = (commentId: string) => {
-    //     setReplyingTo(commentId);
-    // }
+    const handleReplyClick = (commentId: string) => {
+        setReplyingTo(commentId);
+    }
 
     return {
         handleCreateComment,
@@ -107,10 +77,8 @@ const useComments = (recipeId: string /*, parentCommentId: string | null = null*
         contextHolder,
         comments,
         handleViewReplies,
-        handleReplyComment,
-        replyRef
-        // replyingTo,
-        // handleReplyClick,
+        replyingTo,
+        handleReplyClick,
     }
 }
 

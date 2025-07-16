@@ -3,16 +3,17 @@ import { getRecipeById } from '../../services/RecipeServices/RecipeService.expor
 import { useEffect, useState } from 'react';
 
 interface Recipe {
-  id: string;
-  recipe_name: string;
-  recipe_story?: string;
-  recipe_ingredients?: string;
-  recipe_instructions?: string;
-  user_name?: string;
-  like_count: number;
-  is_liked: boolean;
-  is_bookmarked: boolean;
-  bookmark_count: number;
+    id: string;
+    recipe_name: string;
+    recipe_story?: string;
+    recipe_ingredients?: string;
+    recipe_instructions?: string;
+    user_name?: string;
+    like_count: number;
+    is_liked: boolean;
+    is_bookmarked: boolean;
+    bookmark_count: number;
+    comment_count?: number;
 }
 
 const useViewRecipe = () => {

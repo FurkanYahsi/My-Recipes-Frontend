@@ -27,6 +27,7 @@ interface Recipe {
   is_liked: boolean;
   bookmark_count: number;
   is_bookmarked: boolean;
+  comment_count?: number;
 }
 
 interface MiniRecipeBoxProps {
@@ -55,7 +56,7 @@ const MiniRecipeBox = ({recipe, onLikeChange, onBookmarkChange}: MiniRecipeBoxPr
                   <div className='mini-recipe-box-buttons'>
                     <div className="like-button" onClick={handleLikeClick}> {isLiked ? <HeartIconFilled color="red" /> : <HeartIcon />}{recipe.like_count}</div>
                     <div className="bookmark-button" onClick={handleBookmarkClick}>{isBookmarked ? <IconBookmarkFilled/> : <IconBookmark/>}{recipe.bookmark_count}</div>
-                    <div className="comment-button"><IconComment/>{}</div>
+                    <div className="comment-button"><IconComment/>{recipe.comment_count}</div>
                   </div>
               </div>
             </div>

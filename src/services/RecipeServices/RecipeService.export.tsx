@@ -139,3 +139,20 @@ export const getReplies = (commentId: string, limit?: number): Promise<{success:
             });
     });
 }
+
+export const likeOrUnlikeComment = (commentId: string): Promise<{success: boolean, data: any}> => {
+    return new Promise((resolve, reject) => {
+        RecipeService.likeOrUnlikeComment(commentId)
+            .then((response) => {
+                const likeData = response.data || {};
+                resolve({
+                    success: true,
+                    data: likeData
+                });
+            })
+            .catch((err) => {
+                console.error("Error liking/unliking comment:", err);
+                resolve({ success: false, data: {} });
+            });
+    });
+}

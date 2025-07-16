@@ -9,7 +9,8 @@ const endpoints: any = {
     getRecipeById: (recipeId: string) => `/recipe/${recipeId}`,
     createComment: (recipeId: string) => `/recipe/${recipeId}/comment/create`,
     getComments: (recipeId: string) => `/recipe/${recipeId}/comments`,
-    getReplies: (commentId: string) => `/recipe/comment/${commentId}/replies`
+    getReplies: (commentId: string) => `/recipe/comment/${commentId}/replies`,
+    likeOrUnlikeComment: (commentId: string) => `/recipe/comment/${commentId}/like-or-unlike`
 };
 
 class RecipeService {
@@ -87,6 +88,15 @@ class RecipeService {
     }
     async getReplies(commentId: string, limit?: number): Promise<{ data: any, success: boolean }> {
         return makeRequest(RequestMethod.GET, endpoints.getReplies(commentId), {params: {limit}})
+            .then(result => {
+                return result;
+            })
+            .catch(error => {
+                return error;
+            });
+    }
+    async likeOrUnlikeComment(commentId: string): Promise<{ data: any, success: boolean }> {
+        return makeRequest(RequestMethod.POST, endpoints.likeOrUnlikeComment(commentId))
             .then(result => {
                 return result;
             })

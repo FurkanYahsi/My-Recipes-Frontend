@@ -1,18 +1,30 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { createComment, getMainComments, getReplies } from '../../services/RecipeServices/RecipeService.export';
 import { ToastMessage } from '../../utils/ToastMessage/ToastMessage';
 
 export interface Comment {
     id: string;
     content: string;
+    username: string;
+    user_name: string;
+    user_surname: string;
+
+    created_at: string;
+    parent_comment_id: string;
+    user_id: string;
+    recipe_id: string;
+    like_count: number;
+    is_liked: boolean;
 }
 
 const useComments = (recipeId: string) => {
     const { contextHolder, showNotification } = ToastMessage();
     const commentRef = React.useRef<HTMLTextAreaElement>(null);
     const [comments, setComments] = useState<Comment[]>([]);
-    const [page, setPage] = useState(1);    
+    const [page, setPage] = useState(2);    
     const [replyingTo, setReplyingTo] = useState<string | null>(null);
+    const [whichCommentsRepliesWillBeViewed, setWhichCommentsRepliesWillBeViewed] = useState<string[] | null>(null);
+    const [replies, setReplies] = useState<{ [commentId: string]: Comment[] }>({});
 
     const handleCreateComment = (e: React.FormEvent<HTMLFormElement>, parentCommentId?: string) => {
         e.preventDefault(); // Prevent page refresh
@@ -23,7 +35,7 @@ const useComments = (recipeId: string) => {
             return;
         }
         
-        createComment(recipeId, commentRef.current?.value, replyingTo || parentCommentId)
+        createComment(recipeId, commentRef.current.value, replyingTo || parentCommentId)
             .then(response => {
                 if (response.success) {
                     showNotification("Comment added successfully!", "success");
@@ -44,19 +56,29 @@ const useComments = (recipeId: string) => {
             .then(response => {
                 if (response.success) {
                     setComments(response.data);
+                    console.log("Comments loaded successfully:", response.data);
                 }
             })
-            .catch(error=> {
+            .catch(error => {
                 console.error("Failed to load comments:", error);
-            })
-    }, [])
-        
-    const handleViewReplies = (commentId: string) => () => {
+            });
+    }, []);
+
+    const handleViewReplies = (commentId: string) => {
+        if (whichCommentsRepliesWillBeViewed?.includes(commentId)) {
+            setWhichCommentsRepliesWillBeViewed(prev => prev?.filter(id => id !== commentId) || null);
+            return;
+        }
+
+        setWhichCommentsRepliesWillBeViewed(prev => prev ? [...prev, commentId] : [commentId]);
+
         getReplies(commentId, 5) // Fetch replies for the comment with a limit of 5
             .then(response => {
                 if (response.success) {
-                    const replies = response.data;
-                    console.log("Replies for comment ID", commentId, ":", replies);
+                    setReplies(prev => ({
+                        ...prev,
+                        [commentId]: response.data
+                    }));
                 } else {
                     showNotification("Failed to load replies. Please try again.", "error");
                 }
@@ -71,6 +93,11 @@ const useComments = (recipeId: string) => {
         setReplyingTo(commentId);
     }
 
+    const handleLikeClick = (commentId: string) => {
+
+        console.log(`Liked comment with ID: ${commentId}`);
+    }
+
     return {
         handleCreateComment,
         commentRef,
@@ -79,6 +106,9 @@ const useComments = (recipeId: string) => {
         handleViewReplies,
         replyingTo,
         handleReplyClick,
+        handleLikeClick,
+        whichCommentsRepliesWillBeViewed,
+        replies,
     }
 }
 

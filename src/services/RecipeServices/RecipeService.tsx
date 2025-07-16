@@ -84,6 +84,15 @@ class RecipeService {
                 return error;
             });        
     }
+    async getReplies(commentId: string, limit?: number): Promise<{ data: any, success: boolean }> {
+        return makeRequest(RequestMethod.GET, `/comment/${commentId}/replies`, {params: {limit}})
+            .then(result => {
+                return result;
+            })
+            .catch(error => {
+                return error;
+            });
+    }
 }
 
 export default new RecipeService();

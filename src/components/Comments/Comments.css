@@ -48,6 +48,40 @@
     border-radius: 10px;
 }
 
+.view-replies {
+    color: gray;
+    font-size: 0.7rem;
+    cursor: pointer;
+    text-decoration: underline;
+    transition: color 0.2s ease;
+    margin-left: 13.5rem;
+
+    &:hover {
+        color: black;
+    }
+}
+
+.reply-comment {
+    color: gray;
+    font-size: 0.7rem;
+    cursor: pointer;
+    text-decoration: underline;
+    transition: color 0.2s ease;
+    margin-left: 13.5rem;
+
+    &:hover {
+        color: black;
+    }
+}
+
+.reply-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+    
+}
+
 .add-comment-container {
     width: 100%;
     display: flex;

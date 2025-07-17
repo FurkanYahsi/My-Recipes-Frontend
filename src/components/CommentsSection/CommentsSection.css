@@ -35,121 +35,8 @@
     box-sizing: border-box;
     align-self: flex-start;
     height: auto;
-    /* border: 1px solid #979797; */
     display: flex;
     flex-direction: column;
-    /* border-top: 1px solid #979797; */
-    /* background: silver; */
-    /* border-radius: 10px; */
-}
-
-.commment {
-    gap: 1rem;
-    display: flex;
-    flex-direction: row;
-}
-
-.user-info {
-    display: flex;
-    flex-direction: row;
-    gap: 0.5rem;
-    align-items: center;
-}
-
-.comment-user {
-    font-size: 1rem;
-    color: #8A0000;
-    font-weight: bold;
-}
-
-.comment-username {
-    font-size: 0.8rem;
-    color: gray;
-}
-
-.comment-user-profile {
-    display: flex;
-    flex-direction: column;
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-    color: rgb(82, 80, 80)
-}
-
-.comment-content {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.8rem;
-}
-
-.comment-container {
-    position: relative;
-    width: 100%;
-    min-width: 20rem;
-    max-width: 48rem;
-    margin-top: 0.5rem;
-    padding: 0.5rem;
-    box-sizing: border-box;
-    margin-left: 9rem;
-    height: auto;
-    /* border: 1px solid #979797; */
-    /* background: silver; */
-    border-radius: 10px;
-}
-
-.comment-actions {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    gap: 1rem;
-}
-
-.reply-comment {
-    color: gray;
-    font-size: 0.8rem;
-    cursor: pointer;
-    align-items: center;
-    display: flex;
-    transition: color 0.2s ease;
-    gap: 0.2rem;
-
-    &:hover {
-        color: black;
-        transform: scale(1.03);
-    }
-}
-
-.like-comment {
-    color: gray;
-    font-size: 0.8rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    transition: color 0.2s ease;
-    gap: 0.2rem;
-
-    &:hover {
-        color: black;
-        transform: scale(1.03);
-    }
-}   
-
-.filled-heart {
-    color: rgb(189, 6, 6);
-}
-
-.view-replies {
-    color: gray;
-    font-size: 0.8rem;
-    cursor: pointer;
-    transition: color 0.2s ease;
-    display: flex;
-    align-items: center;
-
-    &:hover {
-        color: black;
-        transform: scale(1.03);
-    }
 }
 
 .reply-input {
@@ -164,7 +51,6 @@
 }
 
 .reply-input textarea {
-    /* background-color: silver; */
     background-color: gainsboro;
     width: 49rem;
     height: 1.2rem;

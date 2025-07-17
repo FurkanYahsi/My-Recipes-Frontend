@@ -1,0 +1,86 @@
+.comment-container {
+    position: relative;
+    width: 100%;
+    min-width: 20rem;
+    max-width: 48rem;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    box-sizing: border-box;
+    margin-left: 9rem;
+    height: auto;    
+    border-radius: 10px;
+}
+
+.commment,
+.comment-container,
+.comment-actions {
+    gap: 1rem;
+    display: flex;
+    flex-direction: row;
+}
+
+.comment-user-profile {
+    display: flex;
+    flex-direction: column;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: rgb(82, 80, 80)
+}
+
+.comment-user-profile {
+    display: flex;
+    flex-direction: column;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: rgb(82, 80, 80)
+}
+
+.comment-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.comment-user {
+    font-size: 1rem;
+    color: #8A0000;
+    font-weight: bold;
+}
+
+.comment-username {
+    font-size: 0.8rem;
+    color: gray;
+}
+
+.comment-actions {
+    width: 100%;    
+}
+
+.filled-heart {
+    color: rgb(189, 6, 6);
+}
+
+.reply-comment,
+.like-comment,
+.view-replies {
+    color: gray;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+
+    &:hover {
+        color: black;
+        transform: scale(1.03);
+    }
+}

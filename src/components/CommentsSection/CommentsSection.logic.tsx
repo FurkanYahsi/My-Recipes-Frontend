@@ -18,16 +18,14 @@ export interface Comment {
 }
 
 const useComments = (recipeId: string) => {
-    const { contextHolder, showNotification } = ToastMessage();
-    const commentRef = React.useRef<HTMLTextAreaElement>(null);
-    // const replyRefs = React.useRef<{ [key: string]: HTMLTextAreaElement | null }>({});
-    // const [shouldReplyVisible, setShouldReplyVisible] = useState(true);
-    const [commentCount, setCommentCount] = useState(0);
     const [comments, setComments] = useState<Comment[]>([]);
+    const [commentCount, setCommentCount] = useState(0);
     const [page, setPage] = useState(1);    
     const [replyingTo, setReplyingTo] = useState<string | null>(null);
     const [whichCommentsRepliesWillBeViewed, setWhichCommentsRepliesWillBeViewed] = useState<string[] | null>(null);
     const [replies, setReplies] = useState<{ [commentId: string]: Comment[] }>({});
+    const commentRef = React.useRef<HTMLTextAreaElement>(null);
+    const { contextHolder, showNotification } = ToastMessage();
 
     const handleCreateComment = (e: React.FormEvent<HTMLFormElement>, parentCommentId?: string) => {
         e.preventDefault(); // Prevent page refresh
@@ -64,19 +62,7 @@ const useComments = (recipeId: string) => {
             .catch(error => {
                 console.error("Failed to load comments:", error);
             });
-
-        // const handleClickOutside = (event: MouseEvent) => {
-        //     if (commentRef.current && !commentRef.current.contains(event.target as Node)) {
-        //         setShouldReplyVisible(false);
-        //     }
-        // }
-        // document.addEventListener('mousedown', handleClickOutside);
-        // return () => {
-        //     document.removeEventListener('mousedown', handleClickOutside);
-        // }
     }, [page]);
-
-
 
     const handleViewReplies = (commentId: string) => {
         if (whichCommentsRepliesWillBeViewed?.includes(commentId)) {
@@ -142,22 +128,20 @@ const useComments = (recipeId: string) => {
     };
 
     return {
-        handleCreateComment,
-        commentRef,
-        // replyRefs,
-        contextHolder,
         comments,
-        handleViewReplies,
+        replies,
         replyingTo,
+        whichCommentsRepliesWillBeViewed,
+        commentCount,
+        commentRef,
+        page,
+        contextHolder,
         handleReplyClick,
         handleLikeClick,
-        // shouldReplyVisible,
-        whichCommentsRepliesWillBeViewed,
-        replies,
-        handlePreviousPage,
+        handleViewReplies,
+        handleCreateComment,
         handleNextPage,
-        page,
-        commentCount
+        handlePreviousPage
     }
 }
 

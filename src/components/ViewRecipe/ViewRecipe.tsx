@@ -1,7 +1,7 @@
 import useViewRecipe from "./ViewRecipe.logic";
 import './ViewRecipe.css';
 
-import Comments from '../Comments/Comments';
+import CommentsSection from '../CommentsSection/CommentsSection';
 
 import { IconBaseProps } from 'react-icons';
 import { FaRegCircle, FaCheckCircle } from 'react-icons/fa'
@@ -41,7 +41,7 @@ const ViewRecipe = () => {
         </div>
       </div>
       {recipe && (
-        <Comments recipeId={recipe.id} />
+        <CommentsSection recipeId={recipe.id} />
       )}
     </div>
   )

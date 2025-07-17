@@ -27,6 +27,7 @@ interface Comment {
     user_id: string;
     recipe_id: string;
     like_count: number;
+    reply_count: number;
     is_liked: boolean;
 }
 
@@ -55,7 +56,7 @@ const Comment: React.FC<CommentProps> = ({comment, type, handleReplyClick, handl
             <div className='comment-actions'>
                 <div className='reply-comment' onClick={() => handleReplyClick(comment.id)}><IconComment/>Reply</div>
                 <div className='like-comment' onClick={() => handleLikeClick(comment.id)}>{comment.is_liked ? <HeartIconFilled className='filled-heart'/> : <HeartIcon/>}{comment.like_count}</div>
-                {type === 'main' ? <div className='view-replies' onClick={() => handleViewReplies(comment.id)}>View replies<IconArrowDown/></div> : null}
+                {(type === 'main' && comment.reply_count > 0) ? <div className='view-replies' onClick={() => handleViewReplies(comment.id)}>View replies<IconArrowDown/></div> : null}
             </div>
         </div>
     </div>          

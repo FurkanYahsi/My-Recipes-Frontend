@@ -11,6 +11,7 @@ export interface Comment {
 
     created_at: string;
     parent_comment_id: string;
+    reply_count: number;
     user_id: string;
     recipe_id: string;
     like_count: number;

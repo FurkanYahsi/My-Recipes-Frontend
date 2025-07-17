@@ -16,24 +16,31 @@
 
 .comments-header {
     font-size: 1.5rem;
-    font-weight: bold;
+    font-weight: bold;;
     color: rgb(189, 6, 6);
     margin-bottom: 1rem;
+    width: 64rem;
+    justify-content: center;
+    display: flex;
+    padding-bottom: 1.5rem;
+    border-bottom: gray 1px solid;
 }
 
 .main-comment-container {
     min-width: 20rem;
+    width: 61rem;
     max-width: 64rem;
-    margin-top: 2rem;
+    margin-top: 0.5rem;
     padding: 1rem;
     box-sizing: border-box;
     align-self: flex-start;
     height: auto;
-    border: 1px solid #979797;
+    /* border: 1px solid #979797; */
     display: flex;
     flex-direction: column;
-    background: silver;
-    border-radius: 10px;
+    /* border-top: 1px solid #979797; */
+    /* background: silver; */
+    /* border-radius: 10px; */
 }
 
 .commment {
@@ -72,20 +79,21 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.5rem;
+    gap: 0.8rem;
 }
 
 .comment-container {
     position: relative;
+    width: 100%;
     min-width: 20rem;
     max-width: 48rem;
-    margin-top: 2rem;
-    padding: 1rem;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
     box-sizing: border-box;
-    align-self: flex-end;
+    margin-left: 9rem;
     height: auto;
-    border: 1px solid #979797;
-    background: silver;
+    /* border: 1px solid #979797; */
+    /* background: silver; */
     border-radius: 10px;
 }
 
@@ -156,7 +164,8 @@
 }
 
 .reply-input textarea {
-    background-color: silver;
+    /* background-color: silver; */
+    background-color: gainsboro;
     width: 49rem;
     height: 1.2rem;
     border: none;
@@ -189,15 +198,15 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 1rem;
+    margin-top: 2rem;
 }
 
 .add-comment-container textarea {
-    background-color: silver;
+    background-color: gainsboro;
     width: 60.6rem;
     height: 7rem;
-    border: rgba(0, 0, 0, 0.6) 1px solid;
-    border-radius: 8px;
+    /* border: rgba(0, 0, 0, 0.6) 1px solid; */
+    border-radius: 5px;
     resize: none;
     overflow: hidden;
     outline: none;
@@ -226,4 +235,35 @@
     border: none;
     cursor: pointer;
     margin-top: 1rem;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.previous-page,
+.next-page {
+    min-width: 70px;
+    max-width: 70px;
+    height: 2rem;
+    border-radius: 5px;
+    background-color: #ce0000;
+    color: white;
+    font-size: 0.7rem;
+    border: none;
+    cursor: pointer;
+    margin: 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:0.2rem;
+}
+
+.cannot-click {
+    cursor: not-allowed;
+    opacity: 0.5;
 }

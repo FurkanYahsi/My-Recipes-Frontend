@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { createComment, getMainComments, getReplies, likeOrUnlikeComment } from '../../services/RecipeServices/RecipeService.export';
+import { createComment, getMainComments, getReplies, likeOrUnlikeComment, getRecipeById } from '../../services/RecipeServices/RecipeService.export';
 import { ToastMessage } from '../../utils/ToastMessage/ToastMessage';
 
 export interface Comment {
@@ -22,8 +22,9 @@ const useComments = (recipeId: string) => {
     const commentRef = React.useRef<HTMLTextAreaElement>(null);
     // const replyRefs = React.useRef<{ [key: string]: HTMLTextAreaElement | null }>({});
     // const [shouldReplyVisible, setShouldReplyVisible] = useState(true);
+    const [commentCount, setCommentCount] = useState(0);
     const [comments, setComments] = useState<Comment[]>([]);
-    const [page, setPage] = useState(2);    
+    const [page, setPage] = useState(1);    
     const [replyingTo, setReplyingTo] = useState<string | null>(null);
     const [whichCommentsRepliesWillBeViewed, setWhichCommentsRepliesWillBeViewed] = useState<string[] | null>(null);
     const [replies, setReplies] = useState<{ [commentId: string]: Comment[] }>({});
@@ -58,7 +59,6 @@ const useComments = (recipeId: string) => {
             .then(response => {
                 if (response.success) {
                     setComments(response.data);
-                    console.log("Comments loaded successfully:", response.data);
                 }
             })
             .catch(error => {
@@ -74,7 +74,7 @@ const useComments = (recipeId: string) => {
         // return () => {
         //     document.removeEventListener('mousedown', handleClickOutside);
         // }
-    }, []);
+    }, [page]);
 
 
 
@@ -119,6 +119,28 @@ const useComments = (recipeId: string) => {
             })
     }
 
+    useEffect(() => {
+        getRecipeById(recipeId).then(response => {
+            if (response.success) {
+                setCommentCount(response.data.main_comment_count);
+            } else {
+                setCommentCount(0);
+            }
+        });
+    }, [recipeId]);
+
+    const handlePreviousPage = () => {
+        if (page > 1) {
+            setPage(page - 1);
+        }
+    }
+
+    const handleNextPage = () => {
+        const lastPage = Math.ceil(commentCount / 8);
+        if (page >= lastPage) return;
+        setPage(page + 1);
+    };
+
     return {
         handleCreateComment,
         commentRef,
@@ -132,6 +154,10 @@ const useComments = (recipeId: string) => {
         // shouldReplyVisible,
         whichCommentsRepliesWillBeViewed,
         replies,
+        handlePreviousPage,
+        handleNextPage,
+        page,
+        commentCount
     }
 }
 

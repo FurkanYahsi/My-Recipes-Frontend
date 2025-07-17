@@ -6,6 +6,8 @@ import { FaRegComment } from "react-icons/fa6";
 import { FaRegHeart } from "react-icons/fa6";
 import { FaHeart } from "react-icons/fa";
 import { RiArrowDownSLine } from "react-icons/ri";
+import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
+import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { IconBaseProps } from 'react-icons';
 
 const IconProfile = MdAccountCircle as React.FC<IconBaseProps>;
@@ -13,6 +15,8 @@ const IconComment = FaRegComment as React.FC<IconBaseProps>;
 const HeartIconFilled = FaHeart  as React.FC<IconBaseProps>;
 const HeartIcon = FaRegHeart as React.FC<IconBaseProps>;
 const IconArrowDown = RiArrowDownSLine as React.FC<IconBaseProps>;
+const IconArrowLeft = MdKeyboardDoubleArrowLeft as React.FC<IconBaseProps>;
+const IconArrowRight = MdKeyboardDoubleArrowRight as React.FC<IconBaseProps>;
 
 interface CommentsProps {
   recipeId: string;
@@ -20,7 +24,7 @@ interface CommentsProps {
 
 const Comments: React.FC<CommentsProps> = ({recipeId}) => {
 
-  const { handleCreateComment, commentRef, contextHolder, comments, handleViewReplies, replyingTo, handleReplyClick, handleLikeClick, whichCommentsRepliesWillBeViewed, replies } = useComments(recipeId);
+  const { commentCount, page, handlePreviousPage, handleNextPage, handleCreateComment, commentRef, contextHolder, comments, handleViewReplies, replyingTo, handleReplyClick, handleLikeClick, whichCommentsRepliesWillBeViewed, replies } = useComments(recipeId);
 
   return (
     <div className="comments-container">
@@ -64,6 +68,16 @@ const Comments: React.FC<CommentsProps> = ({recipeId}) => {
           )}
         </div>
       ))}
+
+      <div className='pagination'>
+        <button className={`previous-page${page === 1 ? ' cannot-click' : ''}`} onClick={handlePreviousPage}>
+          <IconArrowLeft/>Previous
+        </button>
+        <span className='page-number'>Page {page} / {Math.max(1, Math.ceil(commentCount / 8))}</span>        
+        <button className={`next-page${page === Math.max(1, Math.ceil(commentCount / 8)) ? ' cannot-click' : ''}`} onClick={handleNextPage}>
+          Next<IconArrowRight/>
+        </button>
+      </div>
 
       <form onSubmit={handleCreateComment} className='add-comment-container'>
         {contextHolder}

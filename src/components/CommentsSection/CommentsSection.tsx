@@ -49,7 +49,7 @@ const Comments: React.FC<CommentsProps> = ({recipeId}) => {
           {replyingTo === comment.id && (
             <div className='reply-input'>
               <form onSubmit={(e) => handleCreateComment(e, comment.id)}>
-                <textarea ref={commentRef} placeholder='Write a reply...'/>
+                <textarea ref={commentRef} placeholder='Write a reply...' defaultValue={`@${comment.username} `}/>
                 <button type='submit' className='add-reply-button'>Submit</button>
               </form>
             </div>

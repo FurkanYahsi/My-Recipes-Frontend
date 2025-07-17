@@ -29,12 +29,19 @@ const useComments = (recipeId: string) => {
 
     const handleCreateComment = (e: React.FormEvent<HTMLFormElement>, parentCommentId?: string) => {
         e.preventDefault(); // Prevent page refresh
+
+        const usernamePattern = new RegExp(`^@\\w+\\s*$`);
         
         if (!commentRef.current?.value.trim()) {
             showNotification("Please enter a comment before submitting.", "error");
             if (commentRef.current) commentRef.current.value = '';
             return;
         }
+
+        if (usernamePattern.test(commentRef.current?.value.trim())) {
+        showNotification("Please enter a reply comment.", "error");
+        return;
+    }
         
         createComment(recipeId, commentRef.current.value, replyingTo || parentCommentId)
             .then(response => {

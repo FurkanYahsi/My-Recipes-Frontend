@@ -63,7 +63,7 @@ const Comments: React.FC<CommentsProps> = ({recipeId}) => {
                   type='reply'
                   comment={reply}
                   handleReplyClick={() => handleReplyClick(reply.id)}
-                  handleLikeClick={() => handleLikeClick(reply.id)}
+                  handleLikeClick={(id) => handleLikeClick(id, 'reply', comment.id)}
                   handleViewReplies={() => handleViewReplies(reply.id)}
                 />
               ))}

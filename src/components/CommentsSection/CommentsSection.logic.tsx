@@ -93,14 +93,25 @@ const useComments = (recipeId: string) => {
         setReplyingTo(commentId);
     }
 
-    const handleLikeClick = (commentId: string) => {
+    const handleLikeClick = (commentId: string, type: 'main' | 'reply' = 'main', parentId?: string) => {
 
         likeOrUnlikeComment(commentId)
             .then(response => {
                 if (response.success) {
+                    if (type === 'main') {
                     setComments(comments => 
-                        comments.map(comment => comment.id === commentId ? {...comment, is_liked: !comment.is_liked, like_count: Number(comment.like_count) + (!comment.is_liked ? 1 : -1)} : comment)
+                        comments.map(comment => comment.id === commentId
+                            ? {...comment, is_liked: !comment.is_liked, like_count: Number(comment.like_count) + (!comment.is_liked ? 1 : -1)}
+                            : comment)
                     );
+                } else if (type === 'reply' && parentId) {
+                    setReplies(replies => ({
+                        ...replies,
+                        [parentId]: replies[parentId]?.map(reply => reply.id === commentId
+                                ? {...reply, is_liked: !reply.is_liked, like_count: Number(reply.like_count) + (!reply.is_liked ? 1 : -1)}
+                                : reply) || []
+                    }));
+                }
                 }
             })
     }

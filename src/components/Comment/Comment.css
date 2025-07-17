@@ -56,8 +56,14 @@
 }
 
 .comment-username {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     color: gray;
+}
+
+.comment-date {
+    font-size: 0.8rem;
+    color: #888;
+    margin-left: 0.5rem;
 }
 
 .comment-actions {

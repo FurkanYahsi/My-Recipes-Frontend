@@ -1,4 +1,5 @@
 import './Comment.css';
+import useComment from './Comment.logic';
 
 import { MdAccountCircle } from 'react-icons/md';
 import { FaRegComment } from "react-icons/fa6";
@@ -38,6 +39,9 @@ interface CommentProps {
 }
 
 const Comment: React.FC<CommentProps> = ({comment, type, handleReplyClick, handleLikeClick, handleViewReplies}) => {
+
+    const { timeAgo } = useComment();
+
   return (
     <div className={type==='main' ? 'commment' : 'comment-container'}>
         <div className='comment-user-profile'><IconProfile/></div>
@@ -45,6 +49,7 @@ const Comment: React.FC<CommentProps> = ({comment, type, handleReplyClick, handl
             <div className='user-info'>
                 <div className='comment-user'>{comment.user_name} {comment.user_surname}</div>
                 <div className='comment-username'>@{comment.username}</div>
+                <div className='comment-date'>{timeAgo(comment.created_at)}</div>
             </div>
             {comment.content}
             <div className='comment-actions'>

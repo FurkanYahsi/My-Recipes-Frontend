@@ -118,16 +118,16 @@ const UpperMenuBar: React.FC = () => {
         
         <div ref={profileMenuRef}>
           <div className='profile-icon' onClick={handleProfileClick}><IconProfile className='icon'/></div>
-        {hasBeenClickedToProfile && 
-          <div className={`profile-menu${isProfileVisible ? ' animate-in' : ' animate-out'}`}>
-            <div className='text'><IconProfile/>My Profile</div>
-            <div className='text'><IconBookmark/>Saved Recipes</div>
-            <div className='text'><IconLike/>Likes</div>
-            <div className='text'><IconCalendar/>Plannings</div>
-            <div className='text'><IconSettings/>Settings</div>
-            <div className='text' onClick={handleLogout}><IconLogout/>Logout</div>
-          </div>
-        }
+          {hasBeenClickedToProfile && 
+            <div className={`profile-menu${isProfileVisible ? ' animate-in' : ' animate-out'}`}>
+              <div className='text'><IconProfile/>My Profile</div>
+              <div className='text'><IconBookmark/>Saved Recipes</div>
+              <div className='text'><IconLike/>Likes</div>
+              <div className='text'><IconCalendar/>Plannings</div>
+              <div className='text'><IconSettings/>Settings</div>
+              <div className='text' onClick={handleLogout}><IconLogout/>Logout</div>
+            </div>
+          }
         </div>
         <div className='menu-icon' ref={mainMenuRef} onClick={handleMenuClick}><IconMenu /></div>
       </div>

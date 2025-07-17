@@ -20,6 +20,8 @@ export interface Comment {
 const useComments = (recipeId: string) => {
     const { contextHolder, showNotification } = ToastMessage();
     const commentRef = React.useRef<HTMLTextAreaElement>(null);
+    // const replyRefs = React.useRef<{ [key: string]: HTMLTextAreaElement | null }>({});
+    // const [shouldReplyVisible, setShouldReplyVisible] = useState(true);
     const [comments, setComments] = useState<Comment[]>([]);
     const [page, setPage] = useState(2);    
     const [replyingTo, setReplyingTo] = useState<string | null>(null);
@@ -62,7 +64,19 @@ const useComments = (recipeId: string) => {
             .catch(error => {
                 console.error("Failed to load comments:", error);
             });
+
+        // const handleClickOutside = (event: MouseEvent) => {
+        //     if (commentRef.current && !commentRef.current.contains(event.target as Node)) {
+        //         setShouldReplyVisible(false);
+        //     }
+        // }
+        // document.addEventListener('mousedown', handleClickOutside);
+        // return () => {
+        //     document.removeEventListener('mousedown', handleClickOutside);
+        // }
     }, []);
+
+
 
     const handleViewReplies = (commentId: string) => {
         if (whichCommentsRepliesWillBeViewed?.includes(commentId)) {
@@ -108,12 +122,14 @@ const useComments = (recipeId: string) => {
     return {
         handleCreateComment,
         commentRef,
+        // replyRefs,
         contextHolder,
         comments,
         handleViewReplies,
         replyingTo,
         handleReplyClick,
         handleLikeClick,
+        // shouldReplyVisible,
         whichCommentsRepliesWillBeViewed,
         replies,
     }

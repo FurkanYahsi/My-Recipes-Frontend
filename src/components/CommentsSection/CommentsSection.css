@@ -44,7 +44,7 @@
     flex-direction: column;
     align-items: flex-end;
     width: 100%;
-    margin-top: 1rem;
+    margin-bottom: 1rem;
     padding: 0;
     box-sizing: border-box;
     gap: 0;
@@ -52,7 +52,7 @@
 
 .reply-input textarea {
     background-color: gainsboro;
-    width: 49rem;
+    width: 49.2rem;
     height: 1.2rem;
     border: none;
     border-bottom: #8A0000 1px solid;
@@ -63,6 +63,23 @@
     font-size: 0.9rem;
     overflow-y: auto;
     margin-right: 1.5rem;
+}
+
+#reply-to textarea {
+    width: 40rem;
+}
+
+.view-more {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 11.8rem;
+    width: 9rem;
+    height: 1.5rem;
+    color: #8A0000;
+    font-size: 0.8rem;
+    cursor: pointer;
+    margin-top: 0.5rem;
 }
 
 .add-reply-button {

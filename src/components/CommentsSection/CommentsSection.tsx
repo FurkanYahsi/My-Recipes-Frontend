@@ -5,7 +5,9 @@ import Comment from '../Comment/Comment';
 import { IconBaseProps } from 'react-icons';
 import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
+import { RiArrowDownSLine } from "react-icons/ri";
 
+const IconArrowDown = RiArrowDownSLine as React.FC<IconBaseProps>;
 const IconArrowLeft = MdKeyboardDoubleArrowLeft as React.FC<IconBaseProps>;
 const IconArrowRight = MdKeyboardDoubleArrowRight as React.FC<IconBaseProps>;
 
@@ -45,10 +47,10 @@ const Comments: React.FC<CommentsProps> = ({recipeId}) => {
             handleLikeClick={handleLikeClick}
             handleViewReplies={handleViewReplies}
           />
-          
+
           {replyingTo === comment.id && (
             <div className='reply-input'>
-              <form onSubmit={(e) => handleCreateComment(e, comment.id)}>
+              <form onSubmit={(e) => handleCreateComment(e, comment.id, comment.root_comment_id ?? undefined)}>
                 <textarea ref={commentRef} placeholder='Write a reply...' defaultValue={`@${comment.username} `}/>
                 <button type='submit' className='add-reply-button'>Submit</button>
               </form>
@@ -58,15 +60,25 @@ const Comments: React.FC<CommentsProps> = ({recipeId}) => {
           {whichCommentsRepliesWillBeViewed?.includes(comment.id) && (
             <>
               {(replies[comment.id] || []).map(reply => (
-                <Comment
-                  key={reply.id}
-                  type='reply'
-                  comment={reply}
-                  handleReplyClick={() => handleReplyClick(reply.id)}
-                  handleLikeClick={(id) => handleLikeClick(id, 'reply', comment.id)}
-                  handleViewReplies={() => handleViewReplies(reply.id)}
-                />
+                <div key={reply.id}>
+                  <Comment
+                    type='reply'
+                    comment={reply}
+                    handleReplyClick={() => handleReplyClick(reply.id)}
+                    handleLikeClick={(id) => handleLikeClick(id, 'reply', comment.id)}
+                    handleViewReplies={() => handleViewReplies(reply.id)}
+                  />
+                  {replyingTo === reply.id && (
+                    <div className='reply-input' id='reply-to'>
+                      <form onSubmit={(e) => handleCreateComment(e, reply.id, comment.root_comment_id ?? undefined)}>
+                        <textarea ref={commentRef} placeholder='Write a reply...' defaultValue={`@${reply.username} `}/>
+                        <button type='submit' className='add-reply-button'>Submit</button>
+                      </form>
+                    </div>
+                  )}
+                </div>
               ))}
+              <div className='view-more'>View more replies<IconArrowDown/></div>
             </>
           )}
         </div>

@@ -10,6 +10,7 @@ const endpoints: any = {
     createComment: (recipeId: string) => `/recipe/${recipeId}/comment/create`,
     getComments: (recipeId: string) => `/recipe/${recipeId}/comments`,
     getReplies: (commentId: string) => `/recipe/comment/${commentId}/replies`,
+    getRootCommentReplies: (commentId: string) => `/recipe/comment/${commentId}/root-replies`,
     likeOrUnlikeComment: (commentId: string) => `/recipe/comment/${commentId}/like-or-unlike`
 };
 
@@ -59,14 +60,15 @@ class RecipeService {
                 return error;
             });
     }
-    async createComment(recipeId: string, content: string, parentCommentId: string | null = null): Promise<{ data: any, success: boolean }> {
+    async createComment(recipeId: string, content: string, parentCommentId: string | null = null,  rootCommentId: string | null = null): Promise<{ data: any, success: boolean }> {
     return makeRequest(
         RequestMethod.POST, 
         endpoints.createComment(recipeId), 
         { 
             data: { 
                 content,
-                parent_comment_id: parentCommentId 
+                parent_comment_id: parentCommentId,
+                root_comment_id: rootCommentId
             } 
         }
     )
@@ -88,6 +90,15 @@ class RecipeService {
     }
     async getReplies(commentId: string, limit?: number): Promise<{ data: any, success: boolean }> {
         return makeRequest(RequestMethod.GET, endpoints.getReplies(commentId), {params: {limit}})
+            .then(result => {
+                return result;
+            })
+            .catch(error => {
+                return error;
+            });
+    }
+    async getRootCommentReplies(commentId: string, limit?: number, page?: number): Promise<{ data: any, success: boolean }> {
+        return makeRequest(RequestMethod.GET, endpoints.getRootCommentReplies(commentId), {params: {limit, page}})
             .then(result => {
                 return result;
             })

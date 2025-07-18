@@ -24,6 +24,7 @@ interface Comment {
 
     created_at: string;
     parent_comment_id: string;
+    root_comment_id: string | null;
     user_id: string;
     recipe_id: string;
     like_count: number;

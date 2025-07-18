@@ -84,10 +84,11 @@ export const getRecipeById = (recipeId: string): Promise<{success: boolean, data
 export const createComment = (
     recipeId: string, 
     content: string, 
-    parentCommentId: string | null = null
+    parentCommentId: string | null = null,
+    rootCommentId: string | null = null
 ): Promise<{success: boolean, data: any}> => {
     return new Promise((resolve, reject) => {
-        RecipeService.createComment(recipeId, content, parentCommentId)
+        RecipeService.createComment(recipeId, content, parentCommentId, rootCommentId)
             .then((response) => {
                 const commentData = response.data || {};
                 resolve({
@@ -135,6 +136,23 @@ export const getReplies = (commentId: string, limit?: number): Promise<{success:
             })
             .catch((err) => {
                 console.error("Error fetching replies:", err);
+                resolve({ success: false, data: [] });
+            });
+    });
+}
+
+export const getRootCommentReplies = (commentId: string, limit?: number, page?: number): Promise<{success: boolean, data: any}> => {
+    return new Promise((resolve, reject) => {
+        RecipeService.getRootCommentReplies(commentId, limit, page)
+            .then((response) => {
+                const repliesData = response.data?.data || [];
+                resolve({
+                    success: true,
+                    data: repliesData
+                });
+            })
+            .catch((err) => {
+                console.error("Error fetching root comment replies:", err);
                 resolve({ success: false, data: [] });
             });
     });

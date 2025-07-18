@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { createComment, getMainComments, getReplies, likeOrUnlikeComment, getRecipeById } from '../../services/RecipeServices/RecipeService.export';
+import { createComment, getMainComments, getReplies, getRootCommentReplies, likeOrUnlikeComment, getRecipeById } from '../../services/RecipeServices/RecipeService.export';
 import { ToastMessage } from '../../utils/ToastMessage/ToastMessage';
 
 export interface Comment {
@@ -11,6 +11,7 @@ export interface Comment {
 
     created_at: string;
     parent_comment_id: string;
+    root_comment_id: string | null;
     reply_count: number;
     user_id: string;
     recipe_id: string;
@@ -21,14 +22,14 @@ export interface Comment {
 const useComments = (recipeId: string) => {
     const [comments, setComments] = useState<Comment[]>([]);
     const [commentCount, setCommentCount] = useState(0);
-    const [page, setPage] = useState(1);    
+    const [page, setPage] = useState(1);
     const [replyingTo, setReplyingTo] = useState<string | null>(null);
     const [whichCommentsRepliesWillBeViewed, setWhichCommentsRepliesWillBeViewed] = useState<string[] | null>(null);
     const [replies, setReplies] = useState<{ [commentId: string]: Comment[] }>({});
     const commentRef = React.useRef<HTMLTextAreaElement>(null);
     const { contextHolder, showNotification } = ToastMessage();
 
-    const handleCreateComment = (e: React.FormEvent<HTMLFormElement>, parentCommentId?: string) => {
+    const handleCreateComment = (e: React.FormEvent<HTMLFormElement>, parentCommentId?: string, rootCommentId?: string) => {
         e.preventDefault(); // Prevent page refresh
 
         const usernamePattern = new RegExp(`^@\\w+\\s*$`);
@@ -44,7 +45,7 @@ const useComments = (recipeId: string) => {
         return;
     }
         
-        createComment(recipeId, commentRef.current.value, replyingTo || parentCommentId)
+        createComment(recipeId, commentRef.current.value, replyingTo || parentCommentId, rootCommentId)
             .then(response => {
                 if (response.success) {
                     showNotification("Comment added successfully!", "success");
@@ -80,7 +81,7 @@ const useComments = (recipeId: string) => {
 
         setWhichCommentsRepliesWillBeViewed(prev => prev ? [...prev, commentId] : [commentId]);
 
-        getReplies(commentId, 5) // Fetch replies for the comment with a limit of 5
+        getRootCommentReplies(commentId, 6, 1) // Fetch replies for the comment with a limit of 5
             .then(response => {
                 if (response.success) {
                     setReplies(prev => ({

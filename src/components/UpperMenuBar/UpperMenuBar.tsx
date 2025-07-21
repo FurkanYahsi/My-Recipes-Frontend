@@ -3,6 +3,7 @@ import useUpperMenuBar from './UpperMenuBar.logic';
 import './UpperMenuBar.css'
 
 import DropDownMainMenu from '../DropDownMainMenu/DropDownMainMenu';
+import DropdownMenuElement from '../DropdownMenuElement/DropdownMenuElement';
 
 // React Icon imports
 import { IconBaseProps } from 'react-icons';
@@ -10,6 +11,7 @@ import { FaSearch } from "react-icons/fa";
 import { FaRegBell } from "react-icons/fa";
 import { MdAccountCircle } from "react-icons/md";
 import { RiArrowDownSLine } from "react-icons/ri";
+import { HiMiniArrowRight } from "react-icons/hi2";
 import { IoLogOutOutline } from "react-icons/io5";
 import { IoSettingsOutline } from "react-icons/io5";
 import { BiLike } from "react-icons/bi";
@@ -22,6 +24,7 @@ import { HiOutlineMenu } from "react-icons/hi";
 const IconSearch = FaSearch as React.FC<IconBaseProps>;
 const IconBell = FaRegBell as React.FC<IconBaseProps>;
 const IconArrowDown = RiArrowDownSLine as React.FC<IconBaseProps>;
+const IconArrowRight = HiMiniArrowRight as React.FC<IconBaseProps>;
 const IconLogout = IoLogOutOutline as React.FC<IconBaseProps>;
 const IconSettings = IoSettingsOutline as React.FC<IconBaseProps>;
 const IconLike = BiLike as React.FC<IconBaseProps>;
@@ -39,13 +42,15 @@ const UpperMenuBar: React.FC = () => {
           profileMenuRef,
           mainMenuRef,
           menuContentRef,          
-          isMenuVisible,         
+          isMenuVisible,
+          handleRecipesClick,
           handleTrendsClick,
           handleSendRecipeClick,
           handleProfileClick,
           handleMenuClick,
           handleLogout} = useUpperMenuBar();
 
+  const [isRecipesVisible, setIsRecipesVisible] = useState(false);
   const [isTrendsVisible, setIsTrendsVisible] = useState(false);
   const [isBlogsVisible, setIsBlogsVisible] = useState(false);
   const [isMouseOnSendRecipe, setIsMouseOnSendRecipe] = useState(false);
@@ -57,6 +62,34 @@ const UpperMenuBar: React.FC = () => {
         <div className='tauri-font'>My Recipes</div>
       </div>
       <div className='upper-menu-bar-1 right-side'>
+        <div className='dropdown-menu-wrapper'
+          onMouseEnter={() => setIsRecipesVisible(true)}
+          onMouseLeave={() => setIsRecipesVisible(false)}
+        >
+          <div>
+            <div className='header-text-with-arrow'>
+              <span className={isRecipesVisible ? "title-on-mouse header-text" : "header-text"} onClick={handleRecipesClick}>
+                Recipes
+              </span>
+              <IconArrowDown />
+            </div>
+            { isRecipesVisible &&
+              <div className={`dropdown-menu animate`}>
+                <DropdownMenuElement header='Meat Dishes' items={['Grilled Meatball', 'Fish & Seafood', 'Chicken', 'Hamburgers']} img='https://cdn-icons-png.flaticon.com/512/1046/1046751.png'/>
+                <DropdownMenuElement header='Vegetable Dishes' items={['Stir-fried Vegetables', 'Roasted Vegetables', 'Steamed Vegetables']} img='https://cdn-icons-png.flaticon.com/512/258/258566.png' />
+                <DropdownMenuElement header='Pasta Recipes' items={['Spaghetti Bolognese', 'Penne Arrabbiata', 'Fettuccine Alfredo']} img='https://cdn-icons-png.flaticon.com/512/3823/3823096.png' />
+                <DropdownMenuElement header='Pizza Recipes' items={['Margherita Pizza', 'Pepperoni Pizza', 'Veggie Pizza']} img='https://cdn-icons-png.flaticon.com/512/3595/3595458.png' />
+                <DropdownMenuElement header='Soup Recipes' items={['Chicken Soup', 'Vegetable Soup', 'Mushroom Soup']} img='https://cdn-icons-png.flaticon.com/512/2387/2387954.png' />
+                <DropdownMenuElement header='Desserts' items={['Cakes', 'Milk Dessert', 'Ice Cream', 'Fruit Recipes']} img='https://cdn-icons-png.flaticon.com/512/8346/8346809.png' />
+                <DropdownMenuElement header='Salads' items={['Caesar Salad', 'Greek Salad', 'Caprese Salad']} img='https://cdn-icons-png.flaticon.com/512/2515/2515183.png' />
+                <DropdownMenuElement header='Beverages' items={['Cold Bevarages', 'Hot Bevarages']} img='https://cdn-icons-png.flaticon.com/512/2405/2405451.png' />
+                <DropdownMenuElement header='Other Recipes' items={['Rice Dishes', 'Snacks', 'Egg Dishes', 'Legume Dishes', 'Bread Recipes']} img='https://cdn-icons-png.flaticon.com/512/4252/4252424.png' />
+                <div className='bring-the-chosen-recipes'>Bring the chosen recipes<IconArrowRight/></div>
+              </div>
+            }
+          </div>
+
+        </div>
         <div
           onMouseEnter={() => setIsTrendsVisible(true)}
           onMouseLeave={() => setIsTrendsVisible(false)}
@@ -70,9 +103,11 @@ const UpperMenuBar: React.FC = () => {
           </div>
           {isTrendsVisible &&
             <div className={`dropdown-menu animate`}>
-              <div className='text'>Trending Recipe 1</div>
-              <div className='text'>Trending Recipe 2</div>
-              <div className='text'>Trending Recipe 3</div>
+              <div className='text'>Daily Trends</div>
+              <div className='text'>Weekly Trends</div>
+              <div className='text'>Monthly Trends</div>
+              <div className='text'>Annual Trends</div>
+              <div className='text'>All Time Trends</div>
             </div>
           }
         </div>

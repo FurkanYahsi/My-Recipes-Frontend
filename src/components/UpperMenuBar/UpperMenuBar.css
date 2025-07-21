@@ -160,7 +160,8 @@
   flex-direction: column;
   gap: 0.4rem;
   top: 80px;
-  width: 150px;
+  width: auto;
+  max-width: 400px;
   background-color: whitesmoke;
   border-radius: 10px;
   padding: 1rem;
@@ -340,5 +341,20 @@
   .menu-icon {
     display: flex;
     cursor: pointer;
+  }
+}
+
+.bring-the-chosen-recipes {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(233, 213, 213, 0.3); 
+  justify-content: center;
+  gap: 0.3rem;
+  cursor: pointer;
+  padding: 0.3rem;
+  &:hover {
+    box-shadow: 0 4px 8px rgba(150, 150, 150, 0.4);
   }
 }

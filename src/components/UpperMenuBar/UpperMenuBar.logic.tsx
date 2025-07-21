@@ -35,6 +35,14 @@ const useUpperMenuBar = () => {
         }
     }, [])
 
+    const handleRecipesClick = () => {
+        // If the user is already on the recipes page, do not navigate again
+        if (window.location.pathname === "/recipes") {
+            return; 
+        }
+        navigate("/recipes");
+    }
+
     const handleTrendsClick = () => {
         // If the user is already on the trends page, do not navigate again
         if (window.location.pathname === "/trends") {
@@ -80,12 +88,13 @@ const useUpperMenuBar = () => {
         profileMenuRef,
         mainMenuRef,
         menuContentRef,
-        isMenuVisible,        
+        isMenuVisible,
+        handleRecipesClick,
         handleTrendsClick,
         handleSendRecipeClick,
-        handleProfileClick,        
-        handleMenuClick,       
-        handleLogout,        
+        handleProfileClick,
+        handleMenuClick,
+        handleLogout,
     }  
 }
 

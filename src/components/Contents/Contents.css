@@ -174,7 +174,6 @@
   width: 294px;
   height: 0;
   border-top: 1px dashed #fff;
-  z-index: 4000;
 }
 
 .dashed-line-2 {
@@ -186,7 +185,6 @@
   border-top: 1px dashed #fff;
   transform: rotate(330deg); 
   transform-origin: left center;
-  z-index: 4000;
 }
 
 .yellow-circle {
@@ -197,5 +195,4 @@
   height: 16px;
   background-color: rgb(255, 196, 0);
   border-radius: 50%;
-  z-index: 4000;
 }

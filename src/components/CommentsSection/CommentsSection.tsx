@@ -25,6 +25,7 @@ const Comments: React.FC<CommentsProps> = ({recipeId}) => {
     commentCount,
     commentRef,
     page,
+    replyPages,
     contextHolder,
     handleReplyClick,
     handleLikeClick,
@@ -82,7 +83,7 @@ const Comments: React.FC<CommentsProps> = ({recipeId}) => {
               ))}
               {hasMoreReplies[comment.id] && (
                 <div className='view-more' onClick={() => handleViewMoreReplies(comment.id)}>
-                  View more replies<IconArrowDown/>
+                  View {comment.reply_count - replyPages[comment.id] * 6} more replies<IconArrowDown/>
                 </div>
               )}   </>
           )}

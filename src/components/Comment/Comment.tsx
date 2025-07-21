@@ -57,10 +57,10 @@ const Comment: React.FC<CommentProps> = ({comment, type, handleReplyClick, handl
             <div className='comment-actions'>
                 <div className='reply-comment' onClick={() => handleReplyClick(comment.id)}><IconComment/>Reply</div>
                 <div className='like-comment' onClick={() => handleLikeClick(comment.id)}>{comment.is_liked ? <HeartIconFilled className='filled-heart'/> : <HeartIcon/>}{comment.like_count}</div>
-                {(type === 'main' && comment.reply_count > 0) ? <div className='view-replies' onClick={() => handleViewReplies(comment.id)}>View replies<IconArrowDown/></div> : null}
+                {(type === 'main' && comment.reply_count > 0) ? <div className='view-replies' onClick={() => handleViewReplies(comment.id)}>View {comment.reply_count} replies<IconArrowDown/></div> : null}
             </div>
         </div>
-    </div>          
+    </div>
   )
 }
 

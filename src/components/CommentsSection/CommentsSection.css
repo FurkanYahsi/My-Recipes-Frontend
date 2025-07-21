@@ -5,8 +5,6 @@
     padding: 1.5rem;
     box-sizing: border-box;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    background-color: gainsboro;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -23,7 +21,6 @@
     justify-content: center;
     display: flex;
     padding-bottom: 1.5rem;
-    border-bottom: gray 1px solid;
 }
 
 .main-comment-container {
@@ -51,7 +48,7 @@
 }
 
 .reply-input textarea {
-    background-color: gainsboro;
+    background-color: transparent;
     width: 49.2rem;
     height: 1.2rem;
     border: none;
@@ -105,10 +102,9 @@
 }
 
 .add-comment-container textarea {
-    background-color: gainsboro;
+    background-color: transparent;
     width: 60.6rem;
     height: 7rem;
-    /* border: rgba(0, 0, 0, 0.6) 1px solid; */
     border-radius: 5px;
     resize: none;
     overflow: hidden;

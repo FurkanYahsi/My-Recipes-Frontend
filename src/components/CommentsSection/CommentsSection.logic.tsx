@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { createComment, getMainComments, getReplies, getRootCommentReplies, likeOrUnlikeComment, getRecipeById } from '../../services/RecipeServices/RecipeService.export';
+import { createComment, getMainComments, getRootCommentReplies, likeOrUnlikeComment, getRecipeById } from '../../services/RecipeServices/RecipeService.export';
 import { ToastMessage } from '../../utils/ToastMessage/ToastMessage';
 
 export interface Comment {
@@ -8,25 +8,36 @@ export interface Comment {
     username: string;
     user_name: string;
     user_surname: string;
-
     created_at: string;
     parent_comment_id: string;
     root_comment_id: string | null;
     reply_count: number;
-    user_id: string;
     recipe_id: string;
     like_count: number;
     is_liked: boolean;
+
+    user_id: string;
 }
 
 const useComments = (recipeId: string) => {
-    const [comments, setComments] = useState<Comment[]>([]);
-    const [commentCount, setCommentCount] = useState(0);
-    const [page, setPage] = useState(1);
-    const [replyingTo, setReplyingTo] = useState<string | null>(null);
-    const [whichCommentsRepliesWillBeViewed, setWhichCommentsRepliesWillBeViewed] = useState<string[] | null>(null);
-    const [replies, setReplies] = useState<{ [commentId: string]: Comment[] }>({});
-    const commentRef = React.useRef<HTMLTextAreaElement>(null);
+
+    const howManyCommentsPerPage = 8; // Maximum number of main comments per page
+    const howManyRepliesPerComment = 6; // Maximum number of replies per comment
+
+    // About main comments
+    const [comments, setComments] = useState<Comment[]>([]); // All the main comments of viewed recipe
+    const [commentCount, setCommentCount] = useState(0); // Total number of main comments of viewed recipe
+    const [page, setPage] = useState(1); // For pagination of main comments
+    const commentRef = React.useRef<HTMLTextAreaElement>(null); // Reference to the comment input field
+
+    // About replies
+    const [replyPages, setReplyPages] = useState<{ [commentId: string]: number }>({}); // Keeps track of the page number for each comment's replies
+    const [hasMoreReplies, setHasMoreReplies] = useState<{[commentId: string]: boolean}>({}); // Keeps track of whether there are more replies to load for each comment
+    const [replyingTo, setReplyingTo] = useState<string | null>(null); // The comment ID that the user is replying to
+    const [whichCommentsRepliesWillBeViewed, setWhichCommentsRepliesWillBeViewed] = useState<string[] | null>(null); // Keeps track of which comments' replies are currently being viewed
+    const [replies, setReplies] = useState<{ [commentId: string]: Comment[] }>({}); // All the replies for each comment ID
+    
+    //Toast message
     const { contextHolder, showNotification } = ToastMessage();
 
     const handleCreateComment = (e: React.FormEvent<HTMLFormElement>, parentCommentId?: string, rootCommentId?: string) => {
@@ -41,7 +52,7 @@ const useComments = (recipeId: string) => {
         }
 
         if (usernamePattern.test(commentRef.current?.value.trim())) {
-        showNotification("Please enter a reply comment.", "error");
+            showNotification("Please enter a comment before submitting.", "error");
         return;
     }
         
@@ -60,9 +71,9 @@ const useComments = (recipeId: string) => {
                 showNotification("Failed to add comment. Please try again.", "error");
             });
     }
-    
+
     useEffect(()=> {
-        getMainComments(recipeId, page, 8) // In one page, there can be at most 8 main comment.
+        getMainComments(recipeId, page, howManyCommentsPerPage) // In one page, there can be at most 8 main comment.
             .then(response => {
                 if (response.success) {
                     setComments(response.data);
@@ -72,31 +83,6 @@ const useComments = (recipeId: string) => {
                 console.error("Failed to load comments:", error);
             });
     }, [page]);
-
-    const handleViewReplies = (commentId: string) => {
-        if (whichCommentsRepliesWillBeViewed?.includes(commentId)) {
-            setWhichCommentsRepliesWillBeViewed(prev => prev?.filter(id => id !== commentId) || null);
-            return;
-        }
-
-        setWhichCommentsRepliesWillBeViewed(prev => prev ? [...prev, commentId] : [commentId]);
-
-        getRootCommentReplies(commentId, 6, 1) // Fetch replies for the comment with a limit of 5
-            .then(response => {
-                if (response.success) {
-                    setReplies(prev => ({
-                        ...prev,
-                        [commentId]: response.data
-                    }));
-                } else {
-                    showNotification("Failed to load replies. Please try again.", "error");
-                }
-            })
-            .catch(error => {
-                console.error("Error fetching replies:", error);
-                showNotification("Failed to load replies. Please try again.", "error");
-            });
-    }
 
     const handleReplyClick = (commentId: string) => {
         setReplyingTo(commentId);
@@ -117,8 +103,8 @@ const useComments = (recipeId: string) => {
                     setReplies(replies => ({
                         ...replies,
                         [parentId]: replies[parentId]?.map(reply => reply.id === commentId
-                                ? {...reply, is_liked: !reply.is_liked, like_count: Number(reply.like_count) + (!reply.is_liked ? 1 : -1)}
-                                : reply) || []
+                            ? {...reply, is_liked: !reply.is_liked, like_count: Number(reply.like_count) + (!reply.is_liked ? 1 : -1)}
+                            : reply) || []
                     }));
                 }
                 }
@@ -147,6 +133,44 @@ const useComments = (recipeId: string) => {
         setPage(page + 1);
     };
 
+    const handleViewReplies = (commentId: string) => {
+        if (whichCommentsRepliesWillBeViewed?.includes(commentId)) {
+            setWhichCommentsRepliesWillBeViewed(previousComments => previousComments?.filter(id => id !== commentId) || null);
+            return;
+        }  
+        loadReplies(commentId, 1, true);
+    };
+
+    const handleViewMoreReplies = (commentId: string) => {
+        const nextPage = (replyPages[commentId] || 1) + 1;
+        loadReplies(commentId, nextPage, false);
+    };
+
+    const loadReplies = (commentId: string, pageNumber: number, isFirstLoad: boolean = false) => {
+        getRootCommentReplies(commentId, howManyRepliesPerComment + 1, pageNumber)
+            .then(response => {
+              if (response.success) {
+                const hasMore = response.data.length > howManyRepliesPerComment;
+                const newReplies = response.data.slice(0, howManyRepliesPerComment);
+                // If it's the first load, reset the replies for this comment
+                setReplies(prev => ({ ...prev, [commentId]: isFirstLoad ? newReplies : [...(prev[commentId] || []), ...newReplies] }));
+                // Update the state for which comments' replies are being viewed
+                setHasMoreReplies(prev => ({ ...prev, [commentId]: hasMore }));
+                // Update the page number for this comment's replies
+                setReplyPages(prev => ({ ...prev, [commentId]: pageNumber }));
+                if (isFirstLoad) {
+                    setWhichCommentsRepliesWillBeViewed(previousComments => previousComments ? [...previousComments, commentId] : [commentId]);
+                }
+              } else {
+                showNotification("Failed to load replies.", "error");
+              }
+            })
+            .catch(error => {
+              console.error("Error loading replies:", error);
+              showNotification("Failed to load replies.", "error");
+            });
+    };
+
     return {
         comments,
         replies,
@@ -156,9 +180,12 @@ const useComments = (recipeId: string) => {
         commentRef,
         page,
         contextHolder,
+        replyPages,
+        handleViewMoreReplies,
         handleReplyClick,
         handleLikeClick,
         handleViewReplies,
+        hasMoreReplies,
         handleCreateComment,
         handleNextPage,
         handlePreviousPage

@@ -82,7 +82,7 @@ const UpperMenuBar: React.FC = () => {
                 <DropdownMenuElement header='Soup Recipes' items={['Chicken Soup', 'Vegetable Soup', 'Mushroom Soup']} img='https://cdn-icons-png.flaticon.com/512/2387/2387954.png' />
                 <DropdownMenuElement header='Desserts' items={['Cakes', 'Milk Dessert', 'Ice Cream', 'Fruit Recipes']} img='https://cdn-icons-png.flaticon.com/512/8346/8346809.png' />
                 <DropdownMenuElement header='Salads' items={['Caesar Salad', 'Greek Salad', 'Caprese Salad']} img='https://cdn-icons-png.flaticon.com/512/2515/2515183.png' />
-                <DropdownMenuElement header='Beverages' items={['Cold Bevarages', 'Hot Bevarages']} img='https://cdn-icons-png.flaticon.com/512/2405/2405451.png' />
+                <DropdownMenuElement header='Beverages' items={['Cold Beverages', 'Hot Beverages']} img='https://cdn-icons-png.flaticon.com/512/2405/2405451.png' />
                 <DropdownMenuElement header='Other Recipes' items={['Rice Dishes', 'Snacks', 'Egg Dishes', 'Legume Dishes', 'Bread Recipes']} img='https://cdn-icons-png.flaticon.com/512/4252/4252424.png' />
                 <div className='bring-the-chosen-recipes'>Bring the chosen recipes<IconArrowRight/></div>
               </div>

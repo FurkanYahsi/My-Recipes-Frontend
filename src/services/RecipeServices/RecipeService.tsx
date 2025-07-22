@@ -60,6 +60,15 @@ class RecipeService {
                 return error;
             });
     }
+    async getRecipeByCategory(category: string, page: number, limit?: number): Promise<{ data: any, success: boolean }> {
+        return makeRequest(RequestMethod.GET, `/recipe/category/${category}`, { params: { page, limit } })
+            .then(result => {
+                return result;
+            })
+            .catch(error => {
+                return error;
+            });
+    }
     async createComment(recipeId: string, content: string, parentCommentId: string | null = null,  rootCommentId: string | null = null): Promise<{ data: any, success: boolean }> {
     return makeRequest(
         RequestMethod.POST, 

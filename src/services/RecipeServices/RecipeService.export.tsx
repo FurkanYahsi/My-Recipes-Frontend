@@ -15,6 +15,21 @@ export const createRecipe = (values: any): Promise<any[] | null> => {
     });
 }
 
+export const getRecipeByCategory = (category: string, page: number, limit?: number): Promise<any[] | null> => {
+
+    return new Promise((resolve, reject) => {
+        RecipeService.getRecipeByCategory(category, page, limit)
+            .then((response) => {
+                const apiData: any = response;
+                resolve(apiData);
+            })
+            .catch((err) => {
+                console.error(err);
+                reject(err);
+            });
+    });
+}
+
 export const likeOrUnlikeRecipe = (recipeId: string): Promise<any[] | null> => {
 
     return new Promise((resolve, reject) => {

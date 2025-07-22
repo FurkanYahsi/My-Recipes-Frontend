@@ -50,10 +50,15 @@
     display: flex;
     justify-content: center;
     width: 100%;
+    padding-bottom: 5rem;
 }
 
 .button-share-recipe {
     width: 20%;
+    align-items: center;
+    justify-content: center;
+    gap: 0.1rem;
+    display: flex;
     align-self: center;
     min-width: 110px;
     max-width: 150px;
@@ -65,4 +70,9 @@
     border: none;
     cursor: pointer;
     margin-bottom: 3rem;
+}
+
+.create-recipe-buttons-width {
+    min-width: 6rem !important;
+    max-width: 6rem !important;
 }

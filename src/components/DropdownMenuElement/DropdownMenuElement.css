@@ -30,12 +30,15 @@
 
 .header {
     cursor: pointer;
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
 .items-wrapper {
     display: flex;
     align-items: center;
-    gap: 0px 15px;
+    gap: 0px 5px;
     flex-wrap: wrap;
 }
 
@@ -46,8 +49,22 @@
     font-size: 0.9rem;
     cursor: pointer;
     white-space: nowrap;
+    position: relative;
+    padding-right: 20px;
 }
 
 .items:hover {
     text-decoration: underline;
+}
+
+.check-icon {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

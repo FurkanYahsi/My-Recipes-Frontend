@@ -48,7 +48,12 @@ const UpperMenuBar: React.FC = () => {
           handleSendRecipeClick,
           handleProfileClick,
           handleMenuClick,
-          handleLogout} = useUpperMenuBar();
+          handleLogout,
+          handleBringTheChosens,
+          selectedCategories,
+          setSelectedCategories,
+          selectedTypes,
+          setSelectedTypes } = useUpperMenuBar();
 
   const [isRecipesVisible, setIsRecipesVisible] = useState(false);
   const [isTrendsVisible, setIsTrendsVisible] = useState(false);
@@ -75,16 +80,16 @@ const UpperMenuBar: React.FC = () => {
             </div>
             { isRecipesVisible &&
               <div className={`dropdown-menu animate`}>
-                <DropdownMenuElement header='Meat Dishes' items={['Grilled Meatball', 'Fish & Seafood', 'Chicken', 'Hamburgers']} img='https://cdn-icons-png.flaticon.com/512/1046/1046751.png'/>
-                <DropdownMenuElement header='Vegetable Dishes' items={['Stir-fried Vegetables', 'Roasted Vegetables', 'Steamed Vegetables']} img='https://cdn-icons-png.flaticon.com/512/258/258566.png' />
-                <DropdownMenuElement header='Pasta Recipes' items={['Spaghetti Bolognese', 'Penne Arrabbiata', 'Fettuccine Alfredo']} img='https://cdn-icons-png.flaticon.com/512/3823/3823096.png' />
-                <DropdownMenuElement header='Pizza Recipes' items={['Margherita Pizza', 'Pepperoni Pizza', 'Veggie Pizza']} img='https://cdn-icons-png.flaticon.com/512/3595/3595458.png' />
-                <DropdownMenuElement header='Soup Recipes' items={['Chicken Soup', 'Vegetable Soup', 'Mushroom Soup']} img='https://cdn-icons-png.flaticon.com/512/2387/2387954.png' />
-                <DropdownMenuElement header='Desserts' items={['Cakes', 'Milk Dessert', 'Ice Cream', 'Fruit Recipes']} img='https://cdn-icons-png.flaticon.com/512/8346/8346809.png' />
-                <DropdownMenuElement header='Salads' items={['Caesar Salad', 'Greek Salad', 'Caprese Salad']} img='https://cdn-icons-png.flaticon.com/512/2515/2515183.png' />
-                <DropdownMenuElement header='Beverages' items={['Cold Beverages', 'Hot Beverages']} img='https://cdn-icons-png.flaticon.com/512/2405/2405451.png' />
-                <DropdownMenuElement header='Other Recipes' items={['Rice Dishes', 'Snacks', 'Egg Dishes', 'Legume Dishes', 'Bread Recipes']} img='https://cdn-icons-png.flaticon.com/512/4252/4252424.png' />
-                <div className='bring-the-chosen-recipes'>Bring the chosen recipes<IconArrowRight/></div>
+                <DropdownMenuElement selectedCategories={selectedCategories} setSelectedCategories={setSelectedCategories} selectedTypes={selectedTypes} setSelectedTypes={setSelectedTypes} header='Meat Dishes' items={['Grilled Meatball', 'Fish & Seafood', 'Chicken', 'Hamburgers']} img='https://cdn-icons-png.flaticon.com/512/1046/1046751.png'/>
+                <DropdownMenuElement selectedCategories={selectedCategories} setSelectedCategories={setSelectedCategories} selectedTypes={selectedTypes} setSelectedTypes={setSelectedTypes} header='Vegetable Dishes' items={['Stir-fried Vegetables', 'Roasted Vegetables', 'Steamed Vegetables']} img='https://cdn-icons-png.flaticon.com/512/258/258566.png' />
+                <DropdownMenuElement selectedCategories={selectedCategories} setSelectedCategories={setSelectedCategories} selectedTypes={selectedTypes} setSelectedTypes={setSelectedTypes} header='Pasta Recipes' items={['Spaghetti Bolognese', 'Penne Arrabbiata', 'Fettuccine Alfredo']} img='https://cdn-icons-png.flaticon.com/512/3823/3823096.png' />
+                <DropdownMenuElement selectedCategories={selectedCategories} setSelectedCategories={setSelectedCategories} selectedTypes={selectedTypes} setSelectedTypes={setSelectedTypes} header='Pizza Recipes' items={['Margherita Pizza', 'Pepperoni Pizza', 'Veggie Pizza']} img='https://cdn-icons-png.flaticon.com/512/3595/3595458.png' />
+                <DropdownMenuElement selectedCategories={selectedCategories} setSelectedCategories={setSelectedCategories} selectedTypes={selectedTypes} setSelectedTypes={setSelectedTypes} header='Soup Recipes' items={['Chicken Soup', 'Vegetable Soup', 'Mushroom Soup']} img='https://cdn-icons-png.flaticon.com/512/2387/2387954.png' />
+                <DropdownMenuElement selectedCategories={selectedCategories} setSelectedCategories={setSelectedCategories} selectedTypes={selectedTypes} setSelectedTypes={setSelectedTypes} header='Desserts' items={['Cakes', 'Milk Dessert', 'Ice Cream', 'Fruit Recipes']} img='https://cdn-icons-png.flaticon.com/512/8346/8346809.png' />
+                <DropdownMenuElement selectedCategories={selectedCategories} setSelectedCategories={setSelectedCategories} selectedTypes={selectedTypes} setSelectedTypes={setSelectedTypes} header='Salads' items={['Caesar Salad', 'Greek Salad', 'Caprese Salad']} img='https://cdn-icons-png.flaticon.com/512/2515/2515183.png' />
+                <DropdownMenuElement selectedCategories={selectedCategories} setSelectedCategories={setSelectedCategories} selectedTypes={selectedTypes} setSelectedTypes={setSelectedTypes} header='Beverages' items={['Cold Beverages', 'Hot Beverages']} img='https://cdn-icons-png.flaticon.com/512/2405/2405451.png' />
+                <DropdownMenuElement selectedCategories={selectedCategories} setSelectedCategories={setSelectedCategories} selectedTypes={selectedTypes} setSelectedTypes={setSelectedTypes} header='Other Recipes' items={['Rice Dishes', 'Snacks', 'Egg Dishes', 'Legume Dishes', 'Bread Recipes']} img='https://cdn-icons-png.flaticon.com/512/4252/4252424.png' />
+                <div className='bring-the-chosen-recipes' onClick={handleBringTheChosens}>Bring the chosen recipes<IconArrowRight/></div>
               </div>
             }
           </div>

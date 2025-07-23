@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { logout } from '../../services/AuthServices/AuthService.export';
+import { getRecipeByCategory } from '../../services/RecipeServices/RecipeService.export';
 import { useNavigate } from 'react-router-dom';
 
 const useUpperMenuBar = () => {
@@ -13,6 +14,9 @@ const useUpperMenuBar = () => {
     const profileMenuRef = useRef<HTMLDivElement>(null);
     const mainMenuRef = useRef<HTMLDivElement>(null);
     const menuContentRef = useRef<HTMLDivElement>(null);
+
+    const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+    const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
 
     useEffect(() => {
         if (isProfileVisible)
@@ -41,6 +45,30 @@ const useUpperMenuBar = () => {
             return; 
         }
         navigate("/recipes");
+    }
+
+    const handleBringTheChosens = () => {
+        console.log("Selected Categories:", selectedCategories);
+        console.log("Selected Types:", selectedTypes);
+
+        // If no categories are selected, do not proceed
+        if (selectedCategories.length === 0) {
+            return;
+        }
+
+        getRecipeByCategory(selectedCategories.join(','), 1, 5)
+        .then((response:any) => {
+            if (response && response.success) {
+                console.log("Recipes fetched successfully:", response.data);
+                const categoriesParam = selectedCategories.join(',');
+                navigate(`/recipes?categories=${encodeURIComponent(categoriesParam)}`);
+            }
+        })
+        .catch((error) => {
+            console.error("Error fetching recipes:", error);
+        }
+        );
+        setSelectedCategories([]);
     }
 
     const handleTrendsClick = () => {
@@ -95,6 +123,11 @@ const useUpperMenuBar = () => {
         handleProfileClick,
         handleMenuClick,
         handleLogout,
+        handleBringTheChosens,
+        selectedCategories,
+        setSelectedCategories,
+        selectedTypes,
+        setSelectedTypes,
     }  
 }
 

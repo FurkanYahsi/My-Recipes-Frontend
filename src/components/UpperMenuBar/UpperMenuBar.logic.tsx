@@ -56,8 +56,6 @@ const useUpperMenuBar = () => {
     }
 
     const handleBringTheChosens = () => {
-        console.log("Selected Categories:", selectedCategories);
-        console.log("Selected Types:", selectedTypes);
 
         // If no categories are selected, do not proceed
         if (selectedCategories.length === 0) {
@@ -67,7 +65,6 @@ const useUpperMenuBar = () => {
         getRecipeByCategory(selectedCategories.join(','), 1, 5)
         .then((response:any) => {
             if (response && response.success) {
-                console.log("Recipes fetched successfully:", response.data);
                 const categoriesParam = selectedCategories.join(',');
                 navigate(`/recipes?categories=${encodeURIComponent(categoriesParam)}`);
             }

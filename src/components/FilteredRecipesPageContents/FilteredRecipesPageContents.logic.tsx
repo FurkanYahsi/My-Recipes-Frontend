@@ -26,7 +26,6 @@ const useFilteredRecipesPageContents = () => {
         
         getRecipeByCategory(categoriesString, 1, 10)
           .then((response: any) => {
-            console.log("Response from getRecipeByCategory: ", response);
 
             if (response && response.success && response.data && response.data.data) {
                 setRecipes(response.data.data);
@@ -42,8 +41,6 @@ const useFilteredRecipesPageContents = () => {
           .finally(() => {
           });
     }, [categoriesString]);    
-
-    console.log("Filtered Categories: ", categoriesString);
 
   return {
     recipes,

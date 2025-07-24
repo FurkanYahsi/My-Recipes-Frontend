@@ -43,6 +43,7 @@ const UpperMenuBar: React.FC = () => {
           mainMenuRef,
           menuContentRef,          
           isMenuVisible,
+          handleLogoClick,
           handleRecipesClick,
           handleTrendsClick,
           handleSendRecipeClick,
@@ -62,7 +63,7 @@ const UpperMenuBar: React.FC = () => {
 
   return (
     <div className='upper-menu-bar-1'>
-      <div className='upper-menu-bar-1 left-side'>
+      <div className='upper-menu-bar-1 left-side' onClick={handleLogoClick}>
         <div className='logo'><img src='/res/my-recipes-logo.jpg' alt='My Recipes Logo' /></div>
         <div className='tauri-font'>My Recipes</div>
       </div>

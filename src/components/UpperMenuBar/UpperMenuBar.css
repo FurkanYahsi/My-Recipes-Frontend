@@ -161,7 +161,7 @@
   gap: 0.4rem;
   top: 80px;
   width: auto;
-  max-width: 400px;
+  max-width: 435px;
   background-color: whitesmoke;
   border-radius: 10px;
   padding: 1rem;
@@ -347,7 +347,8 @@
 .bring-the-chosen-recipes {
   display: flex;
   align-items: center;
-  background-color: white;
+  background-color: rgb(230, 0, 0);
+  color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(233, 213, 213, 0.3); 
   justify-content: center;

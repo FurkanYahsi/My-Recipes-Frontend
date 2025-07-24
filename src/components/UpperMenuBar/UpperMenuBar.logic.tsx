@@ -39,6 +39,14 @@ const useUpperMenuBar = () => {
         }
     }, [])
 
+    const handleLogoClick = () => {
+        // If the user is already on the home page, do not navigate again
+        if (window.location.pathname === "/home") {
+            return; 
+        }
+        navigate("/home");
+    }
+
     const handleRecipesClick = () => {
         // If the user is already on the recipes page, do not navigate again
         if (window.location.pathname === "/recipes") {
@@ -68,7 +76,6 @@ const useUpperMenuBar = () => {
             console.error("Error fetching recipes:", error);
         }
         );
-        setSelectedCategories([]);
     }
 
     const handleTrendsClick = () => {
@@ -117,6 +124,7 @@ const useUpperMenuBar = () => {
         mainMenuRef,
         menuContentRef,
         isMenuVisible,
+        handleLogoClick,
         handleRecipesClick,
         handleTrendsClick,
         handleSendRecipeClick,

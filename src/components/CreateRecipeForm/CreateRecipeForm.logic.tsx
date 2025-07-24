@@ -19,34 +19,31 @@ const useCreateRecipeForm = () => {
     if (selectedCategories.length > 0) {
       setTypeOptions([]); // Reset type options when categories change
       if (selectedCategories.includes("Meat Dishes")) {
-        setTypeOptions([...typeOptions, "Grilled Meatball", "Fish & Seafood", "Chicken", "Hamburgers"]);
+        setTypeOptions([...typeOptions, "Grilled Meatball", "Fish & Seafood", "Chicken", "Hamburgers", "Other Meat Dishes"]);
       } 
       if (selectedCategories.includes("Vegetable Dishes")) {
-        setTypeOptions([...typeOptions, "Stir-fried Vegetables", "Roasted Vegetables", "Steamed Vegetables"]);
+        setTypeOptions([...typeOptions, "Stir-fried Vegetables", "Roasted Vegetables", "Steamed Vegetables", "Other Vegetable Dishes"]);
       } 
       if (selectedCategories.includes("Pasta Recipes")) {
-        setTypeOptions([...typeOptions, "Spaghetti Bolognese", "Penne Arrabbiata", "Fettuccine Alfredo"]);
+        setTypeOptions([...typeOptions, "Spaghetti Bolognese", "Penne Arrabbiata", "Fettuccine Alfredo", "Other Pasta Recipes"]);
       } 
       if (selectedCategories.includes("Pizza Recipes")) {
-        setTypeOptions([...typeOptions, "Margherita Pizza", "Pepperoni Pizza", "Vegetarian Pizza"]);
+        setTypeOptions([...typeOptions, "Margherita Pizza", "Pepperoni Pizza", "Vegetarian Pizza", "Other Pizza Recipes"]);
       } 
       if (selectedCategories.includes("Soup")) {
-        setTypeOptions([...typeOptions, "Chicken Soup", "Vegetable Soup", "Mushroom Soup"]);
+        setTypeOptions([...typeOptions, "Chicken Soup", "Vegetable Soup", "Mushroom Soup", "Other Soups"]);
       }
       if (selectedCategories.includes("Desserts")) {
-        setTypeOptions([...typeOptions, "Cakes", "Milk Dessert", "Ice Cream", "Fruit Recipes"]);
+        setTypeOptions([...typeOptions, "Cakes", "Milk Dessert", "Ice Cream", "Fruit Recipes", "Other Desserts"]);
       } 
       if (selectedCategories.includes("Salads")) {
-        setTypeOptions([...typeOptions, "Caesar Salad", "Greek Salad", "Caprese Salad"]);
+        setTypeOptions([...typeOptions, "Caesar Salad", "Greek Salad", "Caprese Salad", "Other Salads"]);
       }
       if (selectedCategories.includes("Beverages")) {
         setTypeOptions([...typeOptions, "Cold Beverages", "Hot Beverages"]);
-      }
-      if (selectedCategories.includes("Snacks")) {
-        setTypeOptions([...typeOptions, "Chips", "Popcorn", "Nuts"]);
-      }
+      }      
       if (selectedCategories.includes("Other Recipes")) {
-        setTypeOptions([...typeOptions, "Rice Dishes", "Snacks", "Egg Dishes", "Legume Dishes", "Bread Recipes"]);
+        setTypeOptions([...typeOptions, "Rice Dishes", "Snacks", "Egg Dishes", "Legume Dishes", "Bread Recipes", "Other Recipes"]);
       }
     }
   }, [selectedCategories]);
@@ -67,6 +64,8 @@ const useCreateRecipeForm = () => {
 
   useEffect(() => {
     adjustAllTextareas();
+    typeOptions.length = 0; // Clear type options on initial load
+    setSelectedCategories([]); // Clear selected categories on initial load
   }, []);
 
   const handleInput = (e: React.FormEvent<HTMLTextAreaElement>) => {
@@ -111,6 +110,7 @@ const useCreateRecipeForm = () => {
     }
     if (whichStep === 1) { 
       setSelectedCategories([]);
+      setTypeOptions([]); 
       setSelectedTypes([]);
     }
   }, [whichStep]);
@@ -126,7 +126,7 @@ const useCreateRecipeForm = () => {
       return;
     }
 
-    if (inputs.length === 4 && inputs.every(input => input.trim() !== '') && selectedCategories.length > 0 && selectedTypes.length > 0) {
+    if (selectedCategories.length > 0 && selectedTypes.length > 0) {
       createRecipe({
         recipe_name: inputs[0],
         recipe_story: inputs[1],

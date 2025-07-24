@@ -1,0 +1,15 @@
+.filtered-recipes-page-contents-container {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+    background-color: whitesmoke;
+    min-height: calc(100vh - 165px); 
+}
+
+.filtered-recipes-page-content-container {
+    width: 65%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}

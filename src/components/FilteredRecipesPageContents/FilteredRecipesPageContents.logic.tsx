@@ -25,6 +25,11 @@ const useFilteredRecipesPageContents = () => {
     const categoriesString = categoriesParam ? decodeURIComponent(categoriesParam) : '';
 
     useEffect(() => {
+
+        if (!categoriesString) {
+            setRecipes([]);
+            return;
+        }
         
         getRecipeByCategory(categoriesString, 1, 10)
           .then((response: any) => {

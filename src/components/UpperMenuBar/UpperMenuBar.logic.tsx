@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { logout } from '../../services/AuthServices/AuthService.export';
-import { getRecipeByCategory } from '../../services/RecipeServices/RecipeService.export';
+import { getRecipeByCategory, getRecipesByType } from '../../services/RecipeServices/RecipeService.export';
 import { useNavigate } from 'react-router-dom';
 import { ToastMessage } from '../../utils/ToastMessage/ToastMessage';
 
@@ -80,22 +80,37 @@ const useUpperMenuBar = () => {
     const handleBringTheChosens = () => {
 
         // If no categories are selected, do not proceed
-        if (selectedCategories.length === 0) {
+        if (selectedCategories.length === 0 && selectedTypes.length === 0) {
             showNotification("Please select at least one category to view recipes.", "warning");
             return;
         }
 
-        getRecipeByCategory(selectedCategories.join(','), 1, 5)
-        .then((response:any) => {
-            if (response && response.success) {
-                const categoriesParam = selectedCategories.join(',');
-                navigate(`/recipes?categories=${encodeURIComponent(categoriesParam)}`);
+        if (selectedCategories.length > 0) {
+            getRecipeByCategory(selectedCategories.join(','), 1, 5)
+            .then((response:any) => {
+                if (response && response.success) {
+                    const categoriesParam = selectedCategories.join(',');
+                    navigate(`/recipes?categories=${encodeURIComponent(categoriesParam)}`);
+                }
+            })
+            .catch((error) => {
+                console.error("Error fetching recipes:", error);
             }
-        })
-        .catch((error) => {
-            console.error("Error fetching recipes:", error);
+            );
         }
-        );
+        if (selectedTypes.length > 0) {
+            getRecipesByType(selectedTypes.join(','), 1, 5)
+            .then((response:any) => {  
+                if (response && response.success) {
+                    const typesParam = selectedTypes.join(',');
+                    navigate(`/recipes?types=${encodeURIComponent(typesParam)}`);
+                }
+            })
+            .catch((error) => {
+                console.error("Error fetching recipes by type:", error);
+            }
+            );
+        }
     }
 
     const handleTrendsClick = () => {
@@ -167,5 +182,4 @@ const useUpperMenuBar = () => {
         setSelectedTypes,
     }  
 }
-
 export default useUpperMenuBar

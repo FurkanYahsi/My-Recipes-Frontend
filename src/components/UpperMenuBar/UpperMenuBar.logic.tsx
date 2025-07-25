@@ -2,10 +2,12 @@ import { useEffect, useRef, useState } from 'react'
 import { logout } from '../../services/AuthServices/AuthService.export';
 import { getRecipeByCategory } from '../../services/RecipeServices/RecipeService.export';
 import { useNavigate } from 'react-router-dom';
+import { ToastMessage } from '../../utils/ToastMessage/ToastMessage';
 
 const useUpperMenuBar = () => {
 
     const navigate = useNavigate();
+    const { contextHolder, showNotification } = ToastMessage();
 
     const [isProfileVisible, setIsProfileVisible] = useState(false);
     const [hasBeenClickedToProfile, setHasBeenClickedToProfile] = useState(false);
@@ -48,17 +50,14 @@ const useUpperMenuBar = () => {
     }
 
     const handleRecipesClick = () => {
-        // If the user is already on the recipes page, do not navigate again
-        if (window.location.pathname === "/recipes") {
-            return; 
-        }
-        navigate("/recipes");
+        handleBringTheChosens(); // Fetch recipes based on selected categories
     }
 
     const handleBringTheChosens = () => {
 
         // If no categories are selected, do not proceed
         if (selectedCategories.length === 0) {
+            showNotification("Please select at least one category to view recipes.", "warning");
             return;
         }
 
@@ -115,6 +114,7 @@ const useUpperMenuBar = () => {
     }
 
     return {
+        contextHolder,
         isProfileVisible,
         hasBeenClickedToProfile,
         profileMenuRef,

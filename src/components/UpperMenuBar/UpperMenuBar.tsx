@@ -44,6 +44,14 @@ const UpperMenuBar: React.FC = () => {
           mainMenuRef,
           menuContentRef,          
           isMenuVisible,
+          isRecipesVisible,
+          setIsRecipesVisible,
+          isTrendsVisible,
+          setIsTrendsVisible,
+          isBlogsVisible,
+          setIsBlogsVisible,
+          isMouseOnSendRecipe,
+          setIsMouseOnSendRecipe,
           handleLogoClick,
           handleRecipesClick,
           handleTrendsClick,
@@ -57,10 +65,7 @@ const UpperMenuBar: React.FC = () => {
           selectedTypes,
           setSelectedTypes } = useUpperMenuBar();
 
-  const [isRecipesVisible, setIsRecipesVisible] = useState(false);
-  const [isTrendsVisible, setIsTrendsVisible] = useState(false);
-  const [isBlogsVisible, setIsBlogsVisible] = useState(false);
-  const [isMouseOnSendRecipe, setIsMouseOnSendRecipe] = useState(false);
+
 
   return (
     <div className='upper-menu-bar-1'>

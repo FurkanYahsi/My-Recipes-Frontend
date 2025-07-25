@@ -13,6 +13,11 @@ const useUpperMenuBar = () => {
     const [hasBeenClickedToProfile, setHasBeenClickedToProfile] = useState(false);
     const [isMenuVisible, setIsMenuVisible] = useState(false);
 
+    const [isRecipesVisible, setIsRecipesVisible] = useState(false);
+    const [isTrendsVisible, setIsTrendsVisible] = useState(false);
+    const [isBlogsVisible, setIsBlogsVisible] = useState(false);
+    const [isMouseOnSendRecipe, setIsMouseOnSendRecipe] = useState(false);
+
     const profileMenuRef = useRef<HTMLDivElement>(null);
     const mainMenuRef = useRef<HTMLDivElement>(null);
     const menuContentRef = useRef<HTMLDivElement>(null);
@@ -24,6 +29,25 @@ const useUpperMenuBar = () => {
         if (isProfileVisible)
             setHasBeenClickedToProfile(true);
     }, [isProfileVisible])
+
+    useEffect(() => {
+      const handleScroll = () => {
+        if (isRecipesVisible) {
+          setIsRecipesVisible(false);
+        }
+        if (isTrendsVisible) {
+          setIsTrendsVisible(false);
+        }
+        if (isBlogsVisible) {
+          setIsBlogsVisible(false);
+        }
+      };
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+        window.removeEventListener('scroll', handleScroll);
+      };
+    }, [isRecipesVisible, isTrendsVisible, isBlogsVisible]);
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -121,6 +145,14 @@ const useUpperMenuBar = () => {
         mainMenuRef,
         menuContentRef,
         isMenuVisible,
+        isRecipesVisible,
+        setIsRecipesVisible,
+        isTrendsVisible,
+        setIsTrendsVisible,
+        isBlogsVisible,
+        setIsBlogsVisible,
+        isMouseOnSendRecipe,
+        setIsMouseOnSendRecipe,
         handleLogoClick,
         handleRecipesClick,
         handleTrendsClick,

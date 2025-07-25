@@ -30,6 +30,21 @@ export const getRecipeByCategory = (category: string, page: number, limit?: numb
     });
 }
 
+export const getRecipesByType = (type: string, page: number, limit?: number): Promise<any[] | null> => {
+
+    return new Promise((resolve, reject) => {
+        RecipeService.getRecipesByType(type, page, limit)
+            .then((response) => {
+                const apiData: any = response;
+                resolve(apiData);
+            })
+            .catch((err) => {
+                console.error(err);
+                reject(err);
+            });
+    });
+}
+
 export const likeOrUnlikeRecipe = (recipeId: string): Promise<any[] | null> => {
 
     return new Promise((resolve, reject) => {

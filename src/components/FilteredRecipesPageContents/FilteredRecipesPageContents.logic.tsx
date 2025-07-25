@@ -30,9 +30,6 @@ const useFilteredRecipesPageContents = () => {
     const queryParams = new URLSearchParams(location.search);
     const categoriesParam = queryParams.get('categories');
     const typesParam = queryParams.get('types');
-    const [isLikeClicked, setIsLikeClicked] = useState(false);
-    const [isBookmarkClicked, setIsBookmarkClicked] = useState(false);
-    
     const [recipes, setRecipes] = useState<Recipe[]>([]);
 
     const categoriesString = categoriesParam ? decodeURIComponent(categoriesParam) : '';
@@ -89,25 +86,31 @@ const useFilteredRecipesPageContents = () => {
           });
     }, [typesString]);
        
-    const handleLikeChange = (recipeLikeCount: number, recipeIsLiked: boolean) => {
-        setIsLikeClicked(!isLikeClicked);
-        if (recipeIsLiked) { // If the recipe is already liked, we are unliking it
-            isLikeClicked ? recipeLikeCount++ : recipeLikeCount--;
-        } else { // If the recipe is not liked, we are liking it
-            isLikeClicked ? recipeLikeCount-- : recipeLikeCount++;
-        }
-        return recipeLikeCount;
-    }
+  const handleLikeChange = (recipeId: string) => {
+    setRecipes(recipes => 
+        recipes.map(recipe => recipe.id === recipeId
+            ? {
+                ...recipe, 
+                is_liked: !recipe.is_liked, 
+                like_count: Number(recipe.like_count) + (!recipe.is_liked ? 1 : -1)
+              }
+            : recipe
+        )
+    );
+  };
 
-    const handleBookmarkChange = (recipeBookmarkCount: number, recipeIsBookmarked: boolean) => {
-      setIsBookmarkClicked(!isBookmarkClicked);
-      if (recipeIsBookmarked) {
-          isBookmarkClicked ? recipeBookmarkCount++ : recipeBookmarkCount--;
-      } else {
-          isBookmarkClicked ? recipeBookmarkCount-- : recipeBookmarkCount++;
-      }
-      return recipeBookmarkCount;
-    }
+  const handleBookmarkChange = (recipeId: string) => {
+    setRecipes(recipes => 
+        recipes.map(recipe => recipe.id === recipeId
+            ? {
+                ...recipe, 
+                is_bookmarked: !recipe.is_bookmarked, 
+                bookmark_count: Number(recipe.bookmark_count) + (!recipe.is_bookmarked ? 1 : -1)
+              }
+            : recipe
+        )
+    );
+  }
 
   return {
     recipes,

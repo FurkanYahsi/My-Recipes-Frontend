@@ -14,8 +14,8 @@ const FilteredRecipesPageContents = () => {
             <MiniRecipeBox
                 key={recipe.id}
                 recipe={recipe}
-                onLikeChange={()=>recipe.like_count = handleLikeChange(recipe.like_count, recipe.is_liked)} 
-                onBookmarkChange={()=>recipe.bookmark_count = handleBookmarkChange(recipe.bookmark_count, recipe.is_bookmarked)}
+                onLikeChange={()=> handleLikeChange(recipe.id)} 
+                onBookmarkChange={()=> handleBookmarkChange(recipe.id)}
             />
             ))}
             </div>

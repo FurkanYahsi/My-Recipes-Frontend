@@ -109,11 +109,11 @@ const UpperMenuBar: React.FC = () => {
           </div>
           {isTrendsVisible &&
             <div className={`dropdown-menu animate`}>
-              <div className='text'>Daily Trends</div>
-              <div className='text'>Weekly Trends</div>
-              <div className='text'>Monthly Trends</div>
-              <div className='text'>Annual Trends</div>
-              <div className='text'>All Time Trends</div>
+              <DropdownMenuElement header='Daily Trends' img='res/trends/24-hours.png'/>
+              <DropdownMenuElement header='Weekly Trends' img='res/trends/week.png'/>
+              <DropdownMenuElement header='Monthly Trends' img='res/trends/month.png'/>
+              <DropdownMenuElement header='Annual Trends' img='res/trends/annual-calendar.png'/>
+              <DropdownMenuElement header='All Time Trends' img='res/trends/all.png'/>
             </div>
           }
         </div>
@@ -130,9 +130,10 @@ const UpperMenuBar: React.FC = () => {
           </div>
           {isBlogsVisible && 
             <div className={`dropdown-menu animate`}>
-              <div className='text'>Blog Post 1</div>
-              <div className='text'>Blog Post 2</div>
-              <div className='text'>Blog Post 3</div>
+              <DropdownMenuElement header='Cooking' items={['Cooking Tips', 'Kitchen Hacks']} img='res/blogs/cooking.png'/>
+              <DropdownMenuElement header='Health' items={['Healthy Eating', 'Diet', 'How Much Calories?']} img='res/blogs/healthy-heart.png'/>
+              <DropdownMenuElement header='Life' items={['Useful Informations', 'Travel Guide']} img='res/blogs/daily-tasks.png'/>
+              <DropdownMenuElement header='What Are The Benefits?' items={['What are the benefits of olive oil for skin?', 'What are the benefits of cherries?']} img='res/blogs/question.png'/>
             </div>
           }
         </div>

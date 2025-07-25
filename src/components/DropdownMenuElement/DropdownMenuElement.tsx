@@ -7,7 +7,7 @@ const IconDone = MdDone as React.FC<IconBaseProps>;
 
 interface DropdownMenuElementProps {
     header: string;
-    items: string[];
+    items?: string[];
     img?: string;
     selectedCategories?: string[];
     setSelectedCategories?: (options: string[]) => void;
@@ -36,7 +36,7 @@ const DropdownMenuElement: React.FC<DropdownMenuElementProps> = ({header, items,
                     </div>
 
                     <div className='items-wrapper'>
-                        {items.map((item, index) => {
+                        {items && items.map((item, index) => {
                             return (
                                 <div key={index} className="items" onClick={() => toggleType(item)}>
                                     {item}

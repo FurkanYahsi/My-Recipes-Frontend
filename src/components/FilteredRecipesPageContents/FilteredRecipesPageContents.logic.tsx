@@ -17,6 +17,8 @@ const useFilteredRecipesPageContents = () => {
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const categoriesParam = queryParams.get('categories');
+    const [isLikeClicked, setIsLikeClicked] = useState(false);
+    const [isBookmarkClicked, setIsBookmarkClicked] = useState(false);
     
     const [recipes, setRecipes] = useState<Recipe[]>([]);
 
@@ -41,9 +43,31 @@ const useFilteredRecipesPageContents = () => {
           .finally(() => {
           });
     }, [categoriesString]);    
+       
+    const handleLikeChange = (recipeLikeCount: number, recipeIsLiked: boolean) => {
+        setIsLikeClicked(!isLikeClicked);
+        if (recipeIsLiked) { // If the recipe is already liked, we are unliking it
+            isLikeClicked ? recipeLikeCount++ : recipeLikeCount--;
+        } else { // If the recipe is not liked, we are liking it
+            isLikeClicked ? recipeLikeCount-- : recipeLikeCount++;
+        }
+        return recipeLikeCount;
+    }
+
+    const handleBookmarkChange = (recipeBookmarkCount: number, recipeIsBookmarked: boolean) => {
+      setIsBookmarkClicked(!isBookmarkClicked);
+      if (recipeIsBookmarked) {
+          isBookmarkClicked ? recipeBookmarkCount++ : recipeBookmarkCount--;
+      } else {
+          isBookmarkClicked ? recipeBookmarkCount-- : recipeBookmarkCount++;
+      }
+      return recipeBookmarkCount;
+    }
 
   return {
     recipes,
+    handleLikeChange,
+    handleBookmarkChange
   }
 }
 

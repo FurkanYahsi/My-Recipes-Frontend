@@ -29,6 +29,7 @@ const useComments = (recipeId: string) => {
     const [commentCount, setCommentCount] = useState(0); // Total number of main comments of viewed recipe
     const [page, setPage] = useState(1); // For pagination of main comments
     const commentRef = React.useRef<HTMLTextAreaElement>(null); // Reference to the comment input field
+    const [didNewCommentCreated, setDidNewCommentCreated] = useState(0);
 
     // About replies
     const [replyPages, setReplyPages] = useState<{ [commentId: string]: number }>({}); // Keeps track of the page number for each comment's replies
@@ -62,6 +63,7 @@ const useComments = (recipeId: string) => {
                     showNotification("Comment added successfully!", "success");
                     if (commentRef.current) commentRef.current.value = '';
                     if (replyingTo) setReplyingTo(null);
+                    setDidNewCommentCreated(prev => prev + 1); 
                 } else {
                     showNotification("Failed to add comment. Please try again.", "error");
                 }
@@ -82,7 +84,7 @@ const useComments = (recipeId: string) => {
             .catch(error => {
                 console.error("Failed to load comments:", error);
             });
-    }, [page]);
+    }, [page, didNewCommentCreated]);
 
     const handleReplyClick = (commentId: string) => {
         setReplyingTo(commentId);
@@ -119,7 +121,7 @@ const useComments = (recipeId: string) => {
                 setCommentCount(0);
             }
         });
-    }, [recipeId]);
+    }, [recipeId, didNewCommentCreated]);
 
     const handlePreviousPage = () => {
         if (page > 1) {

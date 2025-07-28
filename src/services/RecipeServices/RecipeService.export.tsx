@@ -75,10 +75,10 @@ export const addBookmarkOrRemoveBookmarkTheRecipe = (recipeId: string): Promise<
     });
 }
 
-export const getTrendRecipes = (): Promise<{success: boolean, data: any[]}> => {
+export const getAllTimeTrendRecipes = (page?: number, limit?: number): Promise<{success: boolean, data: any[]}> => {
 
     return new Promise((resolve, reject) => {
-        RecipeService.getTrendRecipes()
+        RecipeService.getAllTimeTrendRecipes(page, limit)
             .then((response) => {
                 const recipesArray = response.data?.data || [];                
                 resolve({

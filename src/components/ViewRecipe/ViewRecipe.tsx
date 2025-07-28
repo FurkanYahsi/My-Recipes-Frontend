@@ -1,7 +1,8 @@
 import useViewRecipe from "./ViewRecipe.logic";
 import './ViewRecipe.css';
-
 import CommentsSection from '../CommentsSection/CommentsSection';
+
+import tatli from '../../assets/tatli.jpg';
 
 import { IconBaseProps } from 'react-icons';
 import { FaRegCircle, FaCheckCircle } from 'react-icons/fa'
@@ -17,7 +18,7 @@ const ViewRecipe = () => {
     <div className="view-recipe-container">
       <div className="view-recipe-content-container">
         <div className="view-recipe-photo-container">
-            <img src="/res/tatli.jpg" alt={recipe?.recipe_name} />
+            <img src={tatli} alt={recipe?.recipe_name} />
             <div className="gradient-overlay"/>
             <div className="recipe-titlee">{recipe?.recipe_name}</div>
         </div>

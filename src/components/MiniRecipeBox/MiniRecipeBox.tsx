@@ -1,6 +1,8 @@
 import '../MiniRecipeBox/MiniRecipeBox.css';
 import useMiniRecipeBox from './MiniRecipeBox.logic';
 
+import pasta from '../../assets/pasta.jpg';
+
 import { IconBaseProps } from 'react-icons';
 import { FaRegHeart } from "react-icons/fa6";
 import { FaHeart } from "react-icons/fa";
@@ -44,7 +46,7 @@ const MiniRecipeBox = ({recipe, onLikeChange, onBookmarkChange}: MiniRecipeBoxPr
     <div>
         <div className="mini-recipe-box">
             <div className="recipe-image" onClick={handleViewRecipe}>
-                <img src="/res/pasta.jpg" alt={recipe.recipe_name} />
+                <img src={pasta} alt={recipe.recipe_name} />
             </div>
             <div className="explanation">
               <div className="recipe-details">

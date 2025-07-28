@@ -7,6 +7,17 @@ import DropdownMenuElement from '../DropdownMenuElement/DropdownMenuElement';
 import { categoryTypes } from '../../config/constants';
 import { categoryImages } from '../../config/constants';
 
+import logo from '../../assets/my-recipes-logo.jpg';
+import hour24 from '../../assets/trends/24-hours.png';
+import week from '../../assets/trends/week.png';
+import month from '../../assets/trends/month.png';
+import annual from '../../assets/trends/annual-calendar.png';
+import all from '../../assets/trends/all.png';
+import cook from '../../assets/blogs/cooking.png';
+import healthy from '../../assets/blogs/healthy-heart.png';
+import daily from '../../assets/blogs/daily-tasks.png';
+import question from '../../assets/blogs/question.png';
+
 // React Icon imports
 import { IconBaseProps } from 'react-icons';
 import { FaSearch } from "react-icons/fa";
@@ -67,13 +78,11 @@ const UpperMenuBar: React.FC = () => {
           selectedTypes,
           setSelectedTypes } = useUpperMenuBar();
 
-
-
   return (
     <div className='upper-menu-bar-1'>
       { contextHolder }
       <div className='upper-menu-bar-1 left-side' onClick={handleLogoClick}>
-        <div className='logo'><img src='/res/my-recipes-logo.jpg' alt='My Recipes Logo' /></div>
+        <div className='logo'><img src={logo} alt='My Recipes Logo' /></div>
         <div className='tauri-font'>My Recipes</div>
       </div>
       <div className='upper-menu-bar-1 right-side'>
@@ -121,11 +130,11 @@ const UpperMenuBar: React.FC = () => {
           </div>
           {isTrendsVisible &&
             <div className={`dropdown-menu trends animate`}>
-              <DropdownMenuElement header='Daily Trends' img='res/trends/24-hours.png'/>
-              <DropdownMenuElement header='Weekly Trends' img='res/trends/week.png'/>
-              <DropdownMenuElement header='Monthly Trends' img='res/trends/month.png'/>
-              <DropdownMenuElement header='Annual Trends' img='res/trends/annual-calendar.png'/>
-              <DropdownMenuElement header='All Time Trends' img='res/trends/all.png'/>
+              <DropdownMenuElement header='Daily Trends' img={hour24}/>
+              <DropdownMenuElement header='Weekly Trends' img={week}/>
+              <DropdownMenuElement header='Monthly Trends' img={month}/>
+              <DropdownMenuElement header='Annual Trends' img={annual}/>
+              <DropdownMenuElement header='All Time Trends' img={all}/>
             </div>
           }
         </div>
@@ -142,10 +151,10 @@ const UpperMenuBar: React.FC = () => {
           </div>
           {isBlogsVisible && 
             <div className={`dropdown-menu animate`}>
-              <DropdownMenuElement header='Cooking' items={['Cooking Tips', 'Kitchen Hacks']} img='res/blogs/cooking.png'/>
-              <DropdownMenuElement header='Health' items={['Healthy Eating', 'Diet', 'How Much Calories?']} img='res/blogs/healthy-heart.png'/>
-              <DropdownMenuElement header='Life' items={['Useful Informations', 'Travel Guide']} img='res/blogs/daily-tasks.png'/>
-              <DropdownMenuElement header='What Are The Benefits?' items={['What are the benefits of olive oil for skin?', 'What are the benefits of cherries?']} img='res/blogs/question.png'/>
+              <DropdownMenuElement header='Cooking' items={['Cooking Tips', 'Kitchen Hacks']} img={cook}/>
+              <DropdownMenuElement header='Health' items={['Healthy Eating', 'Diet', 'How Much Calories?']} img={healthy}/>
+              <DropdownMenuElement header='Life' items={['Useful Informations', 'Travel Guide']} img={daily}/>
+              <DropdownMenuElement header='What Are The Benefits?' items={['What are the benefits of olive oil for skin?', 'What are the benefits of cherries?']} img={question}/>
             </div>
           }
         </div>

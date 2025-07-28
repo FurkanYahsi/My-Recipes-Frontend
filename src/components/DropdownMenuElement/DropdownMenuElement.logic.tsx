@@ -1,14 +1,4 @@
-const categoryTypes: Record<string, string[]> = {
-  "Meat Dishes": ["Grilled Meatball", "Fish & Seafood", "Chicken", "Hamburgers", "Other Meat Dishes"],
-  "Vegetable Dishes": ["Stir-fried Vegetables", "Roasted Vegetables", "Steamed Vegetables", "Other Vegetable Dishes"],
-  "Pasta Recipes": ["Spaghetti Bolognese", "Penne Arrabbiata", "Fettuccine Alfredo", "Other Pasta Recipes"],
-  "Pizza Recipes": ["Margherita Pizza", "Pepperoni Pizza", "Veggie Pizza", "Other Pizza Recipes"],
-  "Soup Recipes": ["Chicken Soup", "Vegetable Soup", "Mushroom Soup", "Other Soups"],
-  "Desserts": ["Cakes", "Milk Dessert", "Ice Cream", "Fruit Recipes", "Other Desserts"],
-  "Salads": ["Caesar Salad", "Greek Salad", "Caprese Salad", "Other Salads"],
-  "Beverages": ["Cold Beverages", "Hot Beverages"],
-  "Other Recipes": ["Rice Dishes", "Snacks", "Egg Dishes", "Legume Dishes", "Bread Recipes", "Other Recipes"]
-};
+import { categoryTypes } from "../../config/constants";
 
 interface useDropdownMenuElementProps {
     selectedCategories?: string[];

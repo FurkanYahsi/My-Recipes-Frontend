@@ -89,7 +89,7 @@ const UpperMenuBar: React.FC = () => {
               <IconArrowDown />
             </div>
             { isRecipesVisible &&
-              <div className={`dropdown-menu animate`}>
+              <div className={`dropdown-menu recipes animate`}>
                   {Object.entries(categoryTypes).map(([header, items]) => (
                     <DropdownMenuElement
                       key={header}
@@ -120,7 +120,7 @@ const UpperMenuBar: React.FC = () => {
             <IconArrowDown />
           </div>
           {isTrendsVisible &&
-            <div className={`dropdown-menu animate`}>
+            <div className={`dropdown-menu trends animate`}>
               <DropdownMenuElement header='Daily Trends' img='res/trends/24-hours.png'/>
               <DropdownMenuElement header='Weekly Trends' img='res/trends/week.png'/>
               <DropdownMenuElement header='Monthly Trends' img='res/trends/month.png'/>

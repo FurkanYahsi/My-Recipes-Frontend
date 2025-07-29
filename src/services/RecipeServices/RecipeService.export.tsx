@@ -128,6 +128,23 @@ export const getSavedRecipes = (page: number, limit?: number): Promise<{success:
     });
 }
 
+export const getLikedRecipes = (page: number, limit?: number): Promise<{success: boolean, data: any}> => {
+    return new Promise((resolve, reject) => {
+        RecipeService.getLikedRecipes(page, limit)
+            .then((response) => {
+                const likedRecipesData = response.data?.data || [];
+                resolve({
+                    success: true,
+                    data: likedRecipesData
+                });
+            })
+            .catch((err) => {
+                console.error("Error fetching liked recipes:", err);
+                resolve({ success: false, data: [] });
+            });
+    });
+}
+
 export const createComment = (
     recipeId: string, 
     content: string, 

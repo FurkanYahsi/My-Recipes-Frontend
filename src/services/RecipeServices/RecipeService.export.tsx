@@ -111,6 +111,23 @@ export const getRecipeById = (recipeId: string): Promise<{success: boolean, data
     });
 }
 
+export const getSavedRecipes = (page: number, limit?: number): Promise<{success: boolean, data: any}> => {
+    return new Promise((resolve, reject) => {
+        RecipeService.getSavedRecipes(page, limit)
+            .then((response) => {
+                const savedRecipesData = response.data?.data || [];
+                resolve({
+                    success: true,
+                    data: savedRecipesData
+                });
+            })
+            .catch((err) => {
+                console.error("Error fetching saved recipes:", err);
+                resolve({ success: false, data: [] });
+            });
+    });
+}
+
 export const createComment = (
     recipeId: string, 
     content: string, 

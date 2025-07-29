@@ -49,7 +49,7 @@ interface DropDownMainMenuProps {
 }
 
 const DropDownMainMenu: React.FC<DropDownMainMenuProps> = ({ isMenuVisible, menuRef }) => {
-const { handleSavedRecipes, handleSendRecipe, handleTrends, handleLogout } = useDropDownMainMenu();
+const { handleSavedRecipes, handleLikedRecipes, handleSendRecipe, handleTrends, handleLogout } = useDropDownMainMenu();
 
 
   const [hasBeenVisible, setHasBeenVisible] = useState(false);
@@ -71,7 +71,7 @@ const { handleSavedRecipes, handleSendRecipe, handleTrends, handleLogout } = use
         <div className='categories'>My Recipes<IconArrowDown/></div>
         <div className='options'><IconProfile/>My Profile</div>
         <div className='options' onClick={handleSavedRecipes}><IconBookmark/>Saved Recipes</div>
-        <div className='options'><IconHeart/>Likes</div>
+        <div className='options' onClick={handleLikedRecipes}><IconHeart/>Likes</div>
         <div className='options' onClick={handleSendRecipe}><IconSend/>Send Recipe</div>
         <div className='options'><IconShoppingCart/>Shopping List</div>
         <div className='options'><IconCalendar/>Plannings</div>

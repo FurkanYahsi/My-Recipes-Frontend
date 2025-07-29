@@ -7,14 +7,34 @@ const useDropDownMainMenu = () => {
     const navigate = useNavigate();
 
     const handleSavedRecipes = () => {
+        // If the user is already on the saved-recipes page, do not navigate again
+        if (window.location.pathname === "/saved-recipes") {
+            return; 
+        }
         navigate("/saved-recipes");
     }
 
+    const handleLikedRecipes = () => {
+        // If the user is already on the liked-recipes page, do not navigate again
+        if (window.location.pathname === "/liked-recipes") {
+            return; 
+        }
+        navigate("/liked-recipes");
+    }
+
     const handleSendRecipe = () => {
+        // If the user is already on the send-recipe page, do not navigate again
+        if (window.location.pathname === "/send-recipe") {
+            return; 
+        }
         navigate("/send-recipe");
     }
 
     const handleTrends = () => {
+        // If the user is already on the trends page, do not navigate again
+        if (window.location.pathname === "/trends") {
+            return; 
+        }
         navigate("/trends");
     }
 
@@ -31,6 +51,7 @@ const useDropDownMainMenu = () => {
 
   return {
     handleSavedRecipes,
+    handleLikedRecipes,
     handleSendRecipe,
     handleTrends,
     handleLogout

@@ -147,6 +147,15 @@ const handleTrendsClick = (period: string) => {
         navigate("/saved-recipes");
     }
 
+    // Liked Recipes Button
+    const handleLikedRecipes = () => {
+        // If the user is already on the liked-recipes page, do not navigate again
+        if (window.location.pathname === "/liked-recipes") {
+            return; 
+        }
+        navigate("/liked-recipes");
+    }
+
     // Logout Button
     const handleLogout =  async () => {
         logout().then((response:any) => {
@@ -186,6 +195,7 @@ const handleTrendsClick = (period: string) => {
         handleSendRecipeClick,
         handleProfileClick,
         handleSavedRecipes,
+        handleLikedRecipes,
         handleMenuClick,
         handleLogout,
         handleBringTheChosens,

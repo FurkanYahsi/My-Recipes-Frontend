@@ -8,6 +8,7 @@ import TrendsPage from './pages/app/TrendsPage/TrendsPage';
 import SendRecipePage from './pages/app/SendRecipePage/SendRecipePage';
 import ViewRecipePage from './pages/app/ViewRecipePage/ViewRecipePage';
 import FilteredRecipesPage from './pages/app/FilteredRecipesPage/FilteredRecipesPage';
+import SavedRecipesPage from './pages/app/SavedRecipesPage/SavedRecipesPage';
 
 import AppLayout from './utils/AppLayout/AppLayout';
 import ProtectedRoute from './utils/ProtectedRoute/ProtectedRoute';
@@ -27,6 +28,7 @@ function App() {
           <Route element={<AppLayout />}>
             <Route path="/home" element={<HomePage />} />
             <Route path="/trends" element={<TrendsPage/>} />
+            <Route path="/saved-recipes" element={<SavedRecipesPage />} />
             <Route path="/send-recipe" element={<SendRecipePage />} />
             <Route path="/recipe/:id" element={<ViewRecipePage />} />
             <Route path="/recipes" element={<FilteredRecipesPage />} />

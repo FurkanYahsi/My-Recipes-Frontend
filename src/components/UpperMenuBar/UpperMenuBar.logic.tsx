@@ -138,6 +138,15 @@ const handleTrendsClick = (period: string) => {
         setIsProfileVisible(!isProfileVisible);
     }
 
+    // Saved Recipes Button
+    const handleSavedRecipes = () => {
+        // If the user is already on the saved-recipes page, do not navigate again
+        if (window.location.pathname === "/saved-recipes") {
+            return; 
+        }
+        navigate("/saved-recipes");
+    }
+
     // Logout Button
     const handleLogout =  async () => {
         logout().then((response:any) => {
@@ -176,6 +185,7 @@ const handleTrendsClick = (period: string) => {
         handleTrendsClick,
         handleSendRecipeClick,
         handleProfileClick,
+        handleSavedRecipes,
         handleMenuClick,
         handleLogout,
         handleBringTheChosens,

@@ -6,6 +6,10 @@ const useDropDownMainMenu = () => {
 
     const navigate = useNavigate();
 
+    const handleSavedRecipes = () => {
+        navigate("/saved-recipes");
+    }
+
     const handleSendRecipe = () => {
         navigate("/send-recipe");
     }
@@ -26,6 +30,7 @@ const useDropDownMainMenu = () => {
     }
 
   return {
+    handleSavedRecipes,
     handleSendRecipe,
     handleTrends,
     handleLogout

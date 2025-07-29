@@ -9,6 +9,7 @@ import SendRecipePage from './pages/app/SendRecipePage/SendRecipePage';
 import ViewRecipePage from './pages/app/ViewRecipePage/ViewRecipePage';
 import FilteredRecipesPage from './pages/app/FilteredRecipesPage/FilteredRecipesPage';
 import SavedRecipesPage from './pages/app/SavedRecipesPage/SavedRecipesPage';
+import LikedRecipesPageContents from './components/LikedRecipesPageContents/LikedRecipesPageContents';
 
 import AppLayout from './utils/AppLayout/AppLayout';
 import ProtectedRoute from './utils/ProtectedRoute/ProtectedRoute';
@@ -29,6 +30,7 @@ function App() {
             <Route path="/home" element={<HomePage />} />
             <Route path="/trends" element={<TrendsPage/>} />
             <Route path="/saved-recipes" element={<SavedRecipesPage />} />
+            <Route path="/liked-recipes" element={<LikedRecipesPageContents />} />
             <Route path="/send-recipe" element={<SendRecipePage />} />
             <Route path="/recipe/:id" element={<ViewRecipePage />} />
             <Route path="/recipes" element={<FilteredRecipesPage />} />

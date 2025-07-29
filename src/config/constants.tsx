@@ -21,3 +21,10 @@ export const categoryImages: Record<string, string> = {
     "Beverages": "https://cdn-icons-png.flaticon.com/512/2405/2405451.png",
     "Other Recipes": "https://cdn-icons-png.flaticon.com/512/4252/4252424.png",
 };
+
+export const pageTypes: Record<string, string> = {
+    TRENDS: 'trends',
+    BOOKMARKS: 'saved',
+    LIKES: 'liked',
+    FILTEREDS: 'filter'
+};

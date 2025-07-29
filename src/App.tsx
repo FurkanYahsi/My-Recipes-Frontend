@@ -4,15 +4,14 @@ import { Navigate } from 'react-router-dom';
 
 import WelcomePage from './pages/Auth/WelcomePage/WelcomePage';
 import HomePage from './pages/app/HomePage/HomePage';
-import TrendsPage from './pages/app/TrendsPage/TrendsPage';
 import SendRecipePage from './pages/app/SendRecipePage/SendRecipePage';
 import ViewRecipePage from './pages/app/ViewRecipePage/ViewRecipePage';
-import FilteredRecipesPage from './pages/app/FilteredRecipesPage/FilteredRecipesPage';
-import SavedRecipesPage from './pages/app/SavedRecipesPage/SavedRecipesPage';
-import LikedRecipesPageContents from './components/LikedRecipesPageContents/LikedRecipesPageContents';
+import ShowRecipes from './components/ShowRecipes/ShowRecipes';
 
 import AppLayout from './utils/AppLayout/AppLayout';
 import ProtectedRoute from './utils/ProtectedRoute/ProtectedRoute';
+
+import { pageTypes } from './config/constants';
 
 function App() {
 
@@ -22,19 +21,19 @@ function App() {
         <Route
           element={<div className='login-layout'><Outlet /></div>}
         >
-          <Route path='/login' element={<WelcomePage />} />
-          <Route path='/login/*' element={<Navigate to="/login" replace />} />
+          <Route path='/login' element={<WelcomePage />}/>
+          <Route path='/login/*' element={<Navigate to="/login" replace />}/>
         </Route>
         <Route element={<ProtectedRoute />}>
           <Route element={<AppLayout />}>
-            <Route path="/home" element={<HomePage />} />
-            <Route path="/trends" element={<TrendsPage/>} />
-            <Route path="/saved-recipes" element={<SavedRecipesPage />} />
-            <Route path="/liked-recipes" element={<LikedRecipesPageContents />} />
+            <Route path="/home" element={<HomePage />}/>
+            <Route path="/trends" element={<ShowRecipes type={pageTypes.TRENDS}/>}/>
+            <Route path="/saved-recipes" element={<ShowRecipes type={pageTypes.BOOKMARKS}/>}/>
+            <Route path="/liked-recipes" element={<ShowRecipes type={pageTypes.LIKES}/>}/>
             <Route path="/send-recipe" element={<SendRecipePage />} />
             <Route path="/recipe/:id" element={<ViewRecipePage />} />
-            <Route path="/recipes" element={<FilteredRecipesPage />} />
-            <Route path='/*' element={<Navigate to="/home" replace />} />
+            <Route path="/recipes" element={<ShowRecipes type= {pageTypes.FILTEREDS}/>}/>
+            <Route path='/*' element={<Navigate to="/home" replace/>}/>
           </Route>
         </Route>
       </Routes> 

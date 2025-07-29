@@ -1,7 +1,6 @@
-import useTrendsPageContents from "./TrendsPageContents.logic";
-import MiniRecipeBox from "../MiniRecipeBox/MiniRecipeBox";
-import './TrendsPageContents.css';
-
+import MiniRecipeBox from "../MiniRecipeBox/MiniRecipeBox"
+import useShowRecipes from "./ShowRecipes.logic";
+import './ShowRecipes.css';
 
 import { IconBaseProps } from 'react-icons';
 import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
@@ -10,25 +9,27 @@ import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 const IconArrowLeft = MdKeyboardDoubleArrowLeft as React.FC<IconBaseProps>;
 const IconArrowRight = MdKeyboardDoubleArrowRight as React.FC<IconBaseProps>;
 
-const TrendsPageContents = () => {
+interface ShowRecipesProps {
+  type: string;
+}
 
-  const { recipes, loading, page, recipeCount, limitForPerPage, handleLikeChange, handleBookmarkChange, handlePreviousPage, handleNextPage } = useTrendsPageContents();
+const ShowRecipes = ({ type }: ShowRecipesProps) => {
+
+  const {recipes, page, recipeCount, limitForPerPage, handleLikeChange, handleBookmarkChange, handlePreviousPage, handleNextPage} = useShowRecipes(type);
 
   return (
-    <div className="trends-page-contents-container">
-        {loading ? (
-            <div>Loading...</div>
-        ) : (
-            <div className="trends-page-content-container">
-                {recipes.map(recipe => (
-                    <MiniRecipeBox
-                        key={recipe.id} 
-                        recipe={recipe} 
-                        onLikeChange={()=> handleLikeChange(recipe.id)} 
-                        onBookmarkChange={()=> handleBookmarkChange(recipe.id)}
-                    />
-                ))}
-                <div className='pagination'>
+    <div className="show-recipes-page-contents-container">
+      {recipes.length > 0 ? (
+          <div className="show-recipes-page-content-container">
+            {recipes.map((recipe) => (
+            <MiniRecipeBox
+                key={recipe.id}
+                recipe={recipe}
+                onLikeChange={()=> handleLikeChange(recipe.id)} 
+                onBookmarkChange={()=> handleBookmarkChange(recipe.id)}
+            />
+            ))}
+            <div className='pagination'>
                     <button className={`previous-page${page === 1 ? ' cannot-click' : ''}`} onClick={handlePreviousPage}>
                         <IconArrowLeft/>Previous
                     </button>
@@ -38,9 +39,11 @@ const TrendsPageContents = () => {
                     </button>
                 </div>
             </div>
+        ) : (
+            <p>No recipes saved yet.</p>
         )}
     </div>
   )
 }
 
-export default TrendsPageContents
+export default ShowRecipes

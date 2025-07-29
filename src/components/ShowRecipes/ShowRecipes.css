@@ -1,13 +1,13 @@
-.trends-page-contents-container {
+.show-recipes-page-contents-container {
     display: flex;
     justify-content: center;
     padding: 2rem;
     background-color: whitesmoke;
-    min-height: calc(100vh - 167px);
+    min-height: calc(100vh - 165px); 
 }
 
-.trends-page-content-container {
-    width: 60%;
+.show-recipes-page-content-container {
+    width: 65%;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;

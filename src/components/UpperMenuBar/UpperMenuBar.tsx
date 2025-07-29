@@ -123,18 +123,18 @@ const UpperMenuBar: React.FC = () => {
           className='dropdown-menu-wrapper'
         >
           <div className='header-text-with-arrow'>
-            <span className={isTrendsVisible ? "title-on-mouse header-text" : "header-text"} onClick={handleTrendsClick}>
+            <span className={isTrendsVisible ? "title-on-mouse header-text" : "header-text"} onClick={() => handleTrendsClick("all-time")}>
               Trends
             </span>
             <IconArrowDown />
           </div>
           {isTrendsVisible &&
             <div className={`dropdown-menu trends animate`}>
-              <DropdownMenuElement header='Daily Trends' img={hour24}/>
-              <DropdownMenuElement header='Weekly Trends' img={week}/>
-              <DropdownMenuElement header='Monthly Trends' img={month}/>
-              <DropdownMenuElement header='Annual Trends' img={annual}/>
-              <DropdownMenuElement header='All Time Trends' img={all}/>
+              <DropdownMenuElement header='Daily Trends' img={hour24} onClick={() => handleTrendsClick("daily")}/>
+              <DropdownMenuElement header='Weekly Trends' img={week} onClick={() => handleTrendsClick("weekly")}/>
+              <DropdownMenuElement header='Monthly Trends' img={month} onClick={() => handleTrendsClick("monthly")}/>
+              <DropdownMenuElement header='Annual Trends' img={annual} onClick={() => handleTrendsClick("annual")}/>
+              <DropdownMenuElement header='All Time Trends' img={all} onClick={() => handleTrendsClick("all-time")}/>
             </div>
           }
         </div>

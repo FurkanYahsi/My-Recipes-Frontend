@@ -13,16 +13,17 @@ interface DropdownMenuElementProps {
     setSelectedCategories?: (options: string[]) => void;
     selectedTypes?: string[];
     setSelectedTypes?: (options: string[]) => void;
+    onClick?: (item?: string) => void;
 }
 
 
-const DropdownMenuElement: React.FC<DropdownMenuElementProps> = ({header, items, img, selectedCategories, setSelectedCategories, selectedTypes, setSelectedTypes}) => {
+const DropdownMenuElement: React.FC<DropdownMenuElementProps> = ({header, items, img, selectedCategories, setSelectedCategories, selectedTypes, setSelectedTypes, onClick}) => {
 
     const { toggleCategory, toggleType } = useDropdownMenuElement({selectedCategories, setSelectedCategories, selectedTypes, setSelectedTypes});
 
     return (
         <>
-            <div className='main-wrapper'>
+            <div className='main-wrapper' onClick={() => {onClick && onClick(header); console.log(header);}}>
 
                 <div className='mini-img'>
                     <img src={img} alt="mini-img" />

@@ -10,7 +10,6 @@ import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 const IconArrowLeft = MdKeyboardDoubleArrowLeft as React.FC<IconBaseProps>;
 const IconArrowRight = MdKeyboardDoubleArrowRight as React.FC<IconBaseProps>;
 
-
 const TrendsPageContents = () => {
 
   const { recipes, loading, page, recipeCount, limitForPerPage, handleLikeChange, handleBookmarkChange, handlePreviousPage, handleNextPage } = useTrendsPageContents();

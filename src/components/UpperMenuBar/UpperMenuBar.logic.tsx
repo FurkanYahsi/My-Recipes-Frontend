@@ -113,13 +113,16 @@ const useUpperMenuBar = () => {
         }
     }
 
-    const handleTrendsClick = () => {
-        // If the user is already on the trends page, do not navigate again
-        if (window.location.pathname === "/trends") {
-            return; 
-        }
-        navigate("/trends");
+const handleTrendsClick = (period: string) => {
+    const currentParams = new URLSearchParams(window.location.search);
+    const currentPeriod = currentParams.get("period");
+
+    if (window.location.pathname === "/trends" && currentPeriod === period) {
+        return;
     }
+
+    navigate(`/trends?period=${period}`);
+};
 
     // Send Recipe Button
     const handleSendRecipeClick = () => {

@@ -75,20 +75,20 @@ export const addBookmarkOrRemoveBookmarkTheRecipe = (recipeId: string): Promise<
     });
 }
 
-export const getAllTimeTrendRecipes = (page?: number, limit?: number): Promise<{success: boolean, data: any[]}> => {
-
+export const getTrendRecipes = (period: string, page?: number, limit?: number): Promise<{success: boolean, data: any}> => {
     return new Promise((resolve, reject) => {
-        RecipeService.getAllTimeTrendRecipes(page, limit)
+        RecipeService.getTrendRecipes(period, page, limit)
             .then((response) => {
-                const recipesArray = response.data?.data || [];                
+                const result = response.data || { recipes: [], total: 0 };
+                
                 resolve({
                     success: true,
-                    data: recipesArray 
+                    data: result
                 });
             })
             .catch((err) => {
                 console.error(err);
-                resolve({ success: false, data: [] });
+                resolve({ success: false, data: { recipes: [], total: 0 } });
             });
     });
 }

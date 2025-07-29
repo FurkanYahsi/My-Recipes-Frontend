@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { getAllTimeTrendRecipes } from "../../services/RecipeServices/RecipeService.export";
+import { getTrendRecipes } from "../../services/RecipeServices/RecipeService.export";
+import { useSearchParams } from "react-router-dom";
 
 interface Recipe {
   id: string;
@@ -14,7 +15,8 @@ interface Recipe {
 const useTrendsPageContents = () => {
 
     const limitForPerPage = 30;
-
+    const [searchParams] = useSearchParams();
+    let period = searchParams.get("period") || "all-time"; // Default to "all-time" if no period is specified
 
     const [recipes, setRecipes] = useState<Recipe[]>([]);
     const [loading, setLoading] = useState(true);
@@ -51,7 +53,7 @@ const useTrendsPageContents = () => {
         if (page > 1) {
             setPage(prevPage => prevPage - 1);
             setLoading(true);
-            getAllTimeTrendRecipes(page - 1).then((response:any) => {
+            getTrendRecipes(period, page - 1).then((response:any) => {
                 if (response && response.success) {
                     setRecipes(response.data);
                 } else {
@@ -67,7 +69,7 @@ const useTrendsPageContents = () => {
     const handleNextPage = () => {
         setPage(prevPage => prevPage + 1);
         setLoading(true);
-        getAllTimeTrendRecipes(page + 1).then((response:any) => {
+        getTrendRecipes(period, page + 1).then((response:any) => {
             if (response && response.success) {
                 setRecipes(response.data);
             } else {
@@ -81,18 +83,22 @@ const useTrendsPageContents = () => {
 
     useEffect(() => { // Fetch trending recipes when the page refreshes
         setLoading(true);
-        getAllTimeTrendRecipes(page, limitForPerPage).then((response:any) => {
+        getTrendRecipes(period, page, limitForPerPage).then((response) => {
             if (response && response.success) {
-                setRecipeCount(response.data.total);
-                setRecipes(response.data.recipes);
+                
+                setRecipeCount(response.data.total || 0);
+                setRecipes(response.data.data.recipes || []);
+                
+                setLoading(false);
             } else {
                 console.error("Failed to fetch trending recipes");
+                setLoading(false);
             }
         }).catch((error) => {
             console.error("Error fetching trending recipes:", error);
+            setLoading(false);
         });
-        setLoading(false);
-    }, []);
+    }, [period, page]);
     return {
         recipes,
         loading,

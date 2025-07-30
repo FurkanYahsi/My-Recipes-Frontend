@@ -1,13 +1,7 @@
-import MiniRecipeBox from "../MiniRecipeBox/MiniRecipeBox"
+import MiniRecipeBox from "../MiniRecipeBox/MiniRecipeBox";
+import Pagination from "../Pagination/Pagination";
 import useShowRecipes from "./ShowRecipes.logic";
 import './ShowRecipes.css';
-
-import { IconBaseProps } from 'react-icons';
-import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
-import { MdKeyboardDoubleArrowRight } from "react-icons/md";
-
-const IconArrowLeft = MdKeyboardDoubleArrowLeft as React.FC<IconBaseProps>;
-const IconArrowRight = MdKeyboardDoubleArrowRight as React.FC<IconBaseProps>;
 
 interface ShowRecipesProps {
   type: string;
@@ -15,7 +9,7 @@ interface ShowRecipesProps {
 
 const ShowRecipes = ({ type }: ShowRecipesProps) => {
 
-  const {recipes, page, recipeCount, limitForPerPage, handleLikeChange, handleBookmarkChange, handlePreviousPage, handleNextPage} = useShowRecipes(type);
+  const {page, setPage, recipes, recipeCount, limitForPerPage, handleLikeChange, handleBookmarkChange} = useShowRecipes(type);
 
   return (
     <div className="show-recipes-page-contents-container">
@@ -29,15 +23,12 @@ const ShowRecipes = ({ type }: ShowRecipesProps) => {
                 onBookmarkChange={()=> handleBookmarkChange(recipe.id)}
             />
             ))}
-            <div className='pagination'>
-                    <button className={`previous-page${page === 1 ? ' cannot-click' : ''}`} onClick={handlePreviousPage}>
-                        <IconArrowLeft/>Previous
-                    </button>
-                    <span className='page-number'>Page {page} / {Math.max(1, Math.ceil(recipeCount / limitForPerPage))}</span>        
-                    <button className={`next-page${page === Math.max(1, Math.ceil(recipeCount / limitForPerPage)) ? ' cannot-click' : ''}`} onClick={handleNextPage}>
-                        Next<IconArrowRight/>
-                    </button>
-                </div>
+            <Pagination 
+                page={page}
+                setPage={setPage}
+                totalCount={recipeCount} 
+                limit={limitForPerPage} 
+            />
             </div>
         ) : (
             <p>No recipes saved yet.</p>

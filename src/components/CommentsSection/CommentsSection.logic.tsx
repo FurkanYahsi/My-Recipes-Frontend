@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { createComment, getMainComments, getRootCommentReplies, likeOrUnlikeComment, getRecipeById } from '../../services/RecipeServices/RecipeService.export';
+import { getRecipeById } from '../../services/RecipeServices/RecipeService.export';
+import { createComment, getMainComments, getRootCommentReplies, likeOrUnlikeComment } from '../../services/CommentServices/CommentService.export';
 import { ToastMessage } from '../../utils/ToastMessage/ToastMessage';
 
 export interface Comment {

@@ -2,16 +2,17 @@ import { RequestMethod } from "../../enums/RequestMethod";
 import { makeRequest } from "../../axios/ApiService";
 
 const endpoints: any = {
+    // Recipes
     createRecipe: '/recipe/create',
     likeOrUnlikeRecipe: (recipeId: string) => `/recipe/${recipeId}/like-or-unlike`,
     bookmarkOrRemoveBookmarkTheRecipe: (recipeId: string) => `/recipe/${recipeId}/bookmark-or-remove-bookmark`,
     getTrends: (period: string) => `/recipe/trends/${period}`,
     getRecipeById: (recipeId: string) => `/recipe/${recipeId}`,
-    createComment: (recipeId: string) => `/recipe/${recipeId}/comment/create`,
-    getComments: (recipeId: string) => `/recipe/${recipeId}/comments`,
-    getReplies: (commentId: string) => `/recipe/comment/${commentId}/replies`,
-    getRootCommentReplies: (commentId: string) => `/recipe/comment/${commentId}/root-replies`,
-    likeOrUnlikeComment: (commentId: string) => `/recipe/comment/${commentId}/like-or-unlike`
+    getRecipeByCategory: (category: string) => `/recipe/category/${category}`,
+    getRecipesByType: (type: string) => `/recipe/type/${type}`,
+    getSavedRecipes: `/recipe/saved-recipes`,
+    getLikedRecipes: `/recipe/liked-recipes`,
+
 };
 
 class RecipeService {
@@ -61,7 +62,7 @@ class RecipeService {
             });
     }
     async getRecipeByCategory(category: string, page: number, limit?: number): Promise<{ data: any, success: boolean }> {
-        return makeRequest(RequestMethod.GET, `/recipe/category/${category}`, { params: { page, limit } })
+        return makeRequest(RequestMethod.GET, endpoints.getRecipeByCategory(category), { params: { page, limit } })
             .then(result => {
                 return result;
             })
@@ -70,7 +71,7 @@ class RecipeService {
             });
     }
     async getRecipesByType(type: string, page: number, limit?: number): Promise<{ data: any, success: boolean }> {
-        return makeRequest(RequestMethod.GET, `/recipe/type/${type}`, { params: { page, limit } })
+        return makeRequest(RequestMethod.GET, endpoints.getRecipesByType(type), { params: { page, limit } })
             .then(result => {
                 return result;
             })
@@ -79,7 +80,7 @@ class RecipeService {
             });
     }
     async getSavedRecipes(page: number, limit?: number): Promise<{ data: any, success: boolean }> {
-        return makeRequest(RequestMethod.GET, '/recipe/saved-recipes', { params: { page, limit } })
+        return makeRequest(RequestMethod.GET, endpoints.getSavedRecipes, { params: { page, limit } })
             .then(result => {
                 return result;
             })
@@ -88,62 +89,7 @@ class RecipeService {
             });
     }
     async getLikedRecipes(page: number, limit?: number): Promise<{ data: any, success: boolean }> {
-        return makeRequest(RequestMethod.GET, '/recipe/liked-recipes', { params: { page, limit } })
-            .then(result => {
-                return result;
-            })
-            .catch(error => {
-                return error;
-            });
-    }
-    async createComment(recipeId: string, content: string, parentCommentId: string | null = null,  rootCommentId: string | null = null): Promise<{ data: any, success: boolean }> {
-    return makeRequest(
-        RequestMethod.POST, 
-        endpoints.createComment(recipeId), 
-        { 
-            data: { 
-                content,
-                parent_comment_id: parentCommentId,
-                root_comment_id: rootCommentId
-            } 
-        }
-    )
-    .then(result => {
-        return result;
-    })
-    .catch(error => {
-        return error;
-    });
-    }
-    async getMainComments(recipeId: string, page: number, limit?: number): Promise<{ data: any, success: boolean }> {
-        return makeRequest(RequestMethod.GET, endpoints.getComments(recipeId), {params: {page, limit}})
-            .then(result => {
-                return result;
-            })
-            .catch(error => {
-                return error;
-            });        
-    }
-    async getReplies(commentId: string, limit?: number): Promise<{ data: any, success: boolean }> {
-        return makeRequest(RequestMethod.GET, endpoints.getReplies(commentId), {params: {limit}})
-            .then(result => {
-                return result;
-            })
-            .catch(error => {
-                return error;
-            });
-    }
-    async getRootCommentReplies(commentId: string, limit?: number, page?: number): Promise<{ data: any, success: boolean }> {
-        return makeRequest(RequestMethod.GET, endpoints.getRootCommentReplies(commentId), {params: {limit, page}})
-            .then(result => {
-                return result;
-            })
-            .catch(error => {
-                return error;
-            });
-    }
-    async likeOrUnlikeComment(commentId: string): Promise<{ data: any, success: boolean }> {
-        return makeRequest(RequestMethod.POST, endpoints.likeOrUnlikeComment(commentId))
+        return makeRequest(RequestMethod.GET, endpoints.getLikedRecipes, { params: { page, limit } })
             .then(result => {
                 return result;
             })
@@ -152,5 +98,4 @@ class RecipeService {
             });
     }
 }
-
 export default new RecipeService();

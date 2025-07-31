@@ -124,18 +124,6 @@ const useComments = (recipeId: string) => {
         });
     }, [recipeId, didNewCommentCreated]);
 
-    const handlePreviousPage = () => {
-        if (page > 1) {
-            setPage(page - 1);
-        }
-    }
-
-    const handleNextPage = () => {
-        const lastPage = Math.ceil(commentCount / 8);
-        if (page >= lastPage) return;
-        setPage(page + 1);
-    };
-
     const handleViewReplies = (commentId: string) => {
         if (whichCommentsRepliesWillBeViewed?.includes(commentId)) {
             setWhichCommentsRepliesWillBeViewed(previousComments => previousComments?.filter(id => id !== commentId) || null);
@@ -182,6 +170,8 @@ const useComments = (recipeId: string) => {
         commentCount,
         commentRef,
         page,
+        setPage,
+        howManyCommentsPerPage,
         contextHolder,
         replyPages,
         handleViewMoreReplies,
@@ -190,8 +180,6 @@ const useComments = (recipeId: string) => {
         handleViewReplies,
         hasMoreReplies,
         handleCreateComment,
-        handleNextPage,
-        handlePreviousPage
     }
 }
 

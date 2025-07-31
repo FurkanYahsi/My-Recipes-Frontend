@@ -1,6 +1,7 @@
 import './CommentsSection.css';
 import useComments from './CommentsSection.logic';
 import Comment from '../Comment/Comment';
+import Pagination from '../Pagination/Pagination';
 
 import { IconBaseProps } from 'react-icons';
 import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
@@ -25,6 +26,8 @@ const Comments: React.FC<CommentsProps> = ({recipeId}) => {
     commentCount,
     commentRef,
     page,
+    setPage,
+    howManyCommentsPerPage,
     replyPages,
     contextHolder,
     handleReplyClick,
@@ -33,8 +36,6 @@ const Comments: React.FC<CommentsProps> = ({recipeId}) => {
     handleViewMoreReplies,
     hasMoreReplies,
     handleCreateComment,
-    handleNextPage,
-    handlePreviousPage
   } = useComments(recipeId);
 
   return (
@@ -90,15 +91,12 @@ const Comments: React.FC<CommentsProps> = ({recipeId}) => {
         </div>
       ))}
 
-      <div className='pagination'>
-        <button className={`previous-page${page === 1 ? ' cannot-click' : ''}`} onClick={handlePreviousPage}>
-          <IconArrowLeft/>Previous
-        </button>
-        <span className='page-number'>Page {page} / {Math.max(1, Math.ceil(commentCount / 8))}</span>        
-        <button className={`next-page${page === Math.max(1, Math.ceil(commentCount / 8)) ? ' cannot-click' : ''}`} onClick={handleNextPage}>
-          Next<IconArrowRight/>
-        </button>
-      </div>
+      <Pagination
+        page={page}
+        setPage={setPage}
+        totalCount={commentCount}
+        limit={howManyCommentsPerPage}
+      />
 
       <form onSubmit={handleCreateComment} className='add-comment-container'>
         {contextHolder}

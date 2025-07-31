@@ -9,7 +9,6 @@ const usePagination = ({ page, setPage, totalCount, limit }: usePaginationProps)
 
     const lastPage = Math.max(1, Math.ceil(totalCount / limit))
     
-    console.log("lastPage", totalCount);
     const handlePreviousPage = () => {
         if (page > 1) {
             setPage(page - 1);
@@ -17,9 +16,9 @@ const usePagination = ({ page, setPage, totalCount, limit }: usePaginationProps)
     }
 
     const handleNextPage = () => {
-        const lastPage = Math.ceil(totalCount / limit);
-        if (page >= lastPage) return;
-        setPage(page + 1);
+        if (page < lastPage) {
+            setPage(page + 1);
+        }
     };    
 
   return {

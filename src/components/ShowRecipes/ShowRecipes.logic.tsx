@@ -48,12 +48,14 @@ const useShowRecipes = (type:string) => {
             } 
             let length = 0;
 
+            // --------------------------- If both categories and types are selected, fetch recipes by category first but dysfunctional ---------------------------
             if (categoriesString) {
                 getRecipeByCategory(categoriesString, page, limitForPerPage)
                   .then((response: any) => {
 
                     if (response && response.success && response.data && response.data.data) {
-                        setRecipes(response.data.data);
+                        setRecipes(response.data.data.recipes);
+                        setRecipeCount(response.data.data.total || 0);
                         length = response.data.data.length;
                     } else {
                       console.error("Unexpected API response structure:", response);
@@ -72,7 +74,8 @@ const useShowRecipes = (type:string) => {
                 getRecipesByType(uniqueTypesNotFromCategories.toString(), page, limitForPerPage - length)
               .then((response: any) => {
                 if (response && response.success && response.data && response.data.data) {
-                    setRecipes(response.data.data);
+                    setRecipeCount(response.data.data.total || 0);
+                    setRecipes(response.data.data.recipes);
                 } else {
                   console.error("Unexpected API response structure:", response);
                   setRecipes([]);
@@ -87,8 +90,7 @@ const useShowRecipes = (type:string) => {
         } else if (type === pageTypes.TRENDS) {
 
             getTrendRecipes(period, page, limitForPerPage).then((response) => {
-                if (response && response.success) {
-                    
+                if (response && response.success) {                    
                     setRecipeCount(response.data.data.total || 0);
                     setRecipes(response.data.data.recipes || []);
                 } else {
@@ -102,8 +104,8 @@ const useShowRecipes = (type:string) => {
 
             getSavedRecipes(page, limitForPerPage).then((response) => {
                     if (response && response.success) {                
-                        setRecipeCount(response.data.data.total || 0);
-                        setRecipes(response.data || []);                
+                        setRecipeCount(response.data.total || 0);
+                        setRecipes(response.data.recipes || []);                
                     } else {
                         console.error("Failed to fetch trending recipes");
                     }
@@ -115,9 +117,8 @@ const useShowRecipes = (type:string) => {
 
             getLikedRecipes(page, limitForPerPage).then((response) => {
                     if (response && response.success) {                
-                        setRecipeCount(response.data.data || 0);
-                        console.log("response.data", response.data);
-                        setRecipes(response.data || []);                
+                        setRecipeCount(response.data.total || 0);
+                        setRecipes(response.data.recipes || []);                
                     } else {
                         console.error("Failed to fetch trending recipes");
                     }

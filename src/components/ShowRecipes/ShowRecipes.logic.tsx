@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getRecipeByCategory, getRecipesByType, getTrendRecipes, getSavedRecipes, getLikedRecipes } from '../../services/RecipeServices/RecipeService.export';
+import { isAdmin, isEditor } from '../../services/AuthServices/AuthService.export';
 import { useSearchParams } from 'react-router-dom';
 
 import { categoryTypes, pageTypes } from "../../config/constants";
@@ -34,6 +35,31 @@ const useShowRecipes = (type:string) => {
     const typesArray = typesString ? decodeURIComponent(typesString).split(",") : [];
     const typesFromSelectedCategories = categoriesArray.flatMap(category => categoryTypes[category] || []);
     const uniqueTypesNotFromCategories = typesArray.filter(type => !typesFromSelectedCategories.includes(type));
+
+    const [isUserAdmin, setIsUserAdmin] = useState<boolean>(false);
+    const [isUserEditor, setIsUserEditor] = useState<boolean>(false);
+
+    useEffect(() => {
+
+      const checkPermissions = async () => {
+        try {
+            const adminResult = await isAdmin();
+            const adminData = Array.isArray(adminResult) ? adminResult[0] : adminResult;
+            setIsUserAdmin(adminData?.data?.data?.isAdmin === true);
+            
+            const editorResult = await isEditor();
+            const editorData = Array.isArray(editorResult) ? editorResult[0] : editorResult;
+            setIsUserEditor(editorData?.data?.data?.isEditor === true);
+
+        } catch (error) {
+            console.error("Permission check failed:", error);
+            setIsUserAdmin(false);
+            setIsUserEditor(false);
+        } finally {
+        }
+    };    
+    checkPermissions();
+}, []);
 
     useEffect(() => {
         setLoading(true);
@@ -131,6 +157,11 @@ const useShowRecipes = (type:string) => {
 
     }, [categoriesString, typesString, period, page, type]);
 
+    const handleDeleteRecipe = (recipeId: string) => {
+        setRecipes(recipes => recipes.filter(recipe => recipe.id !== recipeId));
+        setRecipeCount(recipeCount => recipeCount - 1);
+    }
+
     const handleLikeChange = (recipeId: string) => {
         setRecipes(recipes => 
             recipes.map(recipe => recipe.id === recipeId
@@ -164,8 +195,11 @@ const useShowRecipes = (type:string) => {
     recipeCount,
     limitForPerPage,
     loading,
+    isUserAdmin,
+    isUserEditor,
     handleLikeChange,
     handleBookmarkChange,
+    handleDeleteRecipe,
   }
 }
 

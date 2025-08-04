@@ -144,3 +144,35 @@ export const getLikedRecipes = (page: number, limit?: number): Promise<{success:
             });
     });
 }
+
+export const deleteRecipe = (recipeId: string): Promise<{success: boolean, data: any}> => {
+    return new Promise((resolve, reject) => {
+        RecipeService.deleteRecipe(recipeId)
+            .then((response) => {
+                resolve({
+                    success: true,
+                    data: response.data
+                });
+            })
+            .catch((err) => {
+                console.error("Error deleting recipe:", err);
+                resolve({ success: false, data: {} });
+            });
+    });
+}
+
+export const editRecipe = (recipeId: string, values: any): Promise<{success: boolean, data: any}> => {
+    return new Promise((resolve, reject) => {
+        RecipeService.editRecipe(recipeId, values)
+            .then((response) => {
+                resolve({
+                    success: true,
+                    data: response.data
+                });
+            })
+            .catch((err) => {
+                console.error("Error editing recipe:", err);
+                resolve({ success: false, data: {} });
+            });
+    });
+}

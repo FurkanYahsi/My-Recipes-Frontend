@@ -22,7 +22,7 @@ function App() {
           element={<div className='login-layout'><Outlet /></div>}
         >
           <Route path='/login' element={<WelcomePage />}/>
-          <Route path='/login/*' element={<Navigate to="/login" replace />}/>
+          <Route path='*' element={<Navigate to="/login" replace />}/>
         </Route>
         <Route element={<ProtectedRoute />}>
           <Route element={<AppLayout />}>
@@ -30,6 +30,7 @@ function App() {
             <Route path="/trends" element={<ShowRecipes type={pageTypes.TRENDS}/>}/>
             <Route path="/saved-recipes" element={<ShowRecipes type={pageTypes.BOOKMARKS}/>}/>
             <Route path="/liked-recipes" element={<ShowRecipes type={pageTypes.LIKES}/>}/>
+            <Route path="/user-recipes" element={<ShowRecipes type={pageTypes.USER_RECIPES}/>}/>
             <Route path="/send-recipe" element={<SendRecipePage />} />
             <Route path="/recipe/:id" element={<ViewRecipePage />} />
             <Route path="/recipes" element={<ShowRecipes type= {pageTypes.FILTEREDS}/>}/>

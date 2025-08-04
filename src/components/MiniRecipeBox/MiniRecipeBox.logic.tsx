@@ -10,8 +10,6 @@ const useMiniRecipeBox = (recipeId:string, initialLiked:boolean, initialBookmark
     const [isLiked, setIsLiked] = useState(initialLiked);
     const [isBookmarked, setIsBookmarked] = useState(initialBookmarked);
 
-    const canTrashCanBeVisible = false;
-
     const handleViewRecipe = () => {
         navigate(`/recipe/${recipeId}`);
     }
@@ -86,7 +84,6 @@ const useMiniRecipeBox = (recipeId:string, initialLiked:boolean, initialBookmark
     onBookmarkChange,
     isLiked,
     isBookmarked,
-    canTrashCanBeVisible,
     addToEditorSuggestions,
     handleEditRecipe,
     handleDeleteRecipe,

@@ -41,17 +41,18 @@ interface MiniRecipeBoxProps {
   onDeleteSuccess?: () => void;
   isUserAdmin?: boolean;
   isUserEditor?: boolean;
+  isUserShowing?: boolean;
 }
   
-const MiniRecipeBox = ({recipe, onLikeChange, onBookmarkChange, onDeleteSuccess, isUserAdmin, isUserEditor}: MiniRecipeBoxProps) => {
+const MiniRecipeBox = ({recipe, onLikeChange, onBookmarkChange, onDeleteSuccess, isUserAdmin, isUserEditor, isUserShowing = false}: MiniRecipeBoxProps) => {
 
-  const {handleViewRecipe, handleLikeClick, handleBookmarkClick, handleEditRecipe, handleDeleteRecipe, isLiked, canTrashCanBeVisible, contextHolder, isBookmarked, addToEditorSuggestions} = useMiniRecipeBox(recipe.id, recipe.is_liked, recipe.is_bookmarked, onLikeChange, onBookmarkChange, onDeleteSuccess);
+  const {handleViewRecipe, handleLikeClick, handleBookmarkClick, handleEditRecipe, handleDeleteRecipe, isLiked, contextHolder, isBookmarked, addToEditorSuggestions} = useMiniRecipeBox(recipe.id, recipe.is_liked, recipe.is_bookmarked, onLikeChange, onBookmarkChange, onDeleteSuccess);
 
   return (
     <div>
       {contextHolder}
         <div className="mini-recipe-box">
-            {(isUserAdmin || isUserEditor) && <div className='icon-backside' onClick={handleDeleteRecipe}><IconTrashCan/></div>}
+            {(isUserAdmin || isUserEditor || isUserShowing) && <div className='icon-backside' onClick={handleDeleteRecipe}><IconTrashCan/></div>}
             <div className="recipe-image" onClick={handleViewRecipe}>
                 <img src={pasta} alt={recipe.recipe_name} />
             </div>

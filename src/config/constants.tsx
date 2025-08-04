@@ -26,5 +26,6 @@ export const pageTypes: Record<string, string> = {
     TRENDS: 'trends',
     BOOKMARKS: 'saved',
     LIKES: 'liked',
-    FILTEREDS: 'filter'
+    FILTEREDS: 'filter',
+    USER_RECIPES: 'user-recipes',
 };

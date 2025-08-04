@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getRecipeByCategory, getRecipesByType, getTrendRecipes, getSavedRecipes, getLikedRecipes } from '../../services/RecipeServices/RecipeService.export';
+import { getRecipeByCategory, getRecipesByType, getTrendRecipes, getSavedRecipes, getLikedRecipes, getUserRecipes } from '../../services/RecipeServices/RecipeService.export';
 import { isAdmin, isEditor } from '../../services/AuthServices/AuthService.export';
 import { useSearchParams } from 'react-router-dom';
 
@@ -38,6 +38,7 @@ const useShowRecipes = (type:string) => {
 
     const [isUserAdmin, setIsUserAdmin] = useState<boolean>(false);
     const [isUserEditor, setIsUserEditor] = useState<boolean>(false);
+    const [isUserShowing, setIsUserShowing] = useState<boolean>(false);
 
     useEffect(() => {
 
@@ -63,6 +64,8 @@ const useShowRecipes = (type:string) => {
 
     useEffect(() => {
         setLoading(true);
+        setIsUserShowing(false);
+        setPage(1);
 
         setRecipes([]);
 
@@ -152,6 +155,19 @@ const useShowRecipes = (type:string) => {
                     console.error("Error fetching trending recipes:", error);
                 });
 
+        } else if (type === pageTypes.USER_RECIPES) {
+            setIsUserShowing(true);
+            getUserRecipes(page, limitForPerPage).then((response) => {
+                if (response && response.success) {                
+                    setRecipeCount(response.data.total || 0);
+                    setRecipes(response.data.recipes || []);                
+                } else {
+                    console.error("Failed to fetch user recipes");
+                }
+            }).catch((error) => {
+                console.error("Error fetching user recipes:", error);
+            });
+
         }
         setLoading(false);
 
@@ -197,6 +213,7 @@ const useShowRecipes = (type:string) => {
     loading,
     isUserAdmin,
     isUserEditor,
+    isUserShowing,
     handleLikeChange,
     handleBookmarkChange,
     handleDeleteRecipe,

@@ -9,7 +9,7 @@ interface ShowRecipesProps {
 
 const ShowRecipes = ({ type }: ShowRecipesProps) => {
 
-  const {page, setPage, recipes, recipeCount, limitForPerPage, isUserAdmin, isUserEditor, handleLikeChange, handleBookmarkChange, handleDeleteRecipe} = useShowRecipes(type);
+  const {page, setPage, recipes, recipeCount, limitForPerPage, isUserAdmin, isUserEditor, isUserShowing, handleLikeChange, handleBookmarkChange, handleDeleteRecipe} = useShowRecipes(type);
 
   return (
     <div className="show-recipes-page-contents-container">
@@ -24,6 +24,7 @@ const ShowRecipes = ({ type }: ShowRecipesProps) => {
                 onDeleteSuccess={() => handleDeleteRecipe(recipe.id)}
                 isUserAdmin={isUserAdmin}
                 isUserEditor={isUserEditor}
+                isUserShowing={isUserShowing}
             />
             ))}
             <Pagination 

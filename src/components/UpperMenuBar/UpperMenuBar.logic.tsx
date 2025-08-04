@@ -138,6 +138,14 @@ const handleTrendsClick = (period: string) => {
         setIsProfileVisible(!isProfileVisible);
     }
 
+    const handleMyProfileClick = () => {
+        // If the user is already on the profile page, do not navigate again
+        if (window.location.pathname === "/profile") {
+            return; 
+        }
+        navigate("/user-recipes");
+    }
+
     // Saved Recipes Button
     const handleSavedRecipes = () => {
         // If the user is already on the saved-recipes page, do not navigate again
@@ -194,6 +202,7 @@ const handleTrendsClick = (period: string) => {
         handleTrendsClick,
         handleSendRecipeClick,
         handleProfileClick,
+        handleMyProfileClick,
         handleSavedRecipes,
         handleLikedRecipes,
         handleMenuClick,

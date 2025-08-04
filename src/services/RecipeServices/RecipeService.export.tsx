@@ -111,6 +111,23 @@ export const getRecipeById = (recipeId: string): Promise<{success: boolean, data
     });
 }
 
+export const getUserRecipes = (page?: number, limit?: number): Promise<{success: boolean, data: any}> => {
+    return new Promise((resolve, reject) => {
+        RecipeService.getUserRecipes(page, limit)
+            .then((response) => {
+                const userRecipesData = response.data?.data || [];
+                resolve({
+                    success: true,
+                    data: userRecipesData
+                });
+            })
+            .catch((err) => {
+                console.error("Error fetching user recipes:", err);
+                resolve({ success: false, data: [] });
+            });
+    });
+}
+
 export const getSavedRecipes = (page: number, limit?: number): Promise<{success: boolean, data: any}> => {
     return new Promise((resolve, reject) => {
         RecipeService.getSavedRecipes(page, limit)

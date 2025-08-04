@@ -12,9 +12,9 @@ const endpoints: any = {
     getRecipesByType: (type: string) => `/recipe/type/${type}`,
     getSavedRecipes: `/recipe/saved-recipes`,
     getLikedRecipes: `/recipe/liked-recipes`,
+    getUserRecipes: '/recipe/user-recipes',
     deleteRecipe: (recipeId: string) => `/recipe/${recipeId}/delete`,
     editRecipe: (recipeId: string) => `/recipe/${recipeId}/edit`,
-
 };
 
 class RecipeService {
@@ -56,6 +56,15 @@ class RecipeService {
     }
     async getRecipeById(recipeId: string): Promise<{ data: any, success: boolean }> {
         return makeRequest(RequestMethod.GET, endpoints.getRecipeById(recipeId))
+            .then(result => {
+                return result;
+            })
+            .catch(error => {
+                return error;
+            });
+    }
+    async getUserRecipes(page?: number, limit?: number): Promise<{ data: any, success: boolean }> {
+        return makeRequest(RequestMethod.GET, endpoints.getUserRecipes, { params: { page, limit } })
             .then(result => {
                 return result;
             })

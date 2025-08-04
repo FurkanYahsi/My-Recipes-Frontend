@@ -35,12 +35,15 @@ const useShowRecipes = (type:string) => {
     const typesArray = typesString ? decodeURIComponent(typesString).split(",") : [];
     const typesFromSelectedCategories = categoriesArray.flatMap(category => categoryTypes[category] || []);
     const uniqueTypesNotFromCategories = typesArray.filter(type => !typesFromSelectedCategories.includes(type));
+    const [previousType, setPreviousType] = useState<string>("");
 
     const [isUserAdmin, setIsUserAdmin] = useState<boolean>(false);
     const [isUserEditor, setIsUserEditor] = useState<boolean>(false);
     const [isUserShowing, setIsUserShowing] = useState<boolean>(false);
 
     useEffect(() => {
+
+        // Check permissions for admin and editor roles
 
       const checkPermissions = async () => {
         try {
@@ -65,7 +68,11 @@ const useShowRecipes = (type:string) => {
     useEffect(() => {
         setLoading(true);
         setIsUserShowing(false);
-        setPage(1);
+
+        if (type !== previousType) {
+            setPage(1);
+            setPreviousType(type);
+        }
 
         setRecipes([]);
 

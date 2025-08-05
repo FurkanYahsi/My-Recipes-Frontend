@@ -27,7 +27,14 @@ const EditorSuggestions = () => {
         <div className='menu-item'><IconArrowDown/></div>
       </div>
       <div className='content-container'>
-        <Contents />
+        <Contents        
+          recipeType='Main Course'
+          title='Fettuccine with Bolognese Sauce'
+          editorComment="Here's a quick and easy recipe for spaghetti with bolognese sauce, both delicious and easy to make. I highly recommend you try this recipe, which perfectly complements spaghetti and makes it a delicious dish you won't be able to get enough of."
+          isLiked={false}
+          onLikeToggle={() => {}}
+          userName='Nefis Yemek Tarifleri'
+        />
         <PhotoContainer />
       </div>
     </div>

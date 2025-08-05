@@ -1,6 +1,7 @@
 .editor-container {
   overflow: hidden;
   width: 100%;
+  min-width: 350px;
   height: 853px; /*calc(100dvh - 100px);*/
   background-color: rgb(255, 255, 255);
   display: flex;
@@ -42,6 +43,7 @@
 .editor-container .content-container {
   border-radius: 20px 0 0 20px;
   width: 100%;
+  min-width: 350px;
   display: flex;
   align-items: center;
   background-image: url('../../assets/black-background.jpg');
@@ -53,7 +55,6 @@
     flex-direction: column;
   }
 }
-
 
 img {
   width: 100%;

@@ -9,7 +9,7 @@ axiosInstance.interceptors.response.use(
     (response) => response,
     async (error) => {
         const originalRequest = error.config;
-        if (error.response && (error.response.status === 401 || error.response.status === 403 )&& !originalRequest._retry) {
+        if (error.response && (error.response.status === 401 )&& !originalRequest._retry) {
             originalRequest._retry = true;    
                 window.location.href = "/login";
             }

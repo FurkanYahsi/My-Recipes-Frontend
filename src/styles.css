@@ -7,6 +7,26 @@
     border-radius: 10px;
     overflow: hidden;
     box-shadow:  0 0 10px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.5);
+    transition: transform 0.6s ease, width 0.6s ease, height 0.6s ease;
+}
+
+@media (max-width: 1000px) {
+    .container {
+        width: 600px;
+        height: 500px;
+    }
+}
+
+@media (max-width: 700px) {
+    .container {
+        width: 450px;
+    }
+}
+
+@media (max-width: 550px) {
+    .container {
+        width: 350px;
+    }
 }
 
 /*Overlayer*/
@@ -78,6 +98,14 @@
     text-transform: uppercase;
     font-weight: bold;
     margin-top: 20px;
+}
+
+@media (max-width: 700px) {
+    .container button {
+        width: 100px;
+        padding: 10px 20px;
+        font-size: 12px;
+    }
 }
 
 .container button:hover {

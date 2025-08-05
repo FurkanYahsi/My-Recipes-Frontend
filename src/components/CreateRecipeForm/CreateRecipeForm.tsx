@@ -14,6 +14,7 @@ const CreateRecipeForm = () => {
   const { whichStep,
           setWhichStep,
           handleFirstNextStep,
+          handleUpdateRecipe,
           handleShareRecipe,
           recipeNameRef,
           recipeStoryRef,
@@ -25,7 +26,8 @@ const CreateRecipeForm = () => {
           setSelectedCategories,
           selectedTypes,
           setSelectedTypes,
-          typeOptions } = useCreateRecipeForm();
+          typeOptions,
+          isUpdateRecipe } = useCreateRecipeForm();
           
 
   return (
@@ -74,7 +76,9 @@ const CreateRecipeForm = () => {
           </div>
           <div className="button-container">
             <button onClick={() => setWhichStep(1)} className='previous-page create-recipe-buttons-width'><IconArrowLeft/>Back</button>
-            <button onClick={handleShareRecipe} className='next-page create-recipe-buttons-width'>Share Recipe<IconArrowRight/></button>
+            { isUpdateRecipe ?
+              <button onClick={handleUpdateRecipe} className='next-page create-recipe-buttons-width'>Update Recipe<IconArrowRight/></button> :
+              <button onClick={handleShareRecipe} className='next-page create-recipe-buttons-width'>Share Recipe<IconArrowRight/></button>}
           </div>
         </div>
       }

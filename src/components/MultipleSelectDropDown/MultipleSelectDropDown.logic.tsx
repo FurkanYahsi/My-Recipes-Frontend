@@ -13,12 +13,15 @@ const useMultipleSelectDropDown = ({selectedOptions, setSelectedOptions}:useMult
 
 
     const toggleOptions = (option:string) => {
-        if (selectedOptions && setSelectedOptions) {
+        if (selectedOptions && setSelectedOptions && Array.isArray(selectedOptions)) {
             if (selectedOptions.includes(option)) {
                 setSelectedOptions(selectedOptions.filter(opt => opt !== option));
             } else {
                 setSelectedOptions([...selectedOptions, option]);
             }
+        } else if (setSelectedOptions) {
+            // If selectedOptions is not an array or is undefined, create a new array
+            setSelectedOptions([option]);
         }
     }
 
@@ -32,7 +35,7 @@ const useMultipleSelectDropDown = ({selectedOptions, setSelectedOptions}:useMult
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
         };
-    }, []);
+    }, [selectedOptions]);
 
   return {
     toggleOptions,

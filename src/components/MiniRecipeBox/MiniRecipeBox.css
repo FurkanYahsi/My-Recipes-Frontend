@@ -18,7 +18,8 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease
 }
 
-.icon-backside {
+.icon-backside-1,
+.icon-backside-2 {
   position: absolute;
   background-color: #f0f0f0;
   border-radius: 50%;
@@ -38,6 +39,10 @@
       transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
       transform: scale(1.05);
     }
+}
+
+.icon-backside-1 {
+  right: 4rem;
 }
 
 .mini-recipe-box .recipe-image {

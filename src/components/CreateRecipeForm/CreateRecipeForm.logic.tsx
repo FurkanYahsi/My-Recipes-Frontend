@@ -1,6 +1,7 @@
 import React, { FormEvent, useEffect, useRef, useState } from 'react'
-import { createRecipe } from '../../services/RecipeServices/RecipeService.export';
+import { createRecipe, editRecipe, getRecipeById } from '../../services/RecipeServices/RecipeService.export';
 import { ToastMessage } from '../../utils/ToastMessage/ToastMessage';
+import { useLocation } from 'react-router-dom';
 
 const useCreateRecipeForm = () => {
 
@@ -14,6 +15,50 @@ const useCreateRecipeForm = () => {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
   const [typeOptions, setTypeOptions] = useState<string[]>([]);
+
+  const location = useLocation();
+  const { recipeId } = location.state || {};
+  const [isUpdateRecipe, setIsUpdateRecipe] = useState<Boolean>(!!recipeId);
+
+  // Fetch recipe data for editing
+  useEffect(() => {
+    if (recipeId) {
+      getRecipeById(recipeId).then((response: any) => {
+        if (response && response.success && response.data) {
+          const recipe = response.data;
+          if (recipeNameRef.current) recipeNameRef.current.value = recipe.recipe_name || '';
+          if (recipeStoryRef.current) recipeStoryRef.current.value = recipe.recipe_story || '';
+          if (ingredientsRef.current) ingredientsRef.current.value = recipe.recipe_ingredients || '';
+          if (instructionsRef.current) instructionsRef.current.value = recipe.recipe_instructions || '';
+          
+          // Handle categories - convert string to array if needed
+          const categories = Array.isArray(recipe.category) 
+            ? recipe.category 
+            : typeof recipe.category === 'string' 
+              ? recipe.category.split(',').map((cat: string) => cat.trim()).filter((cat: string) => cat.length > 0)
+              : [];
+          
+          // Handle types - convert string to array if needed  
+          const types = Array.isArray(recipe.type)
+            ? recipe.type
+            : typeof recipe.type === 'string'
+              ? recipe.type.split(',').map((type: string) => type.trim()).filter((type: string) => type.length > 0)
+              : [];
+          
+          setSelectedCategories(categories);
+          setSelectedTypes(types);
+          
+          adjustAllTextareas();
+        } else {
+          showNotification("Failed to fetch recipe details for update.", "error");
+          console.error("Failed to fetch recipe details for update:", response);
+        }
+      }).catch((error) => {
+        console.error("Error fetching recipe details for update:", error);
+        showNotification("Error fetching recipe details for update. Please try again later.", "error");
+      });
+    }
+  }, [recipeId]);
 
   useEffect(() => {
     if (selectedCategories.length > 0) {
@@ -115,6 +160,45 @@ const useCreateRecipeForm = () => {
     }
   }, [whichStep]);
 
+  const handleUpdateRecipe = () => {
+
+    if (recipeId) {
+      if (selectedCategories.length === 0) {
+        showNotification("Please select at least one category.", "error");
+        return;
+      }
+      if (selectedTypes.length === 0) {
+        showNotification("Please select at least one type.", "error");
+        return;
+      }
+      console.log('aaaaaaaaaa', inputs[0], inputs[1], inputs[2], inputs[3], selectedCategories, selectedTypes);
+
+      editRecipe(recipeId, {
+        recipe_name: inputs[0],
+        recipe_story: inputs[1],
+        recipe_ingredients: inputs[2],
+        recipe_instructions: inputs[3],
+        category: selectedCategories,
+        type: selectedTypes,
+      }).then((response: any) => {
+        if (response && response.success) {
+          showNotification("Recipe updated successfully!", "success");
+          setSelectedCategories([]);
+          setSelectedTypes([]);
+          inputs.length = 0; // Clear inputs after successful submission
+        } else {
+          showNotification("Failed to update recipe! " + (response?.errorMessage || ""), "error");
+          console.error(response?.errorMessage || "Failed to update recipe!");
+        }
+      }).catch((error: any) => {
+        console.error("Error updating recipe:", error);
+        showNotification("Error updating recipe! Please try again later.", "error");
+      });
+    } else {
+      showNotification("No recipe ID found for update.", "error");
+    }
+  }
+
   const handleShareRecipe = () => {
 
     if (selectedCategories.length === 0) {
@@ -152,6 +236,7 @@ const useCreateRecipeForm = () => {
   }
   return {
     handleFirstNextStep,
+    handleUpdateRecipe,
     handleShareRecipe,
     whichStep,
     setWhichStep,
@@ -166,6 +251,7 @@ const useCreateRecipeForm = () => {
     selectedTypes,
     setSelectedTypes,
     typeOptions,
+    isUpdateRecipe,
   }
 }
 

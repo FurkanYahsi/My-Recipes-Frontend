@@ -32,6 +32,7 @@ function App() {
             <Route path="/liked-recipes" element={<ShowRecipes type={pageTypes.LIKES}/>}/>
             <Route path="/user-recipes" element={<ShowRecipes type={pageTypes.USER_RECIPES}/>}/>
             <Route path="/send-recipe" element={<SendRecipePage />} />
+            <Route path="/edit-recipe/:id" element={<SendRecipePage />} />
             <Route path="/recipe/:id" element={<ViewRecipePage />} />
             <Route path="/recipes" element={<ShowRecipes type= {pageTypes.FILTEREDS}/>}/>
             <Route path='/*' element={<Navigate to="/home" replace/>}/>

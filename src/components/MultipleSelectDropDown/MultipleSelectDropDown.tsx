@@ -20,9 +20,8 @@ const MultipleSelectDropDown: React.FC<MultipleSelectDropDownProps> = ({header, 
     return (
     <div className="multiple-select-dropdown-container">
         {header && <div className="multiple-select-header">{header}</div>}
-
         <div className="choose" onClick={()=>setIsMenuOpen(!isMenuOpen)} ref={selectRef}>
-            {selectedOptions && selectedOptions.length > 0 ? selectedOptions.join(', ') : 'Select'}
+            {selectedOptions && Array.isArray(selectedOptions) && selectedOptions.length > 0 ? selectedOptions.join(', ') : 'Select'}
         </div>
 
         {isMenuOpen && (
@@ -31,7 +30,7 @@ const MultipleSelectDropDown: React.FC<MultipleSelectDropDownProps> = ({header, 
                     <div className="option-box"  style={{ borderBottom: index !== options.length - 1 ? '1px solid #ccc' : 'none', }} key={index} onClick={() => toggleOptions(option)}>
                         {option}
                         <span className="checkbox">
-                            {selectedOptions && selectedOptions.includes(option) && <div className="check-box"> <IconDone style={{color:'green'}}/></div>}
+                            {selectedOptions && Array.isArray(selectedOptions) && selectedOptions.includes(option) && <div className="check-box"> <IconDone style={{color:'green'}}/></div>}
                         </span>
                     </div>
                 ))}

@@ -14,17 +14,8 @@ const useMiniRecipeBox = (recipeId:string, initialLiked:boolean, initialBookmark
         navigate(`/recipe/${recipeId}`);
     }
 
-    const handleEditRecipe = (values: any) => {
-        editRecipe(recipeId, values).then((response:any) => {
-            if (response && response.success) {
-                console.log("Recipe edited successfully:", response);
-                // Navigate to the edit page or show a success message
-            } else {
-                console.error("Failed to edit the recipe");
-            }
-        }).catch((error) => {
-            console.error("Error editing the recipe:", error);
-        });
+    const handleEditRecipe = () => {
+        navigate(`/edit-recipe/${recipeId}`, { state: { recipeId } });
     }
 
  const handleDeleteRecipe = () => {

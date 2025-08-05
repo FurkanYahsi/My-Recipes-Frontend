@@ -10,6 +10,7 @@ import { FaRegBookmark } from "react-icons/fa";
 import { FaBookmark } from 'react-icons/fa6';
 import { MdAccountCircle } from 'react-icons/md';
 import { FaRegComment } from "react-icons/fa6";
+import { MdOutlineEdit } from "react-icons/md";
 import { GiTrashCan } from "react-icons/gi";
 
 
@@ -20,6 +21,7 @@ const IconBookmark = FaRegBookmark as React.FC<IconBaseProps>;
 const IconBookmarkFilled = FaBookmark as React.FC<IconBaseProps>;
 const IconProfile = MdAccountCircle as React.FC<IconBaseProps>;
 const IconComment = FaRegComment as React.FC<IconBaseProps>;
+const IconEdit = MdOutlineEdit as React.FC<IconBaseProps>;
 const IconTrashCan = GiTrashCan as React.FC<IconBaseProps>;
 
 
@@ -52,7 +54,8 @@ const MiniRecipeBox = ({recipe, onLikeChange, onBookmarkChange, onDeleteSuccess,
     <div>
       {contextHolder}
         <div className="mini-recipe-box">
-            {(isUserAdmin || isUserEditor || isUserShowing) && <div className='icon-backside' onClick={handleDeleteRecipe}><IconTrashCan/></div>}
+            {isUserShowing && <div className='icon-backside-1' onClick={handleEditRecipe}><IconEdit/></div>}
+            {(isUserAdmin || isUserEditor || isUserShowing) && <div className='icon-backside-2' onClick={handleDeleteRecipe}><IconTrashCan/></div>}
             <div className="recipe-image" onClick={handleViewRecipe}>
                 <img src={pasta} alt={recipe.recipe_name} />
             </div>

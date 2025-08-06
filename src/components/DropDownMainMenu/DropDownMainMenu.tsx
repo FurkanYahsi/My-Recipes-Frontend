@@ -4,15 +4,15 @@ import { useState, useEffect } from 'react';
 
 // React Icon imports
 import { IconBaseProps } from 'react-icons';
-import { FaSearch } from "react-icons/fa";
-import { FaRegBell } from "react-icons/fa";
+// import { FaSearch } from "react-icons/fa";
+// import { FaRegBell } from "react-icons/fa";
 import { MdAccountCircle } from "react-icons/md";
 import { RiArrowDownSLine } from "react-icons/ri";
 import { IoLogOutOutline } from "react-icons/io5";
 import { IoSettingsOutline } from "react-icons/io5";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import { FaRegBookmark } from "react-icons/fa";
-import { GiRiceCooker } from "react-icons/gi";
+// import { GiRiceCooker } from "react-icons/gi";
 import { VscFlame } from "react-icons/vsc";
 import { FiShoppingCart } from "react-icons/fi";
 import { FaRegHeart } from "react-icons/fa";
@@ -25,14 +25,14 @@ import { IoIosSend } from "react-icons/io";
 
 
 // Icons
-const IconBell = FaRegBell as React.FC<IconBaseProps>;
+// const IconBell = FaRegBell as React.FC<IconBaseProps>;
 const IconArrowDown = RiArrowDownSLine as React.FC<IconBaseProps>;
 const IconLogout = IoLogOutOutline as React.FC<IconBaseProps>;
 const IconSettings = IoSettingsOutline as React.FC<IconBaseProps>;
 const IconCalendar = FaRegCalendarAlt as React.FC<IconBaseProps>;
 const IconBookmark = FaRegBookmark as React.FC<IconBaseProps>;
 const IconProfile = MdAccountCircle as React.FC<IconBaseProps>;
-const IconCooker = GiRiceCooker as React.FC<IconBaseProps>;
+// const IconCooker = GiRiceCooker as React.FC<IconBaseProps>;
 const IconTrends = VscFlame as React.FC<IconBaseProps>;
 const IconShoppingCart = FiShoppingCart as React.FC<IconBaseProps>;
 const IconHeart = FaRegHeart as React.FC<IconBaseProps>;
@@ -49,7 +49,7 @@ interface DropDownMainMenuProps {
 }
 
 const DropDownMainMenu: React.FC<DropDownMainMenuProps> = ({ isMenuVisible, menuRef }) => {
-const { handleSavedRecipes, handleLikedRecipes, handleSendRecipe, handleTrends, handleLogout } = useDropDownMainMenu();
+const { handleMyProfileClick, handleSavedRecipes, handleLikedRecipes, handleSendRecipe, handleTrends, handleLogout } = useDropDownMainMenu();
 
 
   const [hasBeenVisible, setHasBeenVisible] = useState(false);
@@ -69,7 +69,7 @@ const { handleSavedRecipes, handleLikedRecipes, handleSendRecipe, handleTrends, 
     <div className={`menu-background${isMenuVisible ? '' : ' close'}`}>
       <div ref={menuRef} className={`menu${isMenuVisible ? '' : ' close'}`}>
         <div className='categories'>My Recipes<IconArrowDown/></div>
-        <div className='options'><IconProfile/>My Profile</div>
+        <div className='options' onClick={handleMyProfileClick}><IconProfile/>My Profile</div>
         <div className='options' onClick={handleSavedRecipes}><IconBookmark/>Saved Recipes</div>
         <div className='options' onClick={handleLikedRecipes}><IconHeart/>Likes</div>
         <div className='options' onClick={handleSendRecipe}><IconSend/>Send Recipe</div>

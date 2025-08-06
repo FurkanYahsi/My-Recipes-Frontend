@@ -140,7 +140,7 @@ const handleTrendsClick = (period: string) => {
 
     const handleMyProfileClick = () => {
         // If the user is already on the profile page, do not navigate again
-        if (window.location.pathname === "/profile") {
+        if (window.location.pathname === "/user-recipes") {
             return; 
         }
         navigate("/user-recipes");

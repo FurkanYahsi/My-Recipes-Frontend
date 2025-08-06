@@ -6,6 +6,14 @@ const useDropDownMainMenu = () => {
 
     const navigate = useNavigate();
 
+    const handleMyProfileClick = () => {
+        // If the user is already on the profile page, do not navigate again
+        if (window.location.pathname === "/user-recipes") {
+            return; 
+        }
+        navigate("/user-recipes");
+    }
+
     const handleSavedRecipes = () => {
         // If the user is already on the saved-recipes page, do not navigate again
         if (window.location.pathname === "/saved-recipes") {
@@ -50,6 +58,7 @@ const useDropDownMainMenu = () => {
     }
 
   return {
+    handleMyProfileClick,
     handleSavedRecipes,
     handleLikedRecipes,
     handleSendRecipe,

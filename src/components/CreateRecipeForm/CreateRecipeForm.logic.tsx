@@ -32,17 +32,17 @@ const useCreateRecipeForm = () => {
           if (instructionsRef.current) instructionsRef.current.value = recipe.recipe_instructions || '';
           
           // Handle categories - convert string to array if needed
-          const categories = Array.isArray(recipe.category) 
-            ? recipe.category 
-            : typeof recipe.category === 'string' 
-              ? recipe.category.split(',').map((cat: string) => cat.trim()).filter((cat: string) => cat.length > 0)
+          const categories = Array.isArray(recipe.category)
+            ? recipe.category
+            : typeof recipe.category === 'string'
+              ? recipe.category.replace(/[{}`"]/g, '').split(',').map((cat: string) => cat.trim()).filter((cat: string) => cat.length > 0)
               : [];
           
           // Handle types - convert string to array if needed  
           const types = Array.isArray(recipe.type)
             ? recipe.type
             : typeof recipe.type === 'string'
-              ? recipe.type.split(',').map((type: string) => type.trim()).filter((type: string) => type.length > 0)
+              ? recipe.type.replace(/[{}`"]/g, '').split(',').map((type: string) => type.trim()).filter((type: string) => type.length > 0)
               : [];
           
           setSelectedCategories(categories);

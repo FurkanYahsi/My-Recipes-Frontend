@@ -4,16 +4,16 @@ This is the frontend repository for the My Recipes app, built with React.
 
 ## 🚀 Installation & Running the Project
 
-** 1. Clone the Repository **
+**1. Clone the Repository**
 ```bash
 git clone https://github.com/FurkanYahsi/My-Recipes-Frontend.git
 cd My-Recipes-Frontend
 ```
-** 2. Install Dependencies **
+**2. Install Dependencies**
 ```bash
 npm install
 ```
-** 3. Start the Development Server **
+**3. Start the Development Server**
 ```bash
 npm start
 ```
@@ -22,7 +22,7 @@ http://localhost:3000
 
 ### 📦 Environment Variables
 
-** Create a .env file in the root directory with the following variables:** 
+**Create a .env file in the root directory with the following variables:** 
 ```bash
 SECRET_KEY=your_secret_key_here
 REACT_APP_BASE_URL=your_backend_url_here
@@ -30,7 +30,7 @@ REACT_APP_BASE_URL=your_backend_url_here
 
 ### 🛠️ Build for Production
 
-** To generate a production-ready build: **
+**To generate a production-ready build:**
 ```bash
 npm run build
 ```

@@ -1,0 +1,10 @@
+.app-layout {
+    display: flex;
+    flex-direction: column;
+}
+
+.app-content {
+    font-family: "Aleo", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}

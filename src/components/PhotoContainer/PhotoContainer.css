@@ -1,0 +1,107 @@
+.photo-container {
+    padding-left: 17rem;
+    width: 650px;
+    height: 650px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    transition: width 0.5s ease, height 0.5s ease, left 0.5s ease, top 0.5s ease;
+}
+
+.photo {
+    width: 700px;
+    height: 700px;
+    transition: width 0.5s ease, height 0.5s ease, top 0.5s ease, left 0.5s ease;
+
+}
+
+@media (max-width: 1850px) {
+  .photo-container {
+    width: 600px;
+    height: 600px;
+  }
+  .photo {
+    width: 625px;
+    height: 625px;
+  }
+}
+
+@media (max-width: 1750px) {
+  .photo-container {
+    width: 520px;
+    height: 520px;
+  }
+  .photo {
+    width: 560px;
+    height: 560px;
+  }
+}
+
+@media (max-width: 1600px) {
+  .photo-container {
+    width: 480px;
+    height: 480px;
+  }
+  .photo {
+    width: 510px;
+    height: 510px;
+  }
+}
+
+@media (max-width: 1500px) {
+  .photo-container {
+    width: 400px;
+    height: 400px;
+    left: calc(15% + 740px);
+  }
+  .photo {
+    width: 470px;
+    height: 470px;
+  }
+}
+
+@media (max-width: 1400px) {
+  .photo-container {
+    width: 400px;
+    height: 400px;
+    left: calc(15% + 700px);
+  }
+  .photo {
+    width: 450px;
+    height: 450px;
+  }
+}
+
+@media (width < 1300px) {
+  .photo-container {
+    width: 475px;
+    height: 500px;
+    padding-left: calc(100vw - 900px);
+  }
+  .photo {
+    width: calc(50vw);
+    height: calc(70vh);
+  }
+}
+
+@media (width < 900px) {
+  .photo-container {
+    width: 50px;
+    height: 50px;
+  }
+  .photo {
+    width: 80vw;
+    max-width: 600px;
+    height: 80vw;
+
+  }
+}
+
+@media (max-width: 350px) {
+  .photo {
+    width: 280px;
+    height: 280px;
+  }
+}

@@ -1,0 +1,61 @@
+.menu-background {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    animation: slipToRight 0.3s ease-in-out forwards;
+    
+}
+
+.menu {
+    position: fixed;
+    row-gap: 5px;
+    height: 100%;
+    width: 220px;
+    z-index: 9999;
+    background: #ffffff;
+    padding: 8px;
+    animation: slipToRight 0.6s ease-in-out forwards;
+    display: flex;
+    flex-direction: column;
+  }
+
+.close {
+    animation: slipToLeft 0.4s ease-in-out forwards;
+}
+
+@keyframes slipToRight {
+  from { transform: translateX(-100%);}
+  to   { transform: translateX(0);}
+}
+
+@keyframes slipToLeft {
+  from { transform: translateX(0%);}
+  to   { transform: translateX(-100%);}
+}
+
+.categories {
+  background-color: rgba(255, 0, 0);
+  color: rgba(255, 255, 255);
+  border-radius: 5px;
+  padding: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.options {
+  padding: 8px 20px;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  gap: 0.5rem;
+}
+
+.options:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}

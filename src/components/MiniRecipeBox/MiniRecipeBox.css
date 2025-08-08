@@ -1,0 +1,124 @@
+.mini-recipe-box {
+  width: 20rem;
+  height: 22rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow-wrap: break-word;
+  overflow: hidden;
+  position: relative;
+}
+
+.mini-recipe-box:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+  transition: transform 0.2s ease, box-shadow 0.2s ease
+}
+
+.icon-backside-1,
+.icon-backside-2 {
+  position: absolute;
+  background-color: #f0f0f0;
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  top: 1rem;
+  font-size: x-large;
+  right: 1rem;
+  color: #555;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+    &:hover {
+      background-color: #d4d4d4;
+      color: #000;
+      transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+      transform: scale(1.05);
+    }
+}
+
+.icon-backside-1 {
+  right: 4rem;
+}
+
+.mini-recipe-box .recipe-image {
+  margin: 0.5rem;
+  width: 19rem;
+  height: 13rem;
+  object-fit: cover;
+  border-radius: 5px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.explanation {
+  width: 100%;
+  height: 9rem;
+  padding: 0.5rem;
+  box-sizing: border-box;
+}
+
+.recipe-details {
+  width: 100%;
+  height: 5rem;
+  text-align: flex-start;
+  box-sizing: border-box;
+  border-bottom: rgb(167, 167, 167, 0.7) 1px solid;
+}
+
+.recipe-details-header {
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.quick-infos {
+  margin-top: 0.2rem;
+  font-size: 0.8rem;
+  color: #777;
+}
+
+.recipe-popularity {
+  user-select: none;
+  height: calc(100% - 5rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.owner {
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.icon-owner {
+  font-size: 1.5rem;
+  color: #555;
+}
+
+.mini-recipe-box-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 5.5rem;
+  margin-right: 2.7rem;
+  gap: 0.7rem;
+}
+
+.like-button, .bookmark-button, .comment-button {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  color: #555;
+  cursor: pointer;
+}

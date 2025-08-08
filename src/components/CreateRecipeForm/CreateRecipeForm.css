@@ -1,0 +1,78 @@
+.send-recipe-container {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    width: 70%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 12px;
+    background-color: rgb(255, 255, 255);
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.mini-container {
+    width: 100%;
+    height: auto;
+    gap: 10px;
+    padding: 40px;
+    box-sizing: border-box;
+    border-top: whitesmoke 1px solid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.send-recipe-container textarea {
+    width: 100%;
+    height: fit-content;
+    border: rgba(0, 0, 0, 0.6) 2px solid;
+    border-radius: 3px;
+    resize: none;
+    overflow: hidden;
+    outline: none;
+    font-family: sans-serif;
+    font-size: 0.9rem;
+    padding: 0.5rem;
+}
+
+.send-recipe-container .header {
+    color: #525252;
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem;
+    display: flex;
+    align-self: flex-start;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding-bottom: 5rem;
+}
+
+.button-share-recipe {
+    width: 20%;
+    align-items: center;
+    justify-content: center;
+    gap: 0.1rem;
+    display: flex;
+    align-self: center;
+    min-width: 110px;
+    max-width: 150px;
+    height: 2.5rem;
+    border-radius: 12px;
+    background-color: #ce0000;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 3rem;
+}
+
+.create-recipe-buttons-width {
+    min-width: 6rem !important;
+    max-width: 6rem !important;
+}

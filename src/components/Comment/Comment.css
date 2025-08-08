@@ -1,5 +1,4 @@
 .comment-container {
-    position: relative;
     width: 100%;
     min-width: 20rem;
     max-width: 48rem;
@@ -16,7 +15,6 @@
 .comment-actions {
     gap: 1rem;
     display: flex;
-    flex-direction: row;
 }
 
 .comment-user-profile {
@@ -38,7 +36,6 @@
 .comment-content {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     gap: 0.8rem;
 }
 

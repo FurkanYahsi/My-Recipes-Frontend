@@ -171,7 +171,6 @@ const useCreateRecipeForm = () => {
         showNotification("Please select at least one type.", "error");
         return;
       }
-      console.log('aaaaaaaaaa', inputs[0], inputs[1], inputs[2], inputs[3], selectedCategories, selectedTypes);
 
       editRecipe(recipeId, {
         recipe_name: inputs[0],
